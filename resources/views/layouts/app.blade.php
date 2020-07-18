@@ -20,23 +20,32 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Tab icon -->
-    <link rel="icon" href="./images/icon/ms-icon-310x310.png">
+    <link rel="icon" href="{{asset('./images/icon/ms-icon-310x310.png')}}">
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
-
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    
-                </a>
+                
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
+                
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Reizigersinformatie <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/ris/board-info"><img class="inline-img" src="{{asset('./images/split/content.png')}}">status</a>
+                                <a class="dropdown-item" href="/ris/board-setup"><img class="inline-img" src="{{asset('./images/split/status.png')}}">setup</a>
+                            </div>
+                        </li>
+                        
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -105,6 +114,12 @@
             border: none;
             outline: none;
             border-bottom: 2px solid lightgreen;
+        }
+
+        .inline-img {
+            display: inline;
+            width: 1em;
+            margin-right: 12px;
         }
 
         #card-container {
