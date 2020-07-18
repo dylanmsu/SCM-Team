@@ -21,5 +21,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@home');
 Route::get('/ris', 'HomeController@reizigersinformatie');
-Route::get('/board-setup', 'SplitflapController@board_setup');
-Route::get('/board-info', 'SplitflapController@board_info');
+Route::get('/ris/board-setup', 'SplitflapController@board_setup')->name('ris/board-setup');
+Route::get('/ris/board-info', 'SplitflapController@board_info')->name('ris/board-info');
+Route::post('/ris/splitflap', 'SplitflapController@store');

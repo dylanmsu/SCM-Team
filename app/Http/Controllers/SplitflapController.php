@@ -66,6 +66,34 @@ class SplitflapController extends Controller
         ]);
     }
     public function board_setup(){
-        return view('reizigersinformatie/board-setup',['message' => 'hello world']);
+        return view('reizigersinformatie/board-setup');
+    }
+
+    public function store(Request $request) {
+
+        $this->validate($request, [
+            'board' => 'required',
+            'time' => 'required',
+            'align' => 'required',
+            'icon_index' => 'required'
+        ]);
+        
+        $splitflap = new splitflap([
+            'board' => $request->get('board'),
+            'align' => $request->get('align'),
+            'first_text' => $request->get('first_text'),
+            'second_text' => $request->get('second_text'),
+            'icon_index' => $request->get('icon_index'),
+            'time' => $request->get('time'),
+            'user' => $request->user()->id
+        ]);
+        
+        $status = $splitflap->save();
+
+        if ($status) {
+            return redirect()->route('ris/board-setup')->with('success', "Successfully Submitted!");
+        } else {
+            return redirect()->route('ris/board-setup')->with('error', "Something went wrong on the server.");
+        }
     }
 }

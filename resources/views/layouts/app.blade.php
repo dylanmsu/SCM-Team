@@ -27,14 +27,6 @@
         <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
 
-                <!-- back button -->
-                @if (!Request::is('home'))
-                    <a id="back-button" class="nav-link" href="{{ url()->previous() }}">
-                        < back
-                    </a>
-                @endif
-
-
                 <a class="navbar-brand" href="{{ url('/') }}">
                     @yield('title')
                 </a>
@@ -45,7 +37,6 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -85,7 +76,6 @@
         </nav>
 
         <main>
-            <example-component>hello</example-component>
             @yield('content')
         </main>
     </div>
@@ -95,8 +85,8 @@
             background-attachment: fixed;
             font-family: Arial, Helvetica, sans-serif, sans-serif;
             text-align: center;
-            background: white;
-            /*background-image: linear-gradient(135deg, #E0EAFC 0%, #CFDEF3 100%);*/
+            background: white;/**/
+            /*background-image: linear-gradient(135deg, #E0EAFC 0%, #CFDEF3 100%);/**/
         }
 
         .basic-card {
@@ -108,6 +98,13 @@
             padding: 10px;
             display: block;
             margin: 0 0;
+        }
+
+        .basic-inputstyle {
+            background-color: #e7e7e7;
+            border: none;
+            outline: none;
+            border-bottom: 2px solid lightgreen;
         }
 
         #card-container {

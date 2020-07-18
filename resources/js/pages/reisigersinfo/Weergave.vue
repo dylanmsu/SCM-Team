@@ -65,19 +65,16 @@
         </form>
         <div id="container-prev">
             <h1>Voorbeeld</h1>
-            <preview class="basic-card" v-bind:splitflapData="result"/>
+            <board-preview class="basic-card" v-bind:splitflapData="result"/>
         </div>
     </div>
 </template>
 
 <script>
-import Preview from '@/components/SplitflapPreview.vue';
+//import Preview from './components/SplitflapPreview.vue';
 import axios from 'axios';
 
 export default {
-    components: {
-        'preview': Preview
-    },
     name: 'weergave',
     data() {
         return {

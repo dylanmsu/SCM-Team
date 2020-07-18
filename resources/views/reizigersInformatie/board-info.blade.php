@@ -5,12 +5,20 @@
 @section('content')
 <div id="grid-container">
     <div id="prevA">
+        @if (!empty($boardA[0]))
         <h3>Bord A</h3>
         <board-preview class="basic-card" splitflapdata="{{$boardA[0]}}"/>
+        @else
+        <h3>no data</h3>
+        @endif
     </div>
     <div id="prevB">
+        @if (!empty($boardB[0]))
         <h3>Bord B</h3>
         <board-preview class="basic-card" splitflapdata="{{$boardB[0]}}"/>
+        @else
+        <h3>no data</h3>
+        @endif
     </div>
     <table id="list" class="basic-card">
         <tr>
