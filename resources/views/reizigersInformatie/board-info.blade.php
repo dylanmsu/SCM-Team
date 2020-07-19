@@ -5,40 +5,115 @@
 @section('content')
 <div id="grid-container">
     <div id="prevA">
-        @if (!empty($boardA[0]))
         <h3>Bord A</h3>
-        <board-preview class="basic-card" splitflapdata="{{$boardA[0]}}"/>
+        @if (!empty($boardA[0]))
+            <board-preview class="basic-card" splitflapdata="{{$boardA[0]}}"/>
         @else
-        <h3>no data</h3>
+            @php
+            $blank = json_encode(array(
+                'align' => 'center',
+                'first_text' => 'geen treinen',
+                'second_text' => 'vandaag',
+                'icon_index' => '0',
+                'time' => ''
+            ));
+            @endphp
+            <board-preview class="basic-card" splitflapdata="{{$blank}}"/>
         @endif
     </div>
     <div id="prevB">
-        @if (!empty($boardB[0]))
         <h3>Bord B</h3>
-        <board-preview class="basic-card" splitflapdata="{{$boardB[0]}}"/>
+        @if (!empty($boardB[0]))
+            <board-preview class="basic-card" splitflapdata="{{$boardB[0]}}"/>
         @else
-        <h3>no data</h3>
+            @php
+                $blank = json_encode(array(
+                    'align' => 'center',
+                    'first_text' => 'geen treinen',
+                    'second_text' => 'vandaag',
+                    'icon_index' => '0',
+                    'time' => ''
+                ));
+            @endphp
+            <board-preview class="basic-card" splitflapdata="{{$blank}}"/>
         @endif
     </div>
-    <table id="list" class="basic-card">
-        <tr>
-            <th class="board">board</th>
-            <th class="first-text">first text</th>
-            <th class="second-text">second text</th>
-            <th class="icon">icon</th>
-            <th class="date">date</th>
-        </tr>
+    <div id="list">
+        <table class="basic-card">
+            <tr>
+                <th class="board">bord</th>
+                <th class="first-text">tekst bovenaan</th>
+                <th class="second-text">tekst onderaan</th>
+                <th class="icon">trein</th>
+                <th class="date">tijd</th>
+            </tr>
 
-        @foreach ($data as $item)
-        <tr>
-            <td>{{$item->board}}</td>
-            <td>{{$item->first_text}}</td>
-            <td>{{$item->second_text}}</td>
-            <td>{{$item->icon_index}}</td>
-            <td>{{$item->time}}</td>
-        </tr>
-        @endforeach
-    </table>
+            @if (!$data->isEmpty())
+                @foreach ($data as $item)
+                <tr>
+                    <td>{{$item->board}}</td>
+                    <td>{{$item->first_text}}</td>
+                    <td>{{$item->second_text}}</td>
+                    @switch($item->icon_index)
+                        @case(1)
+                            <td>IC</td>
+                            @break
+                        @case(2)
+                            <td>IR</td>
+                            @break
+                        @case(3)
+                            <td>L</td>
+                            @break
+                        @case(4)
+                            <td>P</td>
+                            @break
+                        @case(5)
+                            <td>EXP</td>
+                            @break
+                        @case(6)
+                            <td style="color: red">IR</td>
+                            @break
+                        @case(7)
+                            <td style="color: red">IT</td>
+                            @break
+                        @case(8)
+                            <td style="color: red">?</td>
+                            @break
+                        @case(9)
+                            <td style="color: red">INT</td>
+                            @break
+                        @case(10)
+                            <td>T</td>
+                            @break
+                        @case(11)
+                            <td>STOOM</td>
+                            @break
+                        @case(12)
+                            <td>MW</td>
+                            @break
+                        @case(13)
+                            <td>KRUIS</td>
+                            @break
+                        @case(14)
+                            <td>ORIENT</td>
+                            @break
+                        @case(15)
+                            <td style="color: red">DIENST</td>
+                            @break
+                        @default
+                            <td>[blank]</td>
+                            @break
+                    @endswitch
+                    <td>{{$item->time}}</td>
+                </tr>
+                @endforeach
+            @else
+                no data
+            @endif
+            
+        </table>
+    </div>
+    
 </div>
 @endsection
 <style>
@@ -63,7 +138,7 @@
         margin: 0 auto;
         width: 60%;
     }
-    
+
     #list {
         grid-column: 1/3;
         display: block;
@@ -87,8 +162,8 @@
     .board {width: calc(5vw * 0.8);}
     .first-text {width: calc(30vw * 0.8);}
     .second-text {width: calc(30vw * 0.8);}
-    .icon {width: calc(5vw * 0.8);}
-    .date {width: calc(30vw * 0.8);}
+    .icon {width: calc(10vw * 0.8); margin-left: 30px;}
+    .date {width: calc(25vw * 0.8);}
     
     
     

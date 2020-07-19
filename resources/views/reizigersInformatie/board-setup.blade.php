@@ -11,15 +11,20 @@
                 <div class="card-body">
 
                     @if(session('success') != "")
-                    <div class="alert alert-success">
-                        {{session('success')}}
+                    <div class="col-md-6">
+                        <div class="row alert alert-success">
+                            {{session('success')}}
+                        </div>
                     </div>
                     @endif
 
                     @if(session('error') != "")
-                    <div class="alert alert-danger">
-                        {{session('error')}}
+                    <div class="col-md-6">
+                        <div class="alert alert-danger">
+                            {{session('error')}}
+                        </div>
                     </div>
+                    
                     @endif
 
                     <form method="POST" autocomplete="off" action="{{ action('SplitflapController@store') }}" method="post">

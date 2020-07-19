@@ -118,7 +118,7 @@
 
         .inline-img {
             display: inline;
-            width: 1em;
+            width: 1.5em;
             margin-right: 12px;
         }
 

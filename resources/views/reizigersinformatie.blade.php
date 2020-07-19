@@ -16,7 +16,7 @@
             <div id="card-container">
                 <a id="my-card" href="/ris/board-info">
                     <img src="{{asset('./images/split/content.png')}}">
-                    <h3>Board Info</h3>
+                    <h3>Board Status</h3>
                 </a>
                 <a id="my-card" href="/ris/board-setup">
                     <img src="{{asset('./images/split/status.png')}}">
