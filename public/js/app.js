@@ -2089,7 +2089,13 @@ __webpack_require__.r(__webpack_exports__);
         color: 'color: red',
         index: 15
       }],
-      result: {}
+      result: {
+        align: 'left',
+        first_text: '',
+        second_text: '',
+        icon_index: '0',
+        time: ''
+      }
     };
   },
   methods: {
@@ -2138,31 +2144,31 @@ __webpack_require__.r(__webpack_exports__);
     },
     updateText: function updateText() {
       // sets all the varibles to a defailt value when its null
-      if (this.data.align == null) {
+      if (this.data.align == undefined) {
         this.result.align = "left";
       } else {
         this.result.align = this.data.align;
       }
 
-      if (this.data.first_text == null) {
+      if (this.data.first_text == undefined) {
         this.result.first_text = "";
       } else {
         this.result.first_text = this.data.first_text;
       }
 
-      if (this.data.second_text == null) {
+      if (this.data.second_text == undefined) {
         this.result.second_text = "";
       } else {
         this.result.second_text = this.data.second_text;
       }
 
-      if (this.data.icon_index == null) {
+      if (this.data.icon_index == undefined) {
         this.result.icon_index = "0";
       } else {
         this.result.icon_index = this.data.icon_index;
       }
 
-      if (this.data.time == null) {
+      if (this.data.time == undefined) {
         this.result.time = "";
       } else {
         this.result.time = this.data.time;
@@ -6682,7 +6688,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*  */\n#preview {\r\n    grid-column: 2;\r\n    margin-bottom: 50px;\r\n    padding: 10px;\r\n    display: grid;\r\n    grid-template-columns: repeat(14, 1fr);\n}\r\n\r\n/* style of the individual charakter */\n.preview-char {\r\n    background-color: #000;\r\n    border: 2px solid #222;\r\n    height: 3vw;\r\n    color: white;\r\n    font-size: 1.9vw;\r\n    font-weight: bold;\r\n    font-family: 'Roboto', sans-serif, monospace;\n}\r\n\r\n/* style of the icon */\n#icon {\r\n    grid-column: 1/9;\n}\r\n\r\n/* the gap between the time and icon */\n#gap {\r\n    grid-column: 9/11;\r\n    background-color: #222;\n}\r\n\r\n/* */\n#hours {\r\n    grid-column: 11/13;\n}\r\n\r\n/* if the window is less than 1000px in width*/\n@media (max-width: 1000px){\n.preview-char {\r\n        height: 6.5vw;\r\n        font-size: 3.8vw;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*  */\n#preview {\r\n    grid-column: 2;\r\n    margin-bottom: 50px;\r\n    padding: 10px;\r\n    display: grid;\r\n    grid-template-columns: repeat(14, 1fr);\n}\r\n\r\n/* style of the individual charakter */\n.preview-char {\r\n    background-color: #000;\r\n    border: 2px solid #222;\r\n    color: white;\r\n    font-weight: bold;\r\n    font-family: 'Roboto', sans-serif, monospace;\n}\r\n\r\n/* style of the icon */\n#icon {\r\n    grid-column: 1/9;\n}\r\n\r\n/* the gap between the time and icon */\n#gap {\r\n    grid-column: 9/11;\r\n    background-color: #222;\n}\r\n\r\n/* */\n#hours {\r\n    grid-column: 11/13;\n}\r\n\r\n/* if the window is less than 1000px in width*/\n@media (max-width: 1000px){\n}\r\n", ""]);
 
 // exports
 

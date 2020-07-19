@@ -78,7 +78,13 @@ export default {
                 { icon: 'ORIENT', color: 'color: white', index: 14 },
                 { icon: 'DIENST', color: 'color: red', index: 15 },
             ],
-            result: {}
+            result: {
+                align: 'left',
+                first_text: '',
+                second_text: '',
+                icon_index: '0',
+                time: '',
+            }
         }
     },
     methods: {
@@ -134,11 +140,11 @@ export default {
         },
         updateText() {
             // sets all the varibles to a defailt value when its null
-            if(this.data.align == null){this.result.align = "left"} else {this.result.align = this.data.align}
-            if(this.data.first_text == null){this.result.first_text = ""} else {this.result.first_text = this.data.first_text}
-            if(this.data.second_text == null){this.result.second_text = ""} else {this.result.second_text = this.data.second_text}
-            if(this.data.icon_index == null){this.result.icon_index = "0"} else {this.result.icon_index = this.data.icon_index}
-            if(this.data.time == null){this.result.time = ""} else {this.result.time = this.data.time}
+            if(this.data.align == undefined){this.result.align = "left"} else {this.result.align = this.data.align}
+            if(this.data.first_text == undefined){this.result.first_text = ""} else {this.result.first_text = this.data.first_text}
+            if(this.data.second_text == undefined){this.result.second_text = ""} else {this.result.second_text = this.data.second_text}
+            if(this.data.icon_index == undefined){this.result.icon_index = "0"} else {this.result.icon_index = this.data.icon_index}
+            if(this.data.time == undefined){this.result.time = ""} else {this.result.time = this.data.time}
             
             let date = new Date(this.result.time);
             let minutes = ""
@@ -201,9 +207,9 @@ export default {
     },
     created() {
         //update every 500ms
-        setInterval(() => {
-            this.updateText();
-        }, 500);
+            setInterval(() => {
+                this.updateText();
+            }, 500);
     }
 }
 </script>
@@ -222,9 +228,7 @@ export default {
 .preview-char {
     background-color: #000;
     border: 2px solid #222;
-    height: 3vw;
     color: white;
-    font-size: 1.9vw;
     font-weight: bold;
     font-family: 'Roboto', sans-serif, monospace;
 }
@@ -247,9 +251,6 @@ export default {
 
 /* if the window is less than 1000px in width*/
 @media (max-width: 1000px){
-    .preview-char {
-        height: 6.5vw;
-        font-size: 3.8vw;
-    }
+    
 }
 </style>

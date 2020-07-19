@@ -18,7 +18,7 @@
                 'time' => ''
             ));
             @endphp
-            <board-preview class="basic-card" splitflapdata="{{$blank}}"/>
+            <board-preview class="basic-card" id="boardA" splitflapdata="{{$blank}}"/>
         @endif
     </div>
     <div id="prevB">
@@ -35,7 +35,7 @@
                     'time' => ''
                 ));
             @endphp
-            <board-preview class="basic-card" splitflapdata="{{$blank}}"/>
+            <board-preview class="basic-card" id="boardB" splitflapdata="{{$blank}}"/>
         @endif
     </div>
     <div id="list">
@@ -122,7 +122,7 @@
         grid-template-columns: 1fr 1fr;
         margin-top: 20px;
     }
-    
+
     #prevA {
         grid-row: 1;
         grid-column: 1;
@@ -174,6 +174,16 @@
     tr:nth-child(odd) {
         background-color: white;
     }
+
+    #prevA > div > div.preview-char {
+        height: 3.2vw;
+        font-size: 2vw;
+    }
+
+    #prevB > div > div.preview-char {
+        height: 3.2vw;
+        font-size: 2vw;
+    }
     
     @media only screen and (max-width: 1000px){
         #grid-container {
@@ -187,6 +197,16 @@
             display: block;
             margin: 0 auto;
             width: 80%;
+        }
+
+        #prevA > div > div.preview-char {
+            height: 6.5vw;
+            font-size: 3.8vw;
+        }
+
+        #prevB > div > div.preview-char {
+            height: 6.5vw;
+            font-size: 3.8vw;
         }
     
         #prevB {

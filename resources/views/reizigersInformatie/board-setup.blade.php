@@ -27,13 +27,24 @@
                     
                     @endif
 
-                    <form method="POST" autocomplete="off" action="{{ action('SplitflapController@store') }}" method="post">
+                    <form method="POST" autocomplete="off" method="post">
                         {{ csrf_field() }}
+
+                        @if (!empty($preview))
+                            <div class="form-group row">
+                                <label for="test" class="col-md-4 col-form-label text-md-right">{{ __('Voorbeeld') }}</label>
+                                <div class="col-md-6" id="prev">
+                                    <board-preview class="basic-card" splitflapdata="{{$preview}}"/>
+                                </div>
+                            </div>
+                        @endif
+                        
+
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Bord') }}</label>
+                            <label for="board" class="col-md-4 col-form-label text-md-right">{{ __('Bord') }}</label>
 
                             <div class="col-md-6">
-                                <div class="radio-container">
+                                <div class="radio-container" id="board">
                                     <input checked="checked" type="radio" id="radio1" name="board" value="A" selected>
                                     <label for="radio1">Bord A</label>
                                     <input type="radio" id="radio2" name="board" value="B">
@@ -113,7 +124,10 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" formaction="{{ action('SplitflapController@preview') }}">
+                                    {{ __('Voorbeeld') }}
+                                </button>
+                                <button type="submit" class="btn btn-primary" formaction="{{ action('SplitflapController@store') }}">
                                     {{ __('Verzenden') }}
                                 </button>
                             </div>
@@ -126,17 +140,12 @@
 </div>
 @endsection
 
-<script>
-    $("form").on('submit', function(e){
-        e.preventDefault();
-        // if e.preventDefault() doesn't work, try `return false`
-
-        // your remaining code here
-    });
-</script>
-
 <style>
-    
+    .preview-char {
+        height: 2vw;
+        font-size: 1.2vw;
+    }
+
     .radio-container {
         display: flex;
         width: 100%;
@@ -163,7 +172,7 @@
     }
 
     input[type=radio]:checked + label { 
-    background-image: none;
+        background-image: none;
         background-color: lightgreen;
     }
 
@@ -190,5 +199,12 @@
 
     select > option {
         font-weight: bold;
+    }
+
+    @media only screen and (max-width: 767px){
+        .preview-char {
+            height: 5vw;
+            font-size: 2.8vw;
+        }
     }
 </style>

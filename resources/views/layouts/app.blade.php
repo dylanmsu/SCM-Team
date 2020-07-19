@@ -35,6 +35,12 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
+                        <li class="nav-item">
+                            <a class="nav-link" href="/home" role="button" v-pre>
+                                home
+                            </a>
+                        </li>
+
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 Reizigersinformatie <span class="caret"></span>
@@ -98,6 +104,11 @@
             /*background-image: linear-gradient(135deg, #E0EAFC 0%, #CFDEF3 100%);/**/
         }
 
+        .nav-link {
+            padding-left: 20px;
+            padding-right: 200px;
+        }
+
         .basic-card {
             transition: .15s all ease-in-out;
             text-decoration: none;
@@ -123,17 +134,11 @@
         }
 
         #card-container {
-            margin: 40px;
+            margin: 30px 10%;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         }
-    
-        @media (max-width: 700px) {
-            #card-container {
-                margin: 20px;
-                grid-template-columns: repeat(1,1fr);
-            }
-        }
+
         #my-card {
             transition: .15s all ease-in-out;
             text-decoration: none;
@@ -141,6 +146,22 @@
             margin: 20px 10%;
             background-color: lightgray;
             cursor: pointer;
+        }
+    
+        @media (max-width: 700px) {
+            #card-container {
+                margin: 30px 10%;
+                grid-template-columns: repeat(1,1fr);
+            }
+
+            #my-card {
+                transition: .15s all ease-in-out;
+                text-decoration: none;
+                color: black;
+                margin: 20px 0%;
+                background-color: lightgray;
+                cursor: pointer;
+            }
         }
     
         #my-card:hover {
