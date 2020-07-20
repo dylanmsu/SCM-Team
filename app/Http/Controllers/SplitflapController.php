@@ -107,6 +107,14 @@ class SplitflapController extends Controller
             'icon_index' => $request->get('icon_index'),
             'time' => $request->get('time')
         ];
-        return view('reizigersinformatie/board-setup',['preview' => json_encode($prev) ]);
+        return view('reizigersinformatie/board-setup',[
+            'preview' => json_encode($prev),
+            'board' => $request->get('board'),
+            'align' => $request->get('align'),
+            'first_text' => $request->get('first_text'),
+            'second_text' => $request->get('second_text'),
+            'icon_index' => $request->get('icon_index'),
+            'time' => $request->get('time')
+         ]);
     }
 }

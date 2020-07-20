@@ -18,7 +18,7 @@
                 'time' => ''
             ));
             @endphp
-            <board-preview class="basic-card" id="boardA" splitflapdata="{{$blank}}"/>
+            <board-preview class="basic-card" splitflapdata="{{$blank}}"/>
         @endif
     </div>
     <div id="prevB">
