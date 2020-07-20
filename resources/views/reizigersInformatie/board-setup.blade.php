@@ -141,6 +141,10 @@
 @endsection
 
 <style>
+    .btn-primary {
+        margin: 0 15px;
+    }
+
     .preview-char {
         height: 2vw;
         font-size: 1.2vw;
