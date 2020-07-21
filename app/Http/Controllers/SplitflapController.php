@@ -59,7 +59,7 @@ class SplitflapController extends Controller
             ->orderBy('time', 'asc')
             ->take(1)->get();
 
-        return view('reizigersinformatie/board-info',[
+        return view('reizigersInformatie/board-info',[
             'data' => $splitfflaps,
             'boardA' => $splitfflapsA,
             'boardB' => $splitfflapsB
@@ -67,7 +67,7 @@ class SplitflapController extends Controller
     }
 
     public function board_setup(){
-        return view('reizigersinformatie/board-setup');
+        return view('reizigersInformatie/board-setup');
     }
 
     public function store(Request $request) {
