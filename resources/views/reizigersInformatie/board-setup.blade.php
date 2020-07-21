@@ -41,20 +41,20 @@
                         
 
                         <div class="form-group row">
-                            <label for="board" class="col-md-4 col-form-label text-md-right">{{ __('Bord') }}</label>
+                            <label for="board" class="col-md-4 col-form-label text-md-right">{{ __('Spoor') }}</label>
 
                             <div class="col-md-6">
                                 <div class="radio-container" id="board">
                                     <input type="radio" id="radio1" name="board" value="A" @if(($board ?? 'A') == 'A') checked="checked" @endif>
-                                    <label for="radio1">Bord A</label>
+                                    <label for="radio1">Spoor A</label>
                                     <input type="radio" id="radio2" name="board" value="B" @if(($board ?? 'A') == 'B') checked="checked" @endif>
-                                    <label for="radio2">Bord B</label>
+                                    <label for="radio2">Spoor B</label>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="align" class="col-md-4 col-form-label text-md-right">{{ __('Uitlijnen') }}</label>
+                            <label for="align" class="col-md-4 col-form-label text-md-right">{{ __('Text uitlijnen') }}</label>
                             <div class="col-md-6">
                                 <div id="align" class="radio-container text-align">
                                     <input type="radio" name="align" id="left" value="left" @if(($align ?? 'left') == 'left') checked="checked" @endif>
@@ -68,25 +68,25 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="icon" class="col-md-4 col-form-label text-md-right">{{ __('Icoon') }}</label>
+                            <label for="icon" class="col-md-4 col-form-label text-md-right">{{ __('Trein') }}</label>
                             <div class="col-md-6">
                                 <select name="icon_index" class="basic-inputstyle">
-                                    <option value="0" @if(($icon_index ?? '') == 0) selected="selected" @endif>[blank]</option>
-                                    <option value="1" @if(($icon_index ?? '') == 1) selected="selected" @endif>IC</option>
-                                    <option value="2" @if(($icon_index ?? '') == 2) selected="selected" @endif>IR</option>
-                                    <option value="3" @if(($icon_index ?? '') == 3) selected="selected" @endif>L</option>
-                                    <option value="4" @if(($icon_index ?? '') == 4) selected="selected" @endif>P</option>
-                                    <option value="5" @if(($icon_index ?? '') == 5) selected="selected" @endif>EXP</option>
-                                    <option value="6" @if(($icon_index ?? '') == 6) selected="selected" @endif style="color: red">IR</option>
-                                    <option value="7" @if(($icon_index ?? '') == 7) selected="selected" @endif style="color: red">IT</option>
-                                    <option value="8" @if(($icon_index ?? '') == 8) selected="selected" @endif style="color: red">?</option>
-                                    <option value="9" @if(($icon_index ?? '') == 9) selected="selected" @endif style="color: red">INT</option>
-                                    <option value="10" @if(($icon_index ?? '') == 10) selected="selected" @endif>T</option>
-                                    <option value="11" @if(($icon_index ?? '') == 11) selected="selected" @endif>STOOM</option>
-                                    <option value="12" @if(($icon_index ?? '') == 12) selected="selected" @endif>MW</option>
-                                    <option value="13" @if(($icon_index ?? '') == 13) selected="selected" @endif>KRUIS</option>
-                                    <option value="14" @if(($icon_index ?? '') == 14) selected="selected" @endif>ORIENT</option>
-                                    <option value="15" @if(($icon_index ?? '') == 15) selected="selected" @endif style="color: red">DIENST</option>
+                                    <option value="0" @if(($icon_index ?? '0') == 0) selected="selected" @endif>[blank]</option>
+                                    <option value="1" @if(($icon_index ?? '0') == 1) selected="selected" @endif>IC</option>
+                                    <option value="2" @if(($icon_index ?? '0') == 2) selected="selected" @endif>IR</option>
+                                    <option value="3" @if(($icon_index ?? '0') == 3) selected="selected" @endif>L</option>
+                                    <option value="4" @if(($icon_index ?? '0') == 4) selected="selected" @endif>P</option>
+                                    <option value="5" @if(($icon_index ?? '0') == 5) selected="selected" @endif>EXP</option>
+                                    <option value="6" @if(($icon_index ?? '0') == 6) selected="selected" @endif>IR</option>
+                                    <option value="7" @if(($icon_index ?? '0') == 7) selected="selected" @endif>IT</option>
+                                    <option value="8" @if(($icon_index ?? '0') == 8) selected="selected" @endif>?</option>
+                                    <option value="9" @if(($icon_index ?? '0') == 9) selected="selected" @endif>INT</option>
+                                    <option value="10" @if(($icon_index ?? '0') == 10) selected="selected" @endif>T</option>
+                                    <option value="11" @if(($icon_index ?? '0') == 11) selected="selected" @endif>STOOM</option>
+                                    <option value="12" @if(($icon_index ?? '0') == 12) selected="selected" @endif>MW</option>
+                                    <option value="13" @if(($icon_index ?? '0') == 13) selected="selected" @endif>KRUIS</option>
+                                    <option value="14" @if(($icon_index ?? '0') == 14) selected="selected" @endif>ORIENT</option>
+                                    <option value="15" @if(($icon_index ?? '0') == 15) selected="selected" @endif>DIENST</option>
                                 </select>
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="time" class="col-md-4 col-form-label text-md-right">{{ __('Tijd') }}</label>
+                            <label for="time" class="col-md-4 col-form-label text-md-right">{{ __('Aankomst') }}</label>
                             <div class="col-md-6">
                                 <input  required id="time" name="time" class="basic-inputstyle" type="datetime-local" value="{{$time ?? ''}}">
                             </div>
