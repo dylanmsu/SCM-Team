@@ -4,20 +4,22 @@
 
 @section('content')
 <div id="grid-container">
+
+    @php
+    $blank = json_encode(array(
+        'align' => 'center',
+        'first_text' => 'geen treinen',
+        'second_text' => 'vandaag',
+        'icon_index' => '0',
+        'time' => ''
+    ));
+    @endphp
+    
     <div id="prevA">
         <h3>Bord A</h3>
         @if (!empty($boardA[0]))
             <board-preview class="basic-card" splitflapdata="{{$boardA[0]}}"/>
         @else
-            @php
-            $blank = json_encode(array(
-                'align' => 'center',
-                'first_text' => 'geen treinen',
-                'second_text' => 'vandaag',
-                'icon_index' => '0',
-                'time' => ''
-            ));
-            @endphp
             <board-preview class="basic-card" splitflapdata="{{$blank}}"/>
         @endif
     </div>
@@ -26,16 +28,7 @@
         @if (!empty($boardB[0]))
             <board-preview class="basic-card" splitflapdata="{{$boardB[0]}}"/>
         @else
-            @php
-                $blank = json_encode(array(
-                    'align' => 'center',
-                    'first_text' => 'geen treinen',
-                    'second_text' => 'vandaag',
-                    'icon_index' => '0',
-                    'time' => ''
-                ));
-            @endphp
-            <board-preview class="basic-card" id="boardB" splitflapdata="{{$blank}}"/>
+            <board-preview class="basic-card" splitflapdata="{{$blank}}"/>
         @endif
     </div>
     <div id="list">
