@@ -104,6 +104,11 @@
             /*background-image: linear-gradient(135deg, #E0EAFC 0%, #CFDEF3 100%);/**/
         }
 
+        .disabled {
+            opacity: .5;
+            pointer-events: none;
+        }
+
         .nav-link {
             padding-left: 20px;
             padding-right: 200px;

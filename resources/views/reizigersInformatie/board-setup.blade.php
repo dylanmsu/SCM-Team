@@ -11,15 +11,15 @@
                 <div class="card-body">
 
                     @if(session('success') != "")
-                    <div class="col-md-6">
-                        <div class="row alert alert-success">
+                    <div>
+                        <div class="alert alert-success">
                             {{session('success')}}
                         </div>
                     </div>
                     @endif
 
                     @if(session('error') != "")
-                    <div class="col-md-6">
+                    <div>
                         <div class="alert alert-danger">
                             {{session('error')}}
                         </div>
@@ -32,29 +32,15 @@
 
                         @if (!empty($preview))
                             <div class="form-group row">
-                                <label for="test" class="col-md-4 col-form-label text-md-right">{{ __('Voorbeeld') }}</label>
+                                <label for="test" class="col-md-4 col-form-label text-md-right">Voorbeeld</label>
                                 <div class="col-md-6" id="prev">
                                     <board-preview class="basic-card" splitflapdata="{{$preview}}"/>
                                 </div>
                             </div>
                         @endif
-                        
 
                         <div class="form-group row">
-                            <label for="board" class="col-md-4 col-form-label text-md-right">{{ __('Spoor') }}</label>
-
-                            <div class="col-md-6">
-                                <div class="radio-container" id="board">
-                                    <input type="radio" id="radio1" name="board" value="A" @if(($board ?? 'A') == 'A') checked="checked" @endif>
-                                    <label for="radio1">Spoor A</label>
-                                    <input type="radio" id="radio2" name="board" value="B" @if(($board ?? 'A') == 'B') checked="checked" @endif>
-                                    <label for="radio2">Spoor B</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="align" class="col-md-4 col-form-label text-md-right">{{ __('Text uitlijnen') }}</label>
+                            <label for="align" class="col-md-4 col-form-label text-md-right">Text uitlijnen</label>
                             <div class="col-md-6">
                                 <div id="align" class="radio-container text-align">
                                     <input type="radio" name="align" id="left" value="left" @if(($align ?? 'left') == 'left') checked="checked" @endif>
@@ -68,7 +54,35 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="icon" class="col-md-4 col-form-label text-md-right">{{ __('Trein') }}</label>
+                            <label for="textA" class="col-md-4 col-form-label text-md-right">Text Boven</label>
+                            <div class="col-md-6">
+                            <input id="textA" name="first_text" class="basic-inputstyle" type="text" maxlength="14" spellcheck="false" autocapitalize="off" value="{{$first_text ?? ''}}">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="textB" class="col-md-4 col-form-label text-md-right">Text Onder</label>
+                            <div class="col-md-6">
+                                <input id="textB" name="second_text" class="basic-inputstyle" type="text" maxlength="14" spellcheck="false" autocapitalize="off" value="{{$second_text ?? ''}}">
+                            </div>
+                        </div>
+
+                        <br>
+
+                        <div class="form-group row">
+                            <label for="board" class="col-md-4 col-form-label text-md-right">Spoor</label>
+                            <div class="col-md-6">
+                                <div class="radio-container" id="board">
+                                    <input type="radio" id="radio1" name="board" value="A" @if(($board ?? 'A') == 'A') checked="checked" @endif>
+                                    <label for="radio1">Spoor A</label>
+                                    <input type="radio" id="radio2" name="board" value="B" @if(($board ?? 'A') == 'B') checked="checked" @endif>
+                                    <label for="radio2">Spoor B</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="icon" class="col-md-4 col-form-label text-md-right">Trein</label>
                             <div class="col-md-6">
                                 <select name="icon_index" class="basic-inputstyle">
                                     <option value="0" @if(($icon_index ?? '0') == 0) selected="selected" @endif>[blank]</option>
@@ -92,21 +106,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="textA" class="col-md-4 col-form-label text-md-right">{{ __('Text Boven') }}</label>
-                            <div class="col-md-6">
-                            <input id="textA" name="first_text" class="basic-inputstyle" type="text" maxlength="14" spellcheck="false" autocapitalize="off" value="{{$first_text ?? ''}}">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="textB" class="col-md-4 col-form-label text-md-right">{{ __('Text Onder') }}</label>
-                            <div class="col-md-6">
-                                <input id="textB" name="second_text" class="basic-inputstyle" type="text" maxlength="14" spellcheck="false" autocapitalize="off" value="{{$second_text ?? ''}}">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="time" class="col-md-4 col-form-label text-md-right">{{ __('Aankomst') }}</label>
+                            <label for="time" class="col-md-4 col-form-label text-md-right">Aankomst</label>
                             <div class="col-md-6">
                                 <input  required id="time" name="time" class="basic-inputstyle" type="datetime-local" value="{{$time ?? ''}}">
                             </div>

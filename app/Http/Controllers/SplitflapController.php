@@ -36,6 +36,7 @@ class SplitflapController extends Controller
     }
 
     public function board_info(Request $request) {
+        // get splitflapdata within now and 48 hours
         $splitfflaps = splitflap::
             select('*')
             ->whereRaw('time >= now()')
@@ -94,7 +95,7 @@ class SplitflapController extends Controller
         if ($status) {
             return redirect()->route('ris/board-setup')->with('success', "Successfully Submitted!");
         } else {
-            return redirect()->route('ris/board-setup')->with('error', "Something went wrong on the server.");
+            return redirect()->route('ris/board-setup')->with('error', "Something went wrong.");
         }
     }
 
