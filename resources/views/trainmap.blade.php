@@ -17,8 +17,8 @@
             <img src="{{asset('./images/map/hld.png')}}">
             <h3>Rangeerlocomotief</h3>
         </a>
-        <a id="my-card" href="/ris/board-setup">
-            <img src="{{asset('https://www.scm-server.be/track/Resources/ScriptPlugins/com.GpsGate/Publish/v3/single_nativemap.html?appId=5&viewId=6&userName=trackerSS&mapKey=ggsmap&units=metric&v=5.0.0.3284')}}">
+        <a id="my-card" href="https://www.scm-server.be/track/Resources/ScriptPlugins/com.GpsGate/Publish/v3/single_nativemap.html?appId=5&viewId=6&userName=trackerSS&mapKey=ggsmap&units=metric&v=5.0.0.3284">
+            <img src="{{asset('./images/map/sms.png')}}">
             <h3>Smalspoor</h3>
         </a>
     </div>

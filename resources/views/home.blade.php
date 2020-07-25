@@ -15,6 +15,10 @@
             <img src="{{asset('./images/main/ris.png')}}">
             <h3>ReizigersInformatie</h3>
         </a>
+        <a id="my-card" href="/filemanager">
+            <img src="{{asset('./images/main/scanner.png')}}">
+            <h3>Mijn bestanden</h3>
+        </a>
         <a id="my-card" href="/map">
             <img src="{{asset('./images/main/map.png')}}">
             <h3>TrainMap</h3>
@@ -42,10 +46,6 @@
         <a id="my-card" href="https://login.mailchimp.com/">
             <img src="{{asset('./images/main/mailchimp.png')}}">
             <h3>Mailchimp</h3>
-        </a>
-        <a class="disabled" id="my-card" href="/scanner">
-            <img src="{{asset('./images/main/scanner.png')}}">
-            <h3>Scanner</h3>
         </a>
     </div>
 </div>
