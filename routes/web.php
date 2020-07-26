@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@home');
+Route::get('home', 'HomeController@home')->name('home');
 
 Route::get('/ris', 'HomeController@reizigersinformatie');
 Route::get('/ris/board-setup', 'SplitflapController@board_setup')->name('ris/board-setup');

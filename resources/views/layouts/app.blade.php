@@ -35,27 +35,38 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
+                        @if (!Route::is('home'))
                         <li class="nav-item">
                             <a class="nav-link" href="/home" role="button" v-pre>
                                 home
                             </a>
                         </li>
+                        @endif
 
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Reizigersinformatie <span class="caret"></span>
-                            </a>
+                        @if (!Auth::guest())
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Reizigersinformatie <span class="caret"></span>
+                                </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="/ris/board-info"><img class="inline-img" src="{{asset('./images/split/content.png')}}">status</a>
-                                <a class="dropdown-item" href="/ris/board-setup"><img class="inline-img" src="{{asset('./images/split/status.png')}}">setup</a>
-                            </div>
-                        </li>
-                        
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/ris/board-info"><img class="inline-img" src="{{asset('./images/split/content.png')}}">status</a>
+                                    <a class="dropdown-item" href="/ris/board-setup"><img class="inline-img" src="{{asset('./images/split/status.png')}}">setup</a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/filemanager" role="button" v-pre>
+                                    Files
+                                </a>
+                            </li>
+                        @endif
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -110,8 +121,8 @@
         }
 
         .nav-link {
-            padding-left: 20px;
-            padding-right: 200px;
+            margin-left: 10px;
+            margin-right: 10px;
         }
 
         .basic-card {
