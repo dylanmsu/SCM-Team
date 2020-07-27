@@ -20,6 +20,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('board-preview', require('./components/SplitflapPreview.vue').default);
+Vue.component('my-icon', require('./components/SplitflapIcon.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -27,6 +28,9 @@ Vue.component('board-preview', require('./components/SplitflapPreview.vue').defa
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+import VueResizeText from 'vue-resize-text';
 const app = new Vue({
     el: '#app',
+    VueResizeText
 });
+

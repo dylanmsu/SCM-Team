@@ -42,7 +42,7 @@
                         <div class="form-group row">
                             <label for="align" class="col-md-4 col-form-label text-md-right">Text uitlijnen</label>
                             <div class="col-md-6">
-                                <div id="align" class="radio-container text-align">
+                                <div id="align" class="radio-container">                  <!-- "($align ?? 'left')" = (if $align is undefined, set it to 'left') -->
                                     <input type="radio" name="align" id="left" value="left" @if(($align ?? 'left') == 'left') checked="checked" @endif>
                                     <label for="left">links</label>
                                     <input type="radio" name="align" id="center" value="center" @if(($align ?? 'left') == 'center') checked="checked" @endif>
@@ -85,16 +85,16 @@
                             <label for="icon" class="col-md-4 col-form-label text-md-right">Trein</label>
                             <div class="col-md-6">
                                 <select name="icon_index" class="basic-inputstyle">
-                                    <option value="0" @if(($icon_index ?? '0') == 0) selected="selected" @endif>[blank]</option>
-                                    <option value="1" @if(($icon_index ?? '0') == 1) selected="selected" @endif>IC</option>
-                                    <option value="2" @if(($icon_index ?? '0') == 2) selected="selected" @endif>IR</option>
-                                    <option value="3" @if(($icon_index ?? '0') == 3) selected="selected" @endif>L</option>
-                                    <option value="4" @if(($icon_index ?? '0') == 4) selected="selected" @endif>P</option>
-                                    <option value="5" @if(($icon_index ?? '0') == 5) selected="selected" @endif>EXP</option>
-                                    <option value="6" @if(($icon_index ?? '0') == 6) selected="selected" @endif>IR</option>
-                                    <option value="7" @if(($icon_index ?? '0') == 7) selected="selected" @endif>IT</option>
-                                    <option value="8" @if(($icon_index ?? '0') == 8) selected="selected" @endif>?</option>
-                                    <option value="9" @if(($icon_index ?? '0') == 9) selected="selected" @endif>INT</option>
+                                    <option value="0"  @if(($icon_index ?? '0') == 0)  selected="selected" @endif>[blank]</option>
+                                    <option value="1"  @if(($icon_index ?? '0') == 1)  selected="selected" @endif>IC</option>
+                                    <option value="2"  @if(($icon_index ?? '0') == 2)  selected="selected" @endif>IR</option>
+                                    <option value="3"  @if(($icon_index ?? '0') == 3)  selected="selected" @endif>L</option>
+                                    <option value="4"  @if(($icon_index ?? '0') == 4)  selected="selected" @endif>P</option>
+                                    <option value="5"  @if(($icon_index ?? '0') == 5)  selected="selected" @endif>EXP</option>
+                                    <option value="6"  @if(($icon_index ?? '0') == 6)  selected="selected" @endif>IR</option>
+                                    <option value="7"  @if(($icon_index ?? '0') == 7)  selected="selected" @endif>IT</option>
+                                    <option value="8"  @if(($icon_index ?? '0') == 8)  selected="selected" @endif>?</option>
+                                    <option value="9"  @if(($icon_index ?? '0') == 9)  selected="selected" @endif>INT</option>
                                     <option value="10" @if(($icon_index ?? '0') == 10) selected="selected" @endif>T</option>
                                     <option value="11" @if(($icon_index ?? '0') == 11) selected="selected" @endif>STOOM</option>
                                     <option value="12" @if(($icon_index ?? '0') == 12) selected="selected" @endif>MW</option>
@@ -150,11 +150,6 @@
         margin: 15px 15px 0px 15px;
     }
 
-    .preview-char {
-        height: 2vw;
-        font-size: 1.2vw;
-    }
-
     .radio-container {
         display: flex;
         width: 100%;
@@ -208,6 +203,11 @@
 
     select > option {
         font-weight: bold;
+    }
+
+    .preview-char {
+        height: 2vw;
+        font-size: 1.2vw;
     }
 
     @media only screen and (max-width: 767px){

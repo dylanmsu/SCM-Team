@@ -1,29 +1,33 @@
 <template>
-    <div id="preview">
-        <div class="preview-char" id="character" v-for="i in items" :key="i.id" :style="i.color">
-            {{i.char}}
-        </div>
-        <div class="preview-char" id="icon" :style="icons[result.icon_index].color">
-            {{icons[result.icon_index].icon}} 
-        </div>
-        <div id="gap">
-        </div>
-        <div class="preview-char" id="hours" style="color: white">
-            {{hours}}
-        </div>
-        <div class="preview-char" id="minutes" style="color: white">
-            {{minsA}}
-        </div>
-        <div class="preview-char" id="minutes" style="color: white">
-            {{minsB}}
+    <div>
+        <div id="preview">
+            <div class="previewchar" id="character" v-for="i in items" :key="i.id" :style="i.color">
+                {{i.char}}
+            </div>
+            <div class="previewchar" id="icon" :style="icons[result.icon_index].color">
+                {{icons[result.icon_index].icon}} 
+            </div>
+            <div id="gap">
+            </div>
+            <div class="previewchar" id="hours">
+                {{hours}}
+            </div>
+            <div class="previewchar" id="minutes">
+                {{minsA}}
+            </div>
+            <div class="previewchar" id="minutes">
+                {{minsB}}
+            </div>
         </div>
     </div>
+    
 </template>
 
 <script>
+
 export default {
     props: ['splitflapdata'],
-    name: 'app',
+    name: 'prev',
     data() {
         return {
             data: JSON.parse(this.splitflapdata),
@@ -208,8 +212,15 @@ export default {
     created() {
         //update every 500ms
             setInterval(() => {
+                let char = document.getElementsByClassName("previewchar")
+                let cont = document.getElementById('preview')
+                for (let i=0; i<char.length; i++){
+                    char[i].style.fontSize = cont.getBoundingClientRect().width/15 + 'px';
+                    char[i].style.height = cont.getBoundingClientRect().width/9 + 'px';
+                    char[i].style.borderWidth = cont.getBoundingClientRect().width/130 + 'px';
+                }
                 this.updateText();
-            }, 500);
+            }, 1000);
     }
 }
 </script>
@@ -217,15 +228,13 @@ export default {
 <style>
 /*  */
 #preview {
-    grid-column: 2;
-    margin-bottom: 50px;
-    padding: 10px;
+    margin: 10px;
     display: grid;
     grid-template-columns: repeat(14, 1fr);
 }
 
 /* style of the individual charakter */
-.preview-char {
+.previewchar {
     background-color: #000;
     border: 2px solid #222;
     color: white;
