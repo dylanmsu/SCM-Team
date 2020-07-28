@@ -19,6 +19,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::put('/themes', function(Request $request) {
+    $request->validate([
+       'theme' => ['required', Rule::in(['darkly', 'cerulean'])]
+    ]);
+ 
+    session(['theme' => $request->theme]);
+    return back();
+ });
+
 Route::get('home', 'HomeController@home')->name('home');
 
 Route::get('/ris', 'HomeController@reizigersinformatie')->name('ris');

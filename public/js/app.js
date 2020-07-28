@@ -1914,36 +1914,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['icon_index'],
   data: function data() {
     return {
       mydata: this.icon_index,
       icons: [{
-        icon: ' ',
-        color: 'color: black',
+        icon: '[blank]',
+        color: '',
         index: 0
       }, {
-        icon: 'ic',
-        color: 'color: black',
+        icon: 'IC',
+        color: '',
         index: 1
       }, {
         icon: 'IR',
-        color: 'color: black',
+        color: '',
         index: 2
       }, {
         icon: 'L',
-        color: 'color: black',
+        color: '',
         index: 3
       }, {
         icon: 'P',
-        color: 'color: black',
+        color: '',
         index: 4
       }, {
         icon: 'EXP',
-        color: 'color: black',
+        color: '',
         index: 5
       }, {
         icon: 'IR',
@@ -1963,23 +1961,23 @@ __webpack_require__.r(__webpack_exports__);
         index: 9
       }, {
         icon: 'T',
-        color: 'color: black',
+        color: '',
         index: 10
       }, {
         icon: 'STOOM',
-        color: 'color: black',
+        color: '',
         index: 11
       }, {
         icon: 'MV',
-        color: 'color: black',
+        color: '',
         index: 12
       }, {
         icon: 'KRUIS',
-        color: 'color: black',
+        color: '',
         index: 13
       }, {
         icon: 'ORIENT',
-        color: 'color: black',
+        color: '',
         index: 14
       }, {
         icon: 'DIENST',
@@ -2125,7 +2123,7 @@ __webpack_require__.r(__webpack_exports__);
         color: 'color: white',
         index: 0
       }, {
-        icon: 'ic',
+        icon: 'IC',
         color: 'color: white',
         index: 1
       }, {
@@ -2196,7 +2194,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     splitAndDraw: function splitAndDraw(text1, text2) {
-      //top row
+      //top 14 charakters
       for (var i = 0; i <= 14; i++) {
         if (!(this.items[i + 14] == null)) {
           // sets the color to red if the charakter is uppercase
@@ -2215,7 +2213,7 @@ __webpack_require__.r(__webpack_exports__);
             }
           }
         }
-      } // bottom row
+      } // bottom 14 charakters
 
 
       for (var _i = 0; _i <= 14; _i++) {
@@ -2268,23 +2266,23 @@ __webpack_require__.r(__webpack_exports__);
         this.result.time = "";
       } else {
         this.result.time = this.data.time;
-      }
+      } // convert datetime string to a workable date object
+
 
       var date = new Date(this.result.time);
-      var minutes = ""; // makes sure we dont get 'nan' on the splitflap boards
+      var minutes = ""; // makes sure we dont get 'NaN' on the splitflap boards
 
       if (date.getHours().toString() == "NaN") {
         this.hours = " ";
       } else {
         this.hours = date.getHours().toString() + ".";
-      } // makes sure we dont get 'nan' on the splitflap boards
-
+      }
 
       if (date.getMinutes().toString() == "NaN") {
         minutes = "  ";
       } else {
         minutes = date.getMinutes().toString();
-      } // get indigidual digits of the minutes
+      } // get individual digits of the minutes
 
 
       if (minutes.length == 1) {
@@ -2319,7 +2317,7 @@ __webpack_require__.r(__webpack_exports__);
             this.splitAndDraw(_a2, _b2);
           }
     },
-    //create a string with a certain number of spaces 
+    //create a string with a variable number of spaces 
     space: function space(amount) {
       var spaceStr = "";
 
@@ -2333,8 +2331,8 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    //update every 500ms
-    setInterval(function () {
+    // initialize and render
+    setTimeout(function () {
       var _char = document.getElementsByClassName("previewchar");
 
       var cont = document.getElementById('preview');
@@ -2346,7 +2344,7 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       _this.updateText();
-    }, 1000);
+    }, 0);
   }
 });
 
@@ -6794,7 +6792,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*  */\n#preview {\r\n    margin: 10px;\r\n    display: grid;\r\n    grid-template-columns: repeat(14, 1fr);\n}\r\n\r\n/* style of the individual charakter */\n.previewchar {\r\n    background-color: #000;\r\n    border: 2px solid #222;\r\n    color: white;\r\n    font-weight: bold;\r\n    font-family: 'Roboto', sans-serif, monospace;\n}\r\n\r\n/* style of the icon */\n#icon {\r\n    grid-column: 1/9;\n}\r\n\r\n/* the gap between the time and icon */\n#gap {\r\n    grid-column: 9/11;\r\n    background-color: #222;\n}\r\n\r\n/* */\n#hours {\r\n    grid-column: 11/13;\n}\r\n\r\n/* if the window is less than 1000px in width*/\n@media (max-width: 1000px){\n}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*  */\n#preview {\r\n    margin: 10px;\r\n    display: grid;\r\n    grid-template-columns: repeat(14, 1fr);\n}\r\n\r\n/* style of the individual charakter */\n.previewchar {\r\n    background-color: #000;\r\n    border: 2px solid #222;\r\n    color: white;\r\n    font-weight: bold;\r\n    font-family: 'Roboto', sans-serif, monospace;\n}\r\n\r\n/* style of the icon */\n#icon {\r\n    grid-column: 1/9;\n}\r\n\r\n/* the gap between the time and icon */\n#gap {\r\n    grid-column: 9/11;\r\n    background-color: #222;\n}\r\n\r\n/* */\n#hours {\r\n    grid-column: 11/13;\n}\r\n", ""]);
 
 // exports
 
@@ -38589,11 +38587,14 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { style: this.icons[this.mydata].color }, [
-      _vm._v("\n        " + _vm._s(this.icons[this.mydata].icon) + "\n    ")
-    ])
-  ])
+  return _c(
+    "div",
+    {
+      staticStyle: { display: "inline" },
+      style: this.icons[this.mydata].color
+    },
+    [_vm._v("\n    " + _vm._s(this.icons[this.mydata].icon) + "\n")]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

@@ -21,15 +21,21 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Menu') }}</div>
-                <div id="card-container">
-                    <a id="my-card" href="{{route('ris/board-info')}}">
-                        <img src="{{asset('./images/split/content.png')}}">
-                        <h3>Board Status</h3>
-                    </a>
-                    <a id="my-card" href="{{route('ris/board-setup')}}">
-                        <img src="{{asset('./images/split/status.png')}}">
-                        <h3>Board Setup</h3>
-                    </a>
+                <div class="card-body">
+                    <div class="row">
+                        <a class="text-decoration-none my-2 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12" href="{{route('ris/board-info')}}">
+                            <div class="card">
+                                <img class="card-img-top"  src="{{asset('./images/split/content.png')}}">
+                                <div class="py-3 card-body bg-secondary">Board Status</div>
+                            </div>
+                        </a>
+                        <a class="text-decoration-none my-2 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12" href="{{route('ris/board-setup')}}">
+                            <div class="card">
+                                <img class="card-img-top"  src="{{asset('./images/split/status.png')}}">
+                                <div class="py-3 card-body bg-secondary">Board Setup</div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

@@ -66,7 +66,7 @@ export default {
             ],
             icons: [
                 { icon: ' ', color: 'color: white', index: 0 },
-                { icon: 'ic', color: 'color: white', index: 1 },
+                { icon: 'IC', color: 'color: white', index: 1 },
                 { icon: 'IR', color: 'color: white', index: 2 },
                 { icon: 'L', color: 'color: white', index: 3 },
                 { icon: 'P', color: 'color: white', index: 4 },
@@ -94,9 +94,8 @@ export default {
     methods: {
         splitAndDraw(text1,text2) {
 
-            //top row
+            //top 14 charakters
             for(let i = 0; i <= 14; i++){
-
                 if (!(this.items[i+14] == null)){
 
                     // sets the color to red if the charakter is uppercase
@@ -113,14 +112,12 @@ export default {
                         if (!(text1 == "") && !(text1 == undefined)){
                             this.items[i].char = text1.toUpperCase().split("")[i]
                         }
-                        
                     }
                 }
             }
 
-            // bottom row
+            // bottom 14 charakters
             for(let i = 0; i <= 14; i++){
-
                 if (!(this.items[i+14] == null)){
 
                     // sets the color to red if the charakter is uppercase
@@ -139,7 +136,6 @@ export default {
                         }
                     }
                 }
-                
             }
         },
         updateText() {
@@ -150,24 +146,24 @@ export default {
             if(this.data.icon_index == undefined){this.result.icon_index = "0"} else {this.result.icon_index = this.data.icon_index}
             if(this.data.time == undefined){this.result.time = ""} else {this.result.time = this.data.time}
             
+            // convert datetime string to a workable date object
             let date = new Date(this.result.time);
             let minutes = ""
 
-            // makes sure we dont get 'nan' on the splitflap boards
+            // makes sure we dont get 'NaN' on the splitflap boards
             if (date.getHours().toString() == "NaN"){
                 this.hours = " "
             } else {
                 this.hours = date.getHours().toString() + "."
             }
 
-            // makes sure we dont get 'nan' on the splitflap boards
             if (date.getMinutes().toString() == "NaN"){
                 minutes = "  "
             } else {
                 minutes = date.getMinutes().toString()
             }
             
-            // get indigidual digits of the minutes
+            // get individual digits of the minutes
             if (minutes.length == 1){
                 this.minsA = '0'
                 this.minsB = minutes
@@ -200,7 +196,7 @@ export default {
                 this.splitAndDraw(a,b)
             }
         },
-        //create a string with a certain number of spaces 
+        //create a string with a variable number of spaces 
         space(amount) {
             let spaceStr = ""
             for(let i = 0; i <= amount; i++){
@@ -210,17 +206,17 @@ export default {
         }
     },
     created() {
-        //update every 500ms
-            setInterval(() => {
-                let char = document.getElementsByClassName("previewchar")
-                let cont = document.getElementById('preview')
-                for (let i=0; i<char.length; i++){
-                    char[i].style.fontSize = cont.getBoundingClientRect().width/15 + 'px';
-                    char[i].style.height = cont.getBoundingClientRect().width/9 + 'px';
-                    char[i].style.borderWidth = cont.getBoundingClientRect().width/130 + 'px';
-                }
-                this.updateText();
-            }, 1000);
+        // initialize and render
+        setTimeout(() => {
+            let char = document.getElementsByClassName("previewchar")
+            let cont = document.getElementById('preview')
+            for (let i=0; i<char.length; i++){
+                char[i].style.fontSize = cont.getBoundingClientRect().width/15 + 'px';
+                char[i].style.height = cont.getBoundingClientRect().width/9 + 'px';
+                char[i].style.borderWidth = cont.getBoundingClientRect().width/130 + 'px';
+            }
+            this.updateText();
+        }, 0);
     }
 }
 </script>
@@ -256,10 +252,5 @@ export default {
 /* */
 #hours {
     grid-column: 11/13;
-}
-
-/* if the window is less than 1000px in width*/
-@media (max-width: 1000px){
-    
 }
 </style>

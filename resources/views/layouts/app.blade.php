@@ -17,7 +17,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->  <!-- light theme -->
+    <link href="{{ asset('css/darkly.css') }}" rel="stylesheet">        <!-- dark theme -->
 
     <!-- Tab icon -->
     <link rel="icon" href="{{asset('./images/icon/ms-icon-310x310.png')}}">
@@ -37,29 +38,10 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
-                        @if (!Route::is('home'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="/home" role="button" v-pre>
-                                home
-                            </a>
-                        </li>
-                        @endif
-
                         @if (!Auth::guest())
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Reizigersinformatie <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/ris/board-info"><img class="inline-img" src="{{asset('./images/split/content.png')}}">status</a>
-                                    <a class="dropdown-item" href="/ris/board-setup"><img class="inline-img" src="{{asset('./images/split/status.png')}}">setup</a>
-                                </div>
-                            </li>
-
                             <li class="nav-item">
                                 <a class="nav-link" href="/filemanager" role="button" target="_blank" v-pre>
-                                    Files
+                                    Mijn Bestanden
                                 </a>
                             </li>
                         @endif
@@ -114,7 +96,7 @@
         * but customized styles are located here and in some of the views
         * 
         * for ducumentation on how to use the included css, refer to the link below
-        * https://getbootstrap.com/docs/3.4/css/
+        * https://getbootstrap.com/docs/4.5/components
         */
 
         body {
@@ -124,80 +106,10 @@
             text-align: center;
         }
 
-        /* if you want to disable a card from being clicked, add this as a class to the element */
-        .disabled {
-            opacity: .5;
-            pointer-events: none;
-        }
-
         /* added a little more space between the nav links */
         .nav-link {
             margin-left: 10px;
             margin-right: 10px;
-        }
-
-        /* this is the styling for the menu-cards */
-        #card-container {
-            margin: 30px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-        }
-        #my-card {
-            transition: .15s all ease-in-out;
-            text-decoration: none;
-            color: black;
-            margin: 20px 10%;
-            background-color: lightgray;
-            cursor: pointer;
-        }
-        #my-card:hover {
-            box-shadow: 2px 6px 10px 0px rgba(0,0,0,0.75);
-        }
-        #my-card > h3 {
-            margin: 15px auto;
-            font-size: 1em;
-        }
-        #my-card > img {
-            width: 92%;
-            margin: 4%;
-            margin-bottom: -2%;
-        }
-
-        /* makes an input lichtgray with a green underline */
-        .basic-inputstyle {
-            background-color: #e7e7e7;
-            border: none;
-            outline: none;
-            border-bottom: 2px solid lightgreen;
-        }
-
-        /* style for the image in the nav bat drop down */
-        .inline-img {
-            display: inline;
-            width: 1.5em;
-            margin-right: 12px;
-        }
-
-        .basic-card {
-            transition: .15s all ease-in-out;
-            text-decoration: none;
-            color: black;
-            background-color: lightgray;
-            cursor: pointer;
-            display: block;
-            margin: 0;
-            padding: 0;
-        }
-    
-        /* style for when the screen width is less than 768px */
-        @media (max-width: 768px) {
-            #card-container {
-                grid-template-columns: repeat(1,1fr);
-            }
-
-            #my-card {
-                margin: 20px 0%;
-            }
         }
     </style>
 </body>
