@@ -23,66 +23,39 @@
             </div>
         @endif
 
+        @php
+            $home_cards = array(
+                array('img' => './images/main/ris.png',       'name' => 'Splitflap Boards',    'target' => "",        'link' => route('ris')),
+                array('img' => './images/main/map.png',       'name' => 'Train Map',           'target' => "",        'link' => route('map')),
+                array('img' => './images/main/scanner.png',   'name' => 'Mijn bestanden',      'target' => "_blank",  'link' => "/filemanager"),
+                array('img' => './images/main/scmteam.png',   'name' => 'SCM-Team',            'target' => "",        'link' => "https://www.scm-team.be"),
+                array('img' => './images/main/one.png',       'name' => 'One.com',             'target' => "",        'link' => "https://login.one.com/cp"),
+                array('img' => './images/main/stme.png',      'name' => 'Stoomtrein Maldegem', 'target' => "",        'link' => "https://www.stoomtreinmaldegem.be/nl"),
+                array('img' => './images/main/academy.png',   'name' => 'Academy',             'target' => "",        'link' => "https://academy.scm-team.be"),
+                array('img' => './images/main/forms.png',     'name' => 'SCM-Formulieren',     'target' => "",        'link' => "https://forms.scm-team.be"),
+                array('img' => './images/main/mailchimp.png', 'name' => 'Mailchimp',           'target' => "",        'link' => "https://login.mailchimp.com/")
+            );
+        @endphp
+
+        <!-- left side -->
         <div class="col-md-8">
+
             <div class="card">
                 <div class="card-header">Menu</div>
                 <div class="card-body">
                     <div class="container">
                         <div class="row text-center">
-                            <div class="my-3 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" >
-                                <a class="card my-card text-decoration-none" href="{{route('ris')}}">
-                                    <img class="card-img-top" src="{{asset('./images/main/ris.png')}}">
-                                    <div class="py-3 card-footer">ReizigersInformatie</div>
-                                </a>
-                            </div>
-                            <div class="my-3 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" >
-                                <a class="card my-card text-decoration-none" href="{{route('map')}}">
-                                    <img class="card-img-top" src="{{asset('./images/main/map.png')}}">
-                                    <div class="py-3 card-footer">Train Map</div>
-                                </a>
-                            </div>
-                            <div class="my-3 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" >
-                                <a class="card my-card text-decoration-none" href="/filemanager" target="popup">
-                                    <img class="card-img-top" src="{{asset('./images/main/scanner.png')}}">
-                                    <div class="py-3 card-footer">Mijn bestanden</div>
-                                </a>
-                            </div>
-                            <div class="my-3 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" >
-                                <a class="card my-card text-decoration-none" href="https://www.scm-team.be/">
-                                    <img class="card-img-top" src="{{asset('./images/main/scmteam.png')}}">
-                                    <div class="py-3 card-footer">SCM-Team</div>
-                                </a>
-                            </div>
-                            <div class="my-3 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" >
-                                <a class="card my-card text-decoration-none" href="https://login.one.com/cp/">
-                                    <img class="card-img-top" src="{{asset('./images/main/one.png')}}">
-                                    <div class="py-3 card-footer">One.com</div>
-                                </a>
-                            </div>
-                            <div class="my-3 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" >
-                                <a class="card my-card text-decoration-none" href="https://www.stoomtreinmaldegem.be/nl">
-                                    <img class="card-img-top" src="{{asset('./images/main/stme.png')}}">
-                                    <div class="py-3 card-footer">Stoomtrein Maldegem</div>
-                                </a>
-                            </div>
-                            <div class="my-3 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" >
-                                <a class="card my-card text-decoration-none" href="https://academy.scm-team.be">
-                                    <img class="card-img-top" src="{{('./images/main/academy.png')}}">
-                                    <div class="py-3 card-footer">Academy</div>
-                                </a>
-                            </div>
-                            <div class="my-3 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" >
-                                <a class="card my-card text-decoration-none" href="https://forms.scm-team.be">
-                                    <img class="card-img-top" src="{{asset('./images/main/forms.png')}}">
-                                    <div class="py-3 card-footer">SCM-Formulieren</div>
-                                </a>
-                            </div>
-                            <div class="my-3 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" >
-                                <a class="card my-card text-decoration-none" href="https://login.mailchimp.com/">
-                                    <img class="card-img-top" src="{{asset('./images/main/mailchimp.png')}}">
-                                    <div class="py-3 card-footer">Mailchimp</div>
-                                </a>
-                            </div>
+
+                            <!-- loop through the array above to create the cards -->
+                            @foreach ($home_cards as $card)
+                                <div class="my-3 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" >
+                                    <a class="card my-card text-decoration-none" href="{{$card['link']}}" target="{{$card['target']}}">
+                                        <img class="card-img-top" src="{{asset($card['img'])}}">
+                                        <div class="py-3 card-footer">{{$card['name']}}</div>
+                                    </a>
+                                </div>
+                            @endforeach
+
                         </div>
                     </div>
                 </div>
@@ -91,7 +64,7 @@
 
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header">{{ __('Treinen') }}</div>
+                <div class="card-header">Treinen</div>
                 <div class="list-group">
                     @if (isset($data))
                         @foreach ($data as $item)

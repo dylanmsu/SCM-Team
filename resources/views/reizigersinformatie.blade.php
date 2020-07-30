@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'ReizigersInformatie')
+@section('title', 'Splitflap Boards')
 
 @section('content')
 <div class="container">
@@ -18,21 +18,27 @@
             </div>
         @endif
 
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Menu') }}</div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="text-decoration-none my-2 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                    <div class="row text-center">
+                        <div class="text-decoration-none my-2 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                             <a class="card my-card text-decoration-none" href="{{route('ris/board-info')}}">
                                 <img class="card-img-top"  src="{{asset('./images/split/content.png')}}">
                                 <div class="py-3 card-footer">Board Status</div>
                             </a>
                         </div>
-                        <div class="text-decoration-none my-2 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                        <div class="text-decoration-none my-2 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                             <a class="card my-card text-decoration-none" href="{{route('ris/board-setup')}}">
                                 <img class="card-img-top"  src="{{asset('./images/split/status.png')}}">
                                 <div class="py-3 card-footer">Board Setup</div>
+                            </a>
+                        </div>
+                        <div class="text-decoration-none my-2 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                            <a class="card my-card text-decoration-none" href="">
+                                <img class="card-img-top"  src="{{asset('./images/split/settings.svg')}}">
+                                <div class="py-3 card-footer">board Settings</div>
                             </a>
                         </div>
                     </div>

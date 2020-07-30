@@ -22,7 +22,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Menu') }}</div>
                     <div class="card-body">
-                        <div class="row">
+                        <div class="row text-center">
                             <div class="text-decoration-none my-2 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
                                 <a class="card my-card" href="https://www.scm-server.be/track/Resources/ScriptPlugins/com.GpsGate/Publish/v3/single_nativemap.html?appId=5&viewId=6&userName=trackerHLV&mapKey=ggsmap&units=metric&v=5.0.0.3284">
                                     <img class="card-img-top"  src="{{asset('./images/map/hlv.png')}}">

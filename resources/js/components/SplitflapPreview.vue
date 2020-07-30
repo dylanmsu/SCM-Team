@@ -224,6 +224,7 @@ export default {
 <style>
 /*  */
 #preview {
+    text-align: center;
     display: grid;
     grid-template-columns: repeat(14, 1fr);
 }

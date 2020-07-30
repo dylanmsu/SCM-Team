@@ -97,19 +97,25 @@
         </nav>
 
         <!-- page content is injected here -->
-        <main>
+        <main role="main" class="flex-shrink-0">
             @yield('content')
         </main>
+        
+        <!--
+        <footer class="text-center card-footer">
+			<p><small><span>&copy; 2018-<?php echo date("Y")+1; ?> SCM-Team.<br>All Rights Reserved. | versie: <?php echo date ("j/m/Y", getlastmod()); ?></span></small></p>
+        </footer>
+        -->
     </div>
     <style>
         /* 
-        * almost all the styling is located in 'public/css/app.css'
-        * they were included in this laravel framework
-        * but customized styles are located here and in some of the views
-        * 
         * for ducumentation on how to use the included css, refer to the link below
         * https://getbootstrap.com/docs/4.5/components
         */
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
 
         body {
             background-attachment: fixed;
