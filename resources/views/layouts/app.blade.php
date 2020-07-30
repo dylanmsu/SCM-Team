@@ -17,8 +17,12 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->  <!-- light theme -->
-    <link href="{{ asset('css/darkly.css') }}" rel="stylesheet">        <!-- dark theme -->
+    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->                         <!-- default theme -->
+    <link href="{{ asset('css/themes/darkly/bootstrap.css') }}" rel="stylesheet">              <!-- darkly theme -->
+    <!-- <link href="{{ asset('css/themes/litera/bootstrap.css') }}" rel="stylesheet"> -->     <!-- litera theme -->
+    <!-- <link href="{{ asset('css/themes/lumen/bootstrap.css') }}" rel="stylesheet"> -->      <!-- lumen theme -->
+    <!-- <link href="{{ asset('css/themes/materia/bootstrap.css') }}" rel="stylesheet"> -->    <!-- materia theme -->
+    <!-- <link href="{{ asset('css/themes/superhero/bootstrap.css') }}" rel="stylesheet"> -->  <!-- superhero theme -->
 
     <!-- Tab icon -->
     <link rel="icon" href="{{asset('./images/icon/ms-icon-310x310.png')}}">
@@ -26,8 +30,8 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
-            <div class="container-fluid">
+        <nav class="sticky-top navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
+            <div class="container">
                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -41,6 +45,10 @@
                         @if (!Auth::guest())
                             <li class="nav-item">
                                 <a class="nav-link" href="/filemanager" role="button" target="_blank" v-pre>
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-file-text" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M4 1h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H4z"/>
+                                        <path fill-rule="evenodd" d="M4.5 10.5A.5.5 0 0 1 5 10h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/>
+                                    </svg>   
                                     Mijn Bestanden
                                 </a>
                             </li>
@@ -54,16 +62,19 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">Login</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">Registreren</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" d="M13 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM3.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                    </svg>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
@@ -85,6 +96,7 @@
             </div>
         </nav>
 
+        <!-- page content is injected here -->
         <main>
             @yield('content')
         </main>
@@ -100,16 +112,19 @@
         */
 
         body {
-            border: 0; margin: 0; padding: 0;
             background-attachment: fixed;
             font-family: Arial, Helvetica, sans-serif, sans-serif;
-            text-align: center;
         }
 
-        /* added a little more space between the nav links */
-        .nav-link {
-            margin-left: 10px;
-            margin-right: 10px;
+        a:hover {
+            color: inherit;
+        }
+
+        .my-card {
+            transition: all 0.1s ease-in-out;
+        }
+        .my-card:hover {
+            transform: scale(1.05);
         }
     </style>
 </body>

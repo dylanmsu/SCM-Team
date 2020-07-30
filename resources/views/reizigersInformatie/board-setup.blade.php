@@ -55,18 +55,16 @@
 
                         <div class="form-group row">
                             <label for="align" class="col-md-4 col-form-label text-md-right">Text uitlijnen</label>
-                            <div class="px-0 col-md-6">
-                                <div id="align" class="mx-0 col-12 btn-group" data-toggle="buttons">
-                                    <label class="mx-0 btn btn-primary active form-check-label">
-                                        <input name="align" value="left" class="form-check-input" type="radio" autocomplete="off" @if(($align ?? 'left') == 'left') checked @endif> links
-                                    </label>
-                                    <label class="mx-0 btn btn-primary form-check-label">
-                                        <input name="align" value="center" class="form-check-input" type="radio" autocomplete="off" @if(($align ?? 'left') == 'center') checked @endif> center
-                                    </label>
-                                    <label class="mx-0 btn btn-primary form-check-label">
-                                        <input name="align" value="right" class="form-check-input" type="radio" autocomplete="off" @if(($align ?? 'left') == 'right') checked @endif> rechts
-                                    </label>
-                                </div>
+                            <div class="btn-group btn-group-toggle col-md-6" data-toggle="buttons">
+                                <label id="align" class="mx-0 btn btn-primary form-check-label">
+                                    <input name="align" value="left" class="form-check-input" type="radio" autocomplete="off" @if(($align ?? 'left') == 'left') checked @endif> links
+                                </label>
+                                <label id="align" class="mx-0 btn btn-primary form-check-label">
+                                    <input name="align" value="center" class="form-check-input" type="radio" autocomplete="off" @if(($align ?? 'left') == 'center') checked @endif> center
+                                </label>
+                                <label id="align" class="mx-0 btn btn-primary form-check-label">
+                                    <input name="align" value="right" class="form-check-input" type="radio" autocomplete="off" @if(($align ?? 'left') == 'right') checked @endif> rechts
+                                </label>
                             </div>
                         </div>
 
@@ -88,15 +86,13 @@
 
                         <div class="form-group row">
                             <label for="board" class="col-md-4 col-form-label text-md-right">Spoor</label>
-                            <div class="col-md-6">
-                                <div id="board" class="px-0 col-12 btn-group" data-toggle="buttons">
-                                    <label class="mx-0 btn btn-primary active form-check-label">
-                                        <input name="board" value="A" class="form-check-input" type="radio" autocomplete="off" @if(($board ?? 'A') == 'A') checked="checked" @endif> A
-                                    </label>
-                                    <label class="mx-0 btn btn-primary form-check-label">
-                                        <input name="board" value="B" class="form-check-input" type="radio" autocomplete="off" @if(($board ?? 'A') == 'B') checked="checked" @endif> B
-                                    </label>
-                                </div>
+                            <div class="btn-group btn-group-toggle col-md-6" data-toggle="buttons">
+                                <label class="mx-0 btn btn-primary form-check-label">
+                                    <input id="board" name="board" value="A" class="form-check-input" type="radio" autocomplete="off" @if(($board ?? 'A') == 'A') checked="checked" @endif> A
+                                </label>
+                                <label class="mx-0 btn btn-primary form-check-label">
+                                    <input id="board" name="board" value="B" class="form-check-input" type="radio" autocomplete="off" @if(($board ?? 'A') == 'B') checked="checked" @endif> B
+                                </label>
                             </div>
                         </div>
 
@@ -143,10 +139,10 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-secondary" formaction="{{ action('SplitflapController@preview') }}">
+                                <button type="submit" class="mx-3 my-1 btn btn-secondary" formaction="{{ action('SplitflapController@preview') }}">
                                     {{ __('Voorbeeld') }}
                                 </button>
-                                <button type="submit" class="btn btn-primary" formaction="{{ action('SplitflapController@store') }}">
+                                <button type="submit" class="mx-3 my-1 btn btn-primary" formaction="{{ action('SplitflapController@store') }}">
                                     {{ __('Verzenden') }}
                                 </button>
                             </div>
@@ -160,79 +156,4 @@
 @endsection
 
 <style>
-
-    #prev-btn:hover {
-        background-color: lightgreen;
-    }
-
-    .btn {
-        margin: 15px 15px 0px 15px;
-    }
-
-    .radio-container {
-        display: flex;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .radio-container > * {
-        flex: 1;
-    }
-
-    /* styling for a radio-type input */
-    input[type=radio] {
-        display:none; 
-        margin:10px;
-    }
-
-    input[type=radio] + label {
-        display:inline-block;
-        margin:-2px;
-        padding: 4px 12px;
-        background-color: #e7e7e7;
-        border-color: #ddd;
-        transition: all .2s ease-in-out;
-    }
-
-    input[type=radio]:checked + label { 
-        background-image: none;
-        background-color: lightgreen;
-    }
-
-    input[type=radio] + label:hover {
-        background-color: rgb(182, 238, 182);
-    }
-
-    input[type=text] {
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    input[type=datetime-local]{
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    select {
-        width: 100%;
-        font-size: 2em;
-        padding: 4px;
-        padding-bottom: 6px;
-    }
-
-    select > option {
-        font-weight: bold;
-    }
-
-    .preview-char {
-        height: 2vw;
-        font-size: 1.2vw;
-    }
-
-    @media only screen and (max-width: 767px){
-        .preview-char {
-            height: 5vw;
-            font-size: 2.8vw;
-        }
-    }
 </style>

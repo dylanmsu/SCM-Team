@@ -28,9 +28,7 @@ Vue.component('my-icon', require('./components/SplitflapIcon.vue').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import VueResizeText from 'vue-resize-text';
 const app = new Vue({
-    el: '#app',
-    VueResizeText
+    el: '#app'
 });
 

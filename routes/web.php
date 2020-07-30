@@ -13,20 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Auth::routes();
+Auth::routes([
+    'register' =>    false, // Disable registration Routes...
+    'verify' =>      false, // Disable email Verification Routes...
+]);
 
-Auth::routes();
-
-Route::put('/themes', function(Request $request) {
-    $request->validate([
-       'theme' => ['required', Rule::in(['darkly', 'cerulean'])]
-    ]);
- 
-    session(['theme' => $request->theme]);
-    return back();
- });
+Route::redirect('/', '/home', 301); // set landing page to '/home' by redirecting from '/' to '/home'
 
 Route::get('home', 'HomeController@home')->name('home');
 
@@ -37,5 +30,3 @@ Route::post('/ris/splitflap', 'SplitflapController@store');
 Route::post('/ris/preview', 'SplitflapController@preview');
 
 Route::get('/map', 'MapController@trainmap')->name('map');
-
-Route::view('/files', 'files');
