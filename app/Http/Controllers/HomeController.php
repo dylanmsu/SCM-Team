@@ -47,7 +47,7 @@ class HomeController extends Controller
 
     public function reizigersinformatie()
     {
-        return view('reizigersinformatie');
+        return view('reizigersInformatie/reizigersinformatie');
     }
 
 }

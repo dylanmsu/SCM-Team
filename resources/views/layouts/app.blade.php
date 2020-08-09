@@ -17,6 +17,8 @@
    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
    <!-- Styles -->
+   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->                         <!-- default theme -->
    <link href="{{ asset('css/themes/darkly/bootstrap.css') }}" rel="stylesheet">              <!-- darkly theme -->
    <!-- <link href="{{ asset('css/themes/litera/bootstrap.css') }}" rel="stylesheet"> -->     <!-- litera theme -->
@@ -72,9 +74,9 @@
                   @else
                      <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                              <path fill-rule="evenodd" d="M13 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM3.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                           </svg>
+                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M13 14s1 0 1-1-1-4-6-4-6 3-6 4 1 1 1 1h10zm-9.995-.944v-.002.002zM3.022 13h9.956a.274.274 0 0 0 .014-.002l.008-.002c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664a1.05 1.05 0 0 0 .022.004zm9.974.056v-.002.002zM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            </svg>
                            {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
@@ -100,38 +102,88 @@
       <main role="main" class="flex-shrink-0">
          @yield('content')
       </main>
-      
-      <!--
-      <footer class="text-center card-footer">
-      <p><small><span>&copy; 2018-<?php echo date("Y")+1; ?> SCM-Team.<br>All Rights Reserved. | versie: <?php echo date ("j/m/Y", getlastmod()); ?></span></small></p>
-      </footer>
-      -->
    </div>
    <style>
-      /* 
-      * for ducumentation on how to use the included css, refer to the link below
-      * https://getbootstrap.com/docs/4.5/components
-      */
+        /* 
+        * This website uses bootstrap
+        * for ducumentation on how to use it, refer to the link below
+        * https://getbootstrap.com/docs/4.5/components
+        */
 
-      ::-webkit-scrollbar {
-         display: none;
-      }
+        ::-webkit-scrollbar {
+            display: none;
+        }
 
-      body {
-         background-attachment: fixed;
-         font-family: Arial, Helvetica, sans-serif, sans-serif;
-      }
+        body {
+            background-attachment: fixed;
+            font-family: Arial, Helvetica, sans-serif, sans-serif;
+        }
 
-      a:hover {
-         color: inherit;
-      }
+        a:hover {
+            color: inherit;
+        }
 
-      .my-card {
-         transition: all 0.1s ease-in-out;
-      }
-      .my-card:hover {
-         transform: scale(1.05);
-      }
+        .my-card {
+            transition: all 0.1s ease-in-out;
+        }
+        .my-card:hover {
+            transform: scale(1.05);
+        }
+
+        .avatar {
+            vertical-align: middle;
+            width: 1.5em;
+            height: 1.5em;
+            border-radius: 50%;
+        }
+
+        .status {
+            font-size: 30px;
+            margin: 2px 2px 0 0;
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 10px;
+        }
+
+        .hint-text {
+            float: left;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+
+        .nounderline {
+            text-decoration: none !important
+        }
    </style>
+   <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+
+        function confirmation(forid){
+            if(confirm('Weet je het zeker?')){
+                document.getElementById(forid).submit();
+            } else {
+                return false;
+            }
+        }
+
+        
+        function toggleOpen(e) {
+            $(e.target)
+                .prev('.card-header')
+                .find(".expand-icon")
+                .text("remove_circle");
+        }
+        function toggleClose(e) {
+            $(e.target)
+                .prev('.card-header')
+                .find(".expand-icon")
+                .text("add_circle");
+        }
+        $('.panel-group').on('hidden.bs.collapse', toggleClose);
+        $('.panel-group').on('shown.bs.collapse', toggleOpen);
+   </script>
 </body>
 </html>

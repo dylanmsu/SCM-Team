@@ -24,17 +24,14 @@
       @endif
 
       @php
-         $home_cards = array(
-            array('img' => './images/main/ris.png',       'name' => 'Splitflap Boards',    'target' => "",        'link' => route('ris')),
-            array('img' => './images/main/map.png',       'name' => 'Train Map',           'target' => "",        'link' => route('map')),
-            array('img' => './images/main/scanner.png',   'name' => 'Mijn bestanden',      'target' => "_blank",  'link' => "/filemanager"),
-            array('img' => './images/main/scmteam.png',   'name' => 'SCM-Team',            'target' => "",        'link' => "https://www.scm-team.be"),
-            array('img' => './images/main/one.png',       'name' => 'One.com',             'target' => "",        'link' => "https://login.one.com/cp"),
-            array('img' => './images/main/stme.png',      'name' => 'Stoomtrein Maldegem', 'target' => "",        'link' => "https://www.stoomtreinmaldegem.be/nl"),
-            array('img' => './images/main/academy.png',   'name' => 'Academy',             'target' => "",        'link' => "https://academy.scm-team.be"),
-            array('img' => './images/main/forms.png',     'name' => 'SCM-Formulieren',     'target' => "",        'link' => "https://forms.scm-team.be"),
-            array('img' => './images/main/mailchimp.png', 'name' => 'Mailchimp',           'target' => "",        'link' => "https://login.mailchimp.com/")
-         );
+        $home_cards = array(
+            array('color' => '#DFE6E9', 'icon' => './images/icons/calendar-check.svg',   'name' => 'Splitflap Boards',    'target' => "",        'link' => route('ris')),
+            array('color' => '#87DE87', 'icon' => './images/icons/person.svg',           'name' => 'Leden',               'target' => "",        'link' => route('members')),
+            array('color' => '#FFEAA7', 'icon' => './images/icons/files.svg',            'name' => 'Mijn bestanden',      'target' => "_blank",  'link' => "/filemanager"),
+            array('color' => '#74B9FF', 'icon' => './images/icons/map.svg',              'name' => 'Train Map',           'target' => "",        'link' => route('map')),
+            array('color' => '#FF9955', 'icon' => './images/icons/link.svg',             'name' => 'Links',               'target' => "",        'link' => route('links')),
+            array('color' => '#7FFFD4', 'icon' => './images/icons/truck.svg',            'name' => 'Rollend Matrieel',    'target' => "",        'link' => route('rolling')),
+        );
       @endphp
 
       <!-- left side -->
@@ -50,8 +47,13 @@
                      @foreach ($home_cards as $card)
                         <div class="my-3 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" >
                            <a class="card my-card text-decoration-none" href="{{ $card['link'] }}" target="{{ $card['target'] }}">
-                              <img class="card-img-top" src="{{ asset($card['img']) }}">
-                              <div class="py-3 card-footer">{{ $card['name'] }}</div>
+
+                                <img style="background-color: {{$card['color']}}" class="card-img-top" src="{{ asset('./images/main/blank.png') }}">
+                                <div class="card-img-overlay">
+                                    <img class="my-1" width="60%" src="{{asset($card['icon'])}}" alt="">
+                                </div>
+
+                                <div class="py-3 card-footer">{{ $card['name'] }}</div>
                            </a>
                         </div>
                      @endforeach
@@ -68,6 +70,7 @@
             <div class="list-group">
                @if (isset($data))
 
+                  <!-- loop through the data that is returned from 'app/http/homeController.php' -->
                   @foreach ($data as $item)
                      <div class="list-group">
                         <a href="#" class="py-2 list-group-item list-group-item-action flex-column">

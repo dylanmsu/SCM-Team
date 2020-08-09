@@ -40,9 +40,7 @@ class SplitflapController extends Controller
         $splitfflaps = splitflap::
             select('*')
             ->whereRaw('time >= now()')
-            ->where('time', '<', Carbon::parse('+48 hours'))
-            ->orderBy('time', 'asc')
-            ->get();
+            ->orderBy('time', 'asc')->paginate(10);
 
         $splitfflapsA = splitflap::
             select('*')

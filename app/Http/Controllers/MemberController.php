@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class MapController extends Controller
+class MemberController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
     }
-    
-    public function trainmap() 
+
+    public function members()
     {
-        return view('trainmap');
+        return view('members');
     }
 }

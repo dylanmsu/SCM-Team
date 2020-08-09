@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
-@section('title', 'Board Setup')
+@section('title', 'Lid toevoegen')
 
 @section('content')
 <div class="container">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{route('ris')}}">ReizigersInformatie</a></li>
-            <li class="breadcrumb-item active" aria-current="page">BoardSetup</li>
+            <li class="breadcrumb-item"><a href="{{route('ris')}}">Leden</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Lid toevoegen</li>
         </ol>
     </nav>
    
@@ -41,7 +41,7 @@
                 
                 @endif
 
-                    <form method="POST" id="split-setup" autocomplete="off">
+                    <form method="POST" id="split-setup" autocomplete="off" method="post">
                         {{ csrf_field() }}
 
                         @if (!empty($preview))
