@@ -11,48 +11,62 @@
         </ol>
     </nav>
     <div class="row justify-content-center">
+
+        <!-- normaalspoor list -->
         <div class="my-2 col-sm-12 col-sm-12 col-lg-6 col-xl-6">
             <div class="card">
+
+                <!-- title and add-button of the normaalspoor list -->
                 <div class="card-header">
-                    <div class="container-fluid">
+                    <div class="container-fluid m-0">
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-10 p-0">
                                 <h2>Normaalspoor</h2>
                             </div>
-                            <div class="text-right col-md-4">
+                            <div class="text-right col-2 p-0">
                                 <h2><a href="{{route('add_stock')}}"><i class="material-icons">&#xE147;</i></a></h2>
                             </div>
                         </div>
                     </div> 
                 </div>
+
+                <!-- normaalspoor accoidion list  -->
                 <div class="card-body p-0">
                     <div id="normal-accordion">
+
+                        <!-- 
+                            loop through the categories and display them in a list. 
+                            The array $$normal_categories comes from 
+                            app\Http\Controllers\RollingStockController.php
+                         -->
                         @forelse ($normal_categories as $category)
                             <div class="card">
                                 <button class="py-2 card-header btn btn-link" data-toggle="collapse" data-target="#collapse-normal-{{$category->category}}" aria-expanded="true" aria-controls="collapse-normal-{{$category->category}}">
                                     <div class="container">
                                         <div class="row">
-                                            <div class="col-md-5">
+                                            <div class="col-6">
                                                 <div class="text-left">{{$category->category}}</div >
                                             </div>
-                                            <div class="col-md-7 text-right">
+
+                                            <!-- display the status dots  -->
+                                            <div class="col-6 text-right">
                                                 @foreach ($normal_data as $item)
                                                     @if ($item->category == $category->category)
                                                         @switch($item['state'])
                                                             @case('in_dienst')
-                                                                <span class="status text-success">&bull;</span>
+                                                                <span class="status text-success">&bull;</span><!-- green -->
                                                                 @break
                                                             @case('buiten_dienst')
-                                                                <span class="status text-danger">&bull;</span>
+                                                                <span class="status text-danger">&bull;</span><!-- red -->
                                                                 @break
                                                             @case('in_reserve')
-                                                                <span class="status text-primary">&bull;</span>
+                                                                <span class="status text-primary">&bull;</span><!-- blue -->
                                                                 @break
                                                             @case('onder_voorwaarde')
-                                                                <span class="status text-warning">&bull;</span>
+                                                                <span class="status text-warning">&bull;</span><!-- yellow -->
                                                                 @break
                                                             @default
-                                                                <span class="status text-secondary">&bull;</span>
+                                                                <span class="status text-secondary">&bull;</span><!-- gray -->
                                                         @endswitch
                                                     @endif
                                                 @endforeach
@@ -61,28 +75,33 @@
                                     </div>
                                 </button>
                             
+                                <!-- the list under each category -->
                                 <div id="collapse-normal-{{$category->category}}" class="collapse" aria-labelle data-parent="#normal-accordion">
-                                    <div class="card-body">
-                                        <div class="list-group container">
+                                    <div class="card-body p-0">
+                                        <div class="list-group container p-0">
+
+                                            <!-- for every database row where category = current category -->
                                             @forelse ($normal_data as $item)
                                                 @if ($item->category == $category->category)
                                                     <div class="panel-group" id="accordion2">
                                                         <div class="panel panel-default">
-                                                            <div class="panel-heading">
+                                                            <div class="panel-heading p-0">
                                                                 <div class="row m-0 list-group-item d-flex list-group-item-action">
-                                                                    <div class="col">
+                                                                    <div class="col-7 col-sm col-md">
+
+                                                                        <!-- if the row has a comment, add icon next to name to show you can expand else, display only name -->
                                                                         @if ($item['comment'] != '')
                                                                             <a id="accordion-normal" data-toggle="collapse" data-parent="#accordion-normal" href="#collapse-normal-{{$item['id']}}">
-                                                                                <span class="align-middle">{{$item['name']}}</span>
+                                                                                <span class="align-middle"><b>{{$item['name']}}</b></span>
                                                                                 <span class="align-middle material-icons">expand_more</span>
                                                                             </a>
                                                                         @else
                                                                             <a>
-                                                                                <span class="align-middle">{{$item['name']}}</span>
+                                                                                <span class="align-middle"><b>{{$item['name']}}</b></span>
                                                                             </a>
                                                                         @endif
                                                                     </div>                     
-                                                                    <div class="col-6">
+                                                                    <div class="col-7 col-sm col-md">
                                                                         @switch($item['state'])
                                                                             @case('in_dienst')
                                                                                 <span class="status text-success">&bull;</span>
@@ -98,14 +117,16 @@
                                                                                 @break
                                                                             @case('onder_voorwaarde')
                                                                                 <span class="status text-warning">&bull;</span>
-                                                                                Onder Voorwaarde
+                                                                                Voorwaarde
                                                                                 @break
                                                                             @default
                                                                                 <span class="status text-secondary">&bull;</span>
                                                                                 Andere
                                                                         @endswitch
                                                                     </div>
-                                                                    <div class="col text-right">
+
+                                                                    <!-- add edit tools for each row -->
+                                                                    <div class="col-5 col-sm col-md text-right">
                                                                         <div class="d-inline mx-2 text-right">
                                                                             <a role="button" id="drpdwn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                                 <i title="Aanpassen" data-toggle="tooltip" class="text-info material-icons">&#xE8B8;</i>
@@ -115,7 +136,7 @@
                                                                                     @csrf
                                                                                     <button onclick="confirmation('delete')" formaction="rollend/verwijder/{{$item['id']}}" class="dropdown-item">Verwijderen</button>
                                                                                 </form>
-                                                                                <a class="dropdown-item" href="#">Bijwerken</a>
+                                                                                <a class="dropdown-item" href="#">Bijwerken</a><!-- currently does nothing -->
                                                                             </div>
                                                                         </div>
                                                                         <div class="d-inline text-right">
@@ -136,6 +157,8 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+
+                                                            <!-- if there is a comment, display it -->
                                                             <div id="collapse-normal-{{$item['id']}}" class="card-header collapse in">
                                                                 <div class="panel-body">
                                                                     @if ($item['comment'] != '')
@@ -167,16 +190,16 @@
             </div>
         </div>
 
-
+        <!-- smalspoor list, exact same as above -->
         <div class="my-2 col-sm-12 col-sm-12 col-lg-6 col-xl-6">
             <div class="card">
                 <div class="card-header">
-                    <div class="container-fluid">
+                    <div class="container-fluid m-0">
                         <div class="row">
-                            <div class="col-md-8">
-                                <h2>Normaalspoor</h2>
+                            <div class="col-10 p-0">
+                                <h2>Smalspoor</h2>
                             </div>
-                            <div class="text-right col-md-4">
+                            <div class="text-right col-2 p-0">
                                 <h2><a href="{{route('add_stock')}}"><i class="material-icons">&#xE147;</i></a></h2>
                             </div>
                         </div>
@@ -186,30 +209,30 @@
                     <div id="small-accordion">
                         @forelse ($small_categories as $category)
                             <div class="card">
-                                <button class="py-2 card-header btn btn-link" data-toggle="collapse" data-target="#collapse-small-{{$category->category}}" aria-expanded="true" aria-controls="collapse-normal-{{$category->category}}">
+                                <button class="py-2 card-header btn btn-link" data-toggle="collapse" data-target="#collapse-small-{{$category->category}}" aria-expanded="true" aria-controls="collapse-small-{{$category->category}}">
                                     <div class="container">
                                         <div class="row">
-                                            <div class="col-md-5">
+                                            <div class="col-6">
                                                 <div class="text-left">{{$category->category}}</div >
                                             </div>
-                                            <div class="col-md-7 text-right">
+                                            <div class="col-6 text-right">
                                                 @foreach ($small_data as $item)
                                                     @if ($item->category == $category->category)
                                                         @switch($item['state'])
                                                             @case('in_dienst')
-                                                                <span class="status text-success">&bull;</span>
+                                                                <span class="status text-success">&bull;</span><!-- green -->
                                                                 @break
                                                             @case('buiten_dienst')
-                                                                <span class="status text-danger">&bull;</span>
+                                                                <span class="status text-danger">&bull;</span><!-- red -->
                                                                 @break
                                                             @case('in_reserve')
-                                                                <span class="status text-primary">&bull;</span>
+                                                                <span class="status text-primary">&bull;</span><!-- blue -->
                                                                 @break
                                                             @case('onder_voorwaarde')
-                                                                <span class="status text-warning">&bull;</span>
+                                                                <span class="status text-warning">&bull;</span><!-- yellow -->
                                                                 @break
                                                             @default
-                                                                <span class="status text-secondary">&bull;</span>
+                                                                <span class="status text-secondary">&bull;</span><!-- gray -->
                                                         @endswitch
                                                     @endif
                                                 @endforeach
@@ -219,23 +242,29 @@
                                 </button>
                             
                                 <div id="collapse-small-{{$category->category}}" class="collapse" aria-labelle data-parent="#small-accordion">
-                                    <div class="card-body">
-                                        <div class="list-group container">
+                                    <div class="card-body p-0">
+                                        <div class="list-group container p-0">
                                             @forelse ($small_data as $item)
                                                 @if ($item->category == $category->category)
                                                     <div class="panel-group" id="accordion2">
                                                         <div class="panel panel-default">
-                                                            <div class="panel-heading">
+                                                            <div class="panel-heading p-0">
                                                                 <div class="row m-0 list-group-item d-flex list-group-item-action">
-                                                                    <div class="col">
-                                                                        <a id="accordion-small" data-toggle="collapse" data-parent="#accordion-small" href="#collapse-small-{{$item['id']}}">
-                                                                            {{$item['name']}}
-                                                                            @if ($item['comment'] != '')
-                                                                                <span class="material-icons">expand_more</span>
-                                                                            @endif
-                                                                        </a>
+                                                                    <div class="col-7 col-sm col-md">
+
+                                                                        <!-- if the row has a comment, add icon next to name to show you can expand else, display only name -->
+                                                                        @if ($item['comment'] != '')
+                                                                            <a id="accordion-small" data-toggle="collapse" data-parent="#accordion-small" href="#collapse-small-{{$item['id']}}">
+                                                                                <span class="align-middle"><b>{{$item['name']}}</b></span>
+                                                                                <span class="align-middle material-icons">expand_more</span>
+                                                                            </a>
+                                                                        @else
+                                                                            <a>
+                                                                                <span class="align-middle"><b>{{$item['name']}}</b></span>
+                                                                            </a>
+                                                                        @endif
                                                                     </div>                     
-                                                                    <div class="col-6">
+                                                                    <div class="col-7 col-sm col-md">
                                                                         @switch($item['state'])
                                                                             @case('in_dienst')
                                                                                 <span class="status text-success">&bull;</span>
@@ -251,14 +280,16 @@
                                                                                 @break
                                                                             @case('onder_voorwaarde')
                                                                                 <span class="status text-warning">&bull;</span>
-                                                                                Onder Voorwaarde
+                                                                                Voorwaarde
                                                                                 @break
                                                                             @default
                                                                                 <span class="status text-secondary">&bull;</span>
                                                                                 Andere
                                                                         @endswitch
                                                                     </div>
-                                                                    <div class="col text-right">
+
+                                                                    <!-- add edit tools for each row -->
+                                                                    <div class="col-5 col-sm col-md text-right">
                                                                         <div class="d-inline mx-2 text-right">
                                                                             <a role="button" id="drpdwn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                                 <i title="Aanpassen" data-toggle="tooltip" class="text-info material-icons">&#xE8B8;</i>
@@ -268,7 +299,7 @@
                                                                                     @csrf
                                                                                     <button onclick="confirmation('delete')" formaction="rollend/verwijder/{{$item['id']}}" class="dropdown-item">Verwijderen</button>
                                                                                 </form>
-                                                                                <a class="dropdown-item" href="#">Bijwerken</a>
+                                                                                <a class="dropdown-item" href="#">Bijwerken</a><!-- currently does nothing -->
                                                                             </div>
                                                                         </div>
                                                                         <div class="d-inline text-right">

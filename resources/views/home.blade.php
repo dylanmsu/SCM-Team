@@ -70,7 +70,7 @@
             <div class="list-group">
                @if (isset($data))
 
-                  <!-- loop through the data that is returned from 'app/http/homeController.php' -->
+                  <!-- loop through the data that is returned from 'app/http/Controllers/HomeController.php' -->
                   @foreach ($data as $item)
                      <div class="list-group">
                         <a href="#" class="py-2 list-group-item list-group-item-action flex-column">
