@@ -64,13 +64,17 @@
                                 <div id="collapse-normal-{{$category->category}}" class="collapse" aria-labelle data-parent="#normal-accordion">
                                     <div class="card-body">
                                         <div class="list-group container">
+
                                             @forelse ($normal_data as $item)
+
                                                 @if ($item->category == $category->category)
                                                     <div class="panel-group" id="accordion2">
                                                         <div class="panel panel-default">
                                                             <div class="panel-heading">
                                                                 <div class="row m-0 list-group-item d-flex list-group-item-action">
                                                                     <div class="col">
+
+
                                                                         @if ($item['comment'] != '')
                                                                             <a id="accordion-normal" data-toggle="collapse" data-parent="#accordion-normal" href="#collapse-normal-{{$item['id']}}">
                                                                                 <span class="align-middle">{{$item['name']}}</span>
@@ -82,7 +86,7 @@
                                                                             </a>
                                                                         @endif
                                                                     </div>                     
-                                                                    <div class="col-6">
+                                                                    <div class="col">
                                                                         @switch($item['state'])
                                                                             @case('in_dienst')
                                                                                 <span class="status text-success">&bull;</span>
@@ -108,28 +112,28 @@
                                                                     <div class="col text-right">
                                                                         <div class="d-inline mx-2 text-right">
                                                                             <a role="button" id="drpdwn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                                <i title="Aanpassen" data-toggle="tooltip" class="text-info material-icons">&#xE8B8;</i>
+                                                                                <i title="Aanpassen" data-toggle="tooltip" class="fas fa-cog text-info fa-1x"></i>
                                                                             </a>
                                                                             <div class="dropdown-menu" aria-labelledby="drpdwn">
                                                                                 <form method="POST" autocomplete="off" id="delete">
                                                                                     @csrf
-                                                                                    <button onclick="confirmation('delete')" formaction="rollend/verwijder/{{$item['id']}}" class="dropdown-item">Verwijderen</button>
+                                                                                    <button onclick="confirmation('delete')" formaction="rollend/verwijder/{{$item['id']}}" class="dropdown-item"><i class="fas fa-trash-alt"></i> Verwijderen</button>
                                                                                 </form>
-                                                                                <a class="dropdown-item" href="#">Bijwerken</a>
+                                                                                <a class="dropdown-item" href="#"><i class="fas fa-edit"></i> Bijwerken</a>
                                                                             </div>
                                                                         </div>
                                                                         <div class="d-inline text-right">
                                                                             <a role="button" id="drpdwn-status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                                <i title="Status" data-toggle="tooltip" class="text-info material-icons text-success">edit</i>
+                                                                                <i title="Status" data-toggle="tooltip" class="fas fa-exclamation-circle text-info fa-1x"></i>
                                                                             </a>
                                                                             <div class="dropdown-menu" aria-labelledby="drpdwn-status">
                                                                                 <form method="POST" autocomplete="off">
                                                                                     @csrf
-                                                                                    <button type="submit" formaction="rollend/update/{{$item['id']}}/state/in_dienst" class="dropdown-item" href="#"><span class="status text-success">&bull;</span><b>In Dienst</b></button>
-                                                                                    <button type="submit" formaction="rollend/update/{{$item['id']}}/state/buiten_dienst" class="dropdown-item" href="#"><span class="status text-danger">&bull;</span><b>Buiten Dienst</b></button>
-                                                                                    <button type="submit" formaction="rollend/update/{{$item['id']}}/state/in_reserve" class="dropdown-item" href="#"><span class="status text-primary">&bull;</span><b>In Reserve</b></button>
-                                                                                    <button type="submit" formaction="rollend/update/{{$item['id']}}/state/onder_voorwaarde" class="dropdown-item" href="#"><span class="status text-warning">&bull;</span><b>Onder Voorwaarde</b></button>
-                                                                                    <button type="submit" formaction="rollend/update/{{$item['id']}}/state/andere" class="dropdown-item" href="#"><span class="status text-secondary">&bull;</span><b>Andere</b></button>
+                                                                                    <button type="submit" formaction="rollend/update/{{$item['id']}}/in_dienst" class="dropdown-item" href="#"><span class="status text-success">&bull;</span>In Dienst</button>
+                                                                                    <button type="submit" formaction="rollend/update/{{$item['id']}}/buiten_dienst" class="dropdown-item" href="#"><span class="status text-danger">&bull;</span>Buiten Dienst</button>
+                                                                                    <button type="submit" formaction="rollend/update/{{$item['id']}}/in_reserve" class="dropdown-item" href="#"><span class="status text-primary">&bull;</span>In Reserve</button>
+                                                                                    <button type="submit" formaction="rollend/update/{{$item['id']}}/onder_voorwaarde" class="dropdown-item" href="#"><span class="status text-warning">&bull;</span>Onder Voorwaarde</button>
+                                                                                    <button type="submit" formaction="rollend/update/{{$item['id']}}/andere" class="dropdown-item" href="#"><span class="status text-secondary">&bull;</span>Andere</button>
                                                                                 </form>
                                                                             </div>
                                                                         </div>      

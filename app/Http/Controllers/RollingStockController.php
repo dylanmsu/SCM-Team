@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\vehicle;
+use App\vehicle_comments;
 
 class RollingStockController extends Controller
 {
@@ -18,6 +19,8 @@ class RollingStockController extends Controller
         $normal_data = vehicle::select('*')->where('type', '=', 'normaal')->get();
         $small_categories = vehicle::select('category')->where('type', '=', 'smal')->groupBy('category')->get();
         $small_data = vehicle::select('*')->where('type', '=', 'smal')->get();
+
+
 
         return view('rolling_stock/rolling_stock', [
             'small_categories' => $small_categories, 
@@ -37,6 +40,11 @@ class RollingStockController extends Controller
     public function add_stock_page() 
     {
         return view('rolling_stock/add_stock');
+    }
+
+    public function test() 
+    {
+        return view('rolling_stock/add_comment');
     }
 
     public function add_stock(Request $request) 

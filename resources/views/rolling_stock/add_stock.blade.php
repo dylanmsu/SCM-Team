@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('title', 'Rollend Materieel toevoegen')
 @section('content')
 <div class="container">
     <nav aria-label="breadcrumb">
@@ -18,28 +18,41 @@
                 <div class="card-body">
                     <form method="POST" action="">
                         @csrf
+                        <div class="form-group row">
+                            <label for="type" class="col-md-4 col-form-label text-md-right">Type</label>
 
+                            <div class="col-md-6">
+                                <select id="type" class="form-control" name="type">
+                                    <option value="normaal">
+                                        Normaalspoor
+                                    </option>
+                                    <option value="smal">
+                                        Smalspoor
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="category" class="col-md-4 col-form-label text-md-right">Categorie</label>
                             <div class="col-md-6">
                                 <select id="category" class="form-control" name="category">
                                     <option value="motorwagen">
-                                        motorwagen
+                                        Motorwagen
                                     </option>
                                     <option value="diesellocomotief">
-                                        diesellocomotief
+                                        Diesellocomotief
                                     </option>
                                     <option value="stoomlocomotief">
-                                        stoomlocomotief
+                                        Stoomlocomotief
                                     </option>
                                     <option value="werfvoertuig">
-                                        werfvoertuig
+                                        Werfvoertuig
                                     </option>
                                     <option value="rijtuig">
-                                        rijtuig
+                                        Rijtuig
                                     </option>
                                     <option value="wagen">
-                                        wagen
+                                        Wagen
                                     </option>
                                     <option value="Andere">
                                         Andere
@@ -56,55 +69,26 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="state" class="col-md-4 col-form-label text-md-right">Huidige staat</label>
+                            <label for="state" class="col-md-4 col-form-label text-md-right">Toestand</label>
                             <div class="col-md-6">
                                 <select id="state" class="form-control" name="state">
-                                    <option value="in_dienst">
-                                        <span class="status text-success">&bull;</span>
-                                        In Dienst
+                                    <option value="in_dienst">In Dienst
                                     </option>
-                                    <option value="buiten_dienst">
-                                        <span class="status text-danger">&bull;</span>
-                                        Buiten Dienst
+                                    <option value="buiten_dienst">Buiten Dienst
                                     </option>
-                                    <option value="in_reserve">
-                                        <span class="status text-primary">&bull;</span>
-                                        In Reserve
+                                    <option value="in_reserve">In Reserve
                                     </option>
-                                    <option value="onder_voorwaarde">
-                                        <span class="status text-warning">&bull;</span>
-                                        Onder Voorwaarde
+                                    <option value="onder_voorwaarde">Onder Voorwaarde
                                     </option>
-                                    <option value="andere">
-                                        <span class="status text-secondary">&bull;</span>
-                                        Andere
+                                    <option value="andere">Andere
                                     </option>
                                 </select>
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="comment" class="col-md-4 col-form-label text-md-right">Commentaar</label>
+                        
 
-                            <div class="col-md-6">
-                                <textarea id="comment" type="textbox" class="form-control" name="comment" required></textarea>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="type" class="col-md-4 col-form-label text-md-right">type</label>
-
-                            <div class="col-md-6">
-                                <select id="type" class="form-control" name="type">
-                                    <option value="normaal">
-                                        Normaalspoor
-                                    </option>
-                                    <option value="smal">
-                                        Smalspoor
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
+                       
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">

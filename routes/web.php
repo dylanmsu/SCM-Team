@@ -38,5 +38,7 @@ Route::get('/leden/toevoegen', 'MemberController@members')->name('add_members');
 Route::get('/rollend', 'RollingStockController@rolling')->name('rolling');
 Route::get('/rollend/toevoegen', 'RollingStockController@add_stock_page')->name('add_stock');
 Route::post('/rollend/toevoegen', 'RollingStockController@add_stock');
-Route::post('/rollend/update/{id}/state/{state}', 'RollingStockController@update_state');
+Route::post('/rollend/update/{id}/{state}', 'RollingStockController@update_state');
+Route::post('/rollend/update/{id}/{add_comment}', 'RollingStockController@add_comment');
+Route::post('/rollend/update/{id}/state/{state}', 'RollingStockController@update_comment');
 Route::post('/rollend/verwijder/{id}', 'RollingStockController@delete');

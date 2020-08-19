@@ -13,6 +13,6 @@ class MemberController extends Controller
 
     public function members()
     {
-        return view('members');
+        return view('members/members');
     }
 }
