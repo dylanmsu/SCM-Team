@@ -20,6 +20,7 @@ class CreateVehiclesTable extends Migration
             $table->enum('state', ['in_dienst', 'buiten_dienst', 'in_reserve', 'onder_voorwaarde', 'andere']);
             $table->string('comment')->nullable();
             $table->enum('type', ['normaal', 'smal']);
+            $table->string('test');
             $table->timestamps();
         });
     }
