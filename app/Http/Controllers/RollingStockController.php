@@ -26,7 +26,20 @@ class RollingStockController extends Controller
             'small_categories' => $small_categories, 
             'small_data' => $small_data, 
             'normal_categories' => $normal_categories, 
-            'normal_data' => $normal_data
+            'normal_data' => $normal_data,
+
+            'data' => [
+                [
+                    'type' => 'normaal',
+                    'categories' => $normal_categories,
+                    'data' => $normal_data
+                ],
+                [
+                    'type' => 'smal',
+                    'categories' => $small_categories,
+                    'data' => $small_data
+                ]
+            ],
         ]);
     }
 
