@@ -15,13 +15,13 @@ class CreateVehiclesComments extends Migration
     {
         Schema::create('vehicles_comments', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_vehicle')->unsigned();
+            $table->unsignedBigInteger('id_vehicle');
             $table->foreign('id_vehicle')->references('id')->on('vehicles');
             $table->text('remarks')->nullable();
             $table->enum('state', ['actief', 'in_onderzoek', 'afgewerkt', 'andere']);
-            $table->integer('creator')->unsigned();
+            $table->unsignedBigInteger('creator');
             $table->foreign('creator')->references('id')->on('users');
-            $table->integer('editor')->unsigned()->nullable();
+            $table->unsignedBigInteger('editor')->nullable();
             $table->foreign('editor')->references('id')->on('users');
             $table->timestamps();
         });

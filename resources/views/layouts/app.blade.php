@@ -4,30 +4,74 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-   <!-- CSRF Token -->
-   <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-   <title>@yield('title')</title>
+    <title>@yield('title')</title>
 
-   <!-- Scripts -->
-   <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
-   <!-- Fonts -->
-   <link rel="dns-prefetch" href="//fonts.gstatic.com">
-   <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-   <!-- Styles -->
-   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-   <link href="{{ asset('css/app.css') }}" rel="stylesheet">                          <!-- default theme -->
-   <!-- <link href="{{ asset('css/themes/cerulean/bootstrap.css') }}" rel="stylesheet"> -->             <!-- darkly theme -->
-   <!-- <link href="{{ asset('css/themes/litera/bootstrap.css') }}" rel="stylesheet"> -->     <!-- litera theme -->
-   <!-- <link href="{{ asset('css/themes/lumen/bootstrap.css') }}" rel="stylesheet"> -->      <!-- lumen theme -->
-   <!-- <link href="{{ asset('css/themes/materia/bootstrap.css') }}" rel="stylesheet"> -->    <!-- materia theme -->
-   <!-- <link href="{{ asset('css/themes/superhero/bootstrap.css') }}" rel="stylesheet"> -->  <!-- superhero theme -->
+    @switch(Auth::user()->theme)
+        @case('default')
+            <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+            @break
+        @case('darkly')
+            <link href="{{ asset('css/themes/darkly/bootstrap.css') }}" rel="stylesheet">
+            @break
+        @default
+            <link href="{{ asset('css/themes/litera/bootstrap.css') }}" rel="stylesheet">
+    @endswitch
 
-   <!-- Tab icon -->
-   <link rel="icon" href="{{asset('./images/icon/ms-icon-310x310.png')}}">
+    <!-- Tab icon -->
+    <link rel="icon" href="{{asset('./images/icon/ms-icon-310x310.png')}}">
+
+    <script>
+        reloadcss();
+        
+        function confirmation(forid){
+            if(confirm('Weet je het zeker?')){
+                document.getElementById(forid).submit();
+            } else {
+                return false;
+            }
+        }
+        
+        function loadtheme(theme) {
+
+            // if "current-theme" exists, remove it
+            if(document.getElementById("current-theme")){
+                document.getElementById("current-theme").outerHTML = "";
+            }
+
+            // load selected theme
+            if (theme == 'default') {
+                document.getElementsByTagName("head")[0].insertAdjacentHTML("beforeend",
+                "<link id=\"current-theme\" rel=\"stylesheet\" href=\"" + @json(asset('css/app.css')) + "\" />");
+            } else {
+                document.getElementsByTagName("head")[0].insertAdjacentHTML("beforeend",
+                "<link id=\"current-theme\" rel=\"stylesheet\" href=\"" + @json(asset('css/themes/tobereplaced/bootstrap.css')).replace("tobereplaced", theme) + "\" />");
+            }
+            
+            reloadcss();
+        }
+
+        function reloadcss() {
+            let links = document.getElementsByTagName("link");
+            for (let cl in links){
+                let link = links[cl];
+                if (link.rel === "stylesheet")
+                    link.href += "";
+            }
+        }
+    </script>
 
 </head>
 <body>
@@ -40,9 +84,6 @@
             </button>
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-               <!-- Left Side Of Navbar -->
-               
 
                <!-- Right Side Of Navbar -->
                <ul class="navbar-nav ml-auto">
@@ -67,15 +108,18 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                           <a class="dropdown-item" href="{{ route('logout') }}"
-                              onclick="event.preventDefault();
-                              document.getElementById('logout-form').submit();">
-                              {{ __('Logout') }}
-                           </a>
+                            <a class="dropdown-item" href="{{ route('user_settings') }}">
+                              Settings
+                            </a>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
 
-                           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                              @csrf
-                           </form>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </div>
                      </li>
                   @endguest
@@ -147,35 +191,5 @@
             text-decoration: none !important
         }
    </style>
-   <script>
-        $(document).ready(function(){
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-
-
-        function confirmation(forid){
-            if(confirm('Weet je het zeker?')){
-                document.getElementById(forid).submit();
-            } else {
-                return false;
-            }
-        }
-
-        
-        function toggleOpen(e) {
-            $(e.target)
-                .prev('.card-header')
-                .find(".expand-icon")
-                .text("remove_circle");
-        }
-        function toggleClose(e) {
-            $(e.target)
-                .prev('.card-header')
-                .find(".expand-icon")
-                .text("add_circle");
-        }
-        $('.panel-group').on('hidden.bs.collapse', toggleClose);
-        $('.panel-group').on('shown.bs.collapse', toggleOpen);
-   </script>
 </body>
 </html>

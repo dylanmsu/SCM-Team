@@ -22,7 +22,10 @@ Auth::routes();
 Route::redirect('/', '/home', 301); // set landing page to '/home' by redirecting from '/' to '/home'
 
 Route::get('/home', 'HomeController@home')->name('home');
-Route::view('/links', 'links')->name('links');
+
+// if we don't need to send data to the view, we can skip the controller and use route::view
+Route::view('/links', 'links')->name('links'); 
+Route::view('/settings', 'users/user_settings')->name('user_settings');
 
 Route::get('/ris', 'HomeController@reizigersinformatie')->name('ris');
 Route::get('/ris/bord-setup', 'SplitflapController@board_setup')->name('ris/board-setup');
@@ -39,6 +42,6 @@ Route::get('/rollend', 'RollingStockController@rolling')->name('rolling');
 Route::get('/rollend/toevoegen', 'RollingStockController@add_stock_page')->name('add_stock');
 Route::post('/rollend/toevoegen', 'RollingStockController@add_stock');
 Route::post('/rollend/update/{id}/{state}', 'RollingStockController@update_state');
-Route::post('/rollend/update/{id}/{add_comment}', 'RollingStockController@add_comment');
-Route::post('/rollend/update/{id}/state/{state}', 'RollingStockController@update_comment');
 Route::post('/rollend/verwijder/{id}', 'RollingStockController@delete');
+
+Route::post('/user/update_settings', 'UserController@settings')->name('usersettings');

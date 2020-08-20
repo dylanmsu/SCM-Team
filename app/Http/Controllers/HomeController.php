@@ -41,7 +41,8 @@ class HomeController extends Controller
         return view('home', [
             'data' => $splitflaps,
             'boardA' => $splitflapsA,
-            'boardB' => $splitflapsB
+            'boardB' => $splitflapsB,
+            'theme' => auth()->user()->get('theme')
         ]);
     }
 
