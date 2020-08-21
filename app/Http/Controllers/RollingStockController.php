@@ -23,11 +23,6 @@ class RollingStockController extends Controller
 
 
         return view('rolling_stock/rolling_stock', [
-            'small_categories' => $small_categories, 
-            'small_data' => $small_data, 
-            'normal_categories' => $normal_categories, 
-            'normal_data' => $normal_data,
-
             'data' => [
                 [
                     'type' => 'normaal',

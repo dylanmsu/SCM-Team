@@ -33,7 +33,7 @@
 
                 <!-- normaalspoor accoidion list  -->
                 <div class="card-body p-0">
-                    <div id="normal-accordion">
+                    <div id="{{$list['type']}}-accordion">
 
                         <!-- 
                             loop through the categories and display them in a list. 
@@ -42,7 +42,7 @@
                          -->
                         @forelse ($list['categories'] as $category)
                             <div class="card">
-                                <button class="py-2 card-header btn btn-link" data-toggle="collapse" data-target="#collapse-normal-{{$category->category}}" aria-expanded="true" aria-controls="collapse-normal-{{$category->category}}">
+                                <button class="py-2 card-header btn btn-link" data-toggle="collapse" data-target="#collapse-{{$list['type']}}-{{$category->category}}" aria-expanded="true" aria-controls="collapse-{{$list['type']}}-{{$category->category}}">
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-6">
@@ -77,7 +77,7 @@
                                 </button>
                             
                                 <!-- the list under each category -->
-                                <div id="collapse-normal-{{$category->category}}" class="collapse" aria-labelle data-parent="#normal-accordion">
+                                <div id="collapse-{{$list['type']}}-{{$category->category}}" class="collapse" aria-labelle data-parent="#{{$list['type']}}-accordion">
                                     <div class="card-body">
                                         <div class="list-group container">
 
@@ -92,7 +92,7 @@
 
                                                                         <!-- if the row has a comment, add icon next to name to show you can expand else, display only name -->
                                                                         @if ($item['comment'] != '')
-                                                                            <a id="accordion-normal" data-toggle="collapse" data-parent="#accordion-normal" href="#collapse-normal-{{$item['id']}}">
+                                                                            <a id="accordion-{{$list['type']}}" data-toggle="collapse" data-parent="#accordion-normal" href="#collapse-normal-{{$item['id']}}">
                                                                                 <span class="align-middle"><b>{{$item['name']}}</b></span>
                                                                                 <span class="align-middle material-icons">expand_more</span>
                                                                             </a>

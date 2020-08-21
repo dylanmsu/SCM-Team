@@ -25,10 +25,13 @@
                             <div class="col-md-6">
                                 <div class="btn-group btn-group-toggle" id="name" data-toggle="buttons">
                                     <label class="btn btn-secondary active">
-                                        <input onclick="loadtheme('darkly'); reloadcss();" value="darkly" type="radio" name="theme" id="option1" autocomplete="off" @if((Auth::user()->theme ?? 'default') == 'darkly') checked @endif> Donker
+                                        <input onclick="loadtheme('darkly')" value="darkly" type="radio" name="theme" id="option1" autocomplete="off" @if((Auth::user()->theme ?? 'default') == 'darkly') checked @endif> darkly
                                     </label>
                                     <label class="btn btn-secondary">
-                                        <input onclick="loadtheme('default'); reloadcss();" value="default" type="radio" name="theme" id="option2" autocomplete="off" @if((Auth::user()->theme ?? 'default') == 'default') checked @endif> Licht
+                                        <input onclick="loadtheme('default')" value="default" type="radio" name="theme" id="option2" autocomplete="off" @if((Auth::user()->theme ?? 'default') == 'default') checked @endif> light
+                                    </label>
+                                    <label class="btn btn-secondary">
+                                        <input onclick="loadtheme('superhero')" value="superhero" type="radio" name="theme" id="option2" autocomplete="off" @if((Auth::user()->theme ?? 'default') == 'superhero') checked @endif> superhero
                                     </label>
                                 </div>
                             </div>
