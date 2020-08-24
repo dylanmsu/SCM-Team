@@ -37,24 +37,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Taal</label>
-        
-                            <div class="col-md-6">
-                                <div class="btn-group btn-group-toggle" id="name" data-toggle="buttons">
-                                    <label class="btn btn-secondary active">
-                                        <input value="nl" type="radio" name="lang" autocomplete="off" @if((Auth::user()->lang ?? 'nl') == 'nl') checked @endif> Nederlands
-                                    </label>
-                                    <label class="btn btn-secondary">
-                                        <input value="en" type="radio" name="lang" autocomplete="off" @if((Auth::user()->lang ?? 'nl') == 'en') checked @endif> Engels
-                                    </label>
-                                    <label class="btn btn-secondary">
-                                        <input value="vl" type="radio" name="lang" autocomplete="off" @if((Auth::user()->lang ?? 'nl') == 'vl') checked @endif> W-Vlaams
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="mx-3 my-1 btn btn-primary" formaction="{{ route('usersettings') }}">

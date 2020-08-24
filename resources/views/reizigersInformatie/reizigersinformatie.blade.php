@@ -20,7 +20,7 @@
 
       <div class="col-md-12">
          <div class="card">
-            <div class="card-header">{{ __('Menu') }}</div>
+            <div class="card-header">Menu</div>
             <div class="card-body">
                <div class="row text-center">
                   <div class="text-decoration-none my-2 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">

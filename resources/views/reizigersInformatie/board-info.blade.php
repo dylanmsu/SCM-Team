@@ -21,7 +21,7 @@
 
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header">{{ __('Bord Info') }}</div>
+            <div class="card-header">Bord Info</div>
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -64,7 +64,7 @@
                 
         <div class="col-md-4">
             <div class="card">
-                <div class="card-header">{{ __('Bord A') }}</div>
+                <div class="card-header">Bord A</div>
                 <div id="prevA">
                 @if (!empty($boardA[0]))
                     <board-preview splitflapdata="{{$boardA[0]}}"/>
@@ -75,7 +75,7 @@
             </div>
             <br>
             <div class="card">
-                <div class="card-header">{{ __('Bord B') }}</div>
+                <div class="card-header">Bord B</div>
                 <div id="prevB">
                 @if (!empty($boardB[0]))
                     <board-preview splitflapdata="{{$boardB[0]}}"/>
