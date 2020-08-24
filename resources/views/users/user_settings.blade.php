@@ -25,13 +25,31 @@
                             <div class="col-md-6">
                                 <div class="btn-group btn-group-toggle" id="name" data-toggle="buttons">
                                     <label class="btn btn-secondary active">
-                                        <input onclick="loadtheme('darkly')" value="darkly" type="radio" name="theme" id="option1" autocomplete="off" @if((Auth::user()->theme ?? 'default') == 'darkly') checked @endif> darkly
+                                        <input onclick="loadtheme('darkly')" value="darkly" type="radio" name="theme" autocomplete="off" @if((Auth::user()->theme ?? 'default') == 'darkly') checked @endif> darkly
                                     </label>
                                     <label class="btn btn-secondary">
-                                        <input onclick="loadtheme('default')" value="default" type="radio" name="theme" id="option2" autocomplete="off" @if((Auth::user()->theme ?? 'default') == 'default') checked @endif> light
+                                        <input onclick="loadtheme('default')" value="default" type="radio" name="theme" autocomplete="off" @if((Auth::user()->theme ?? 'default') == 'default') checked @endif> light
                                     </label>
                                     <label class="btn btn-secondary">
-                                        <input onclick="loadtheme('superhero')" value="superhero" type="radio" name="theme" id="option2" autocomplete="off" @if((Auth::user()->theme ?? 'default') == 'superhero') checked @endif> superhero
+                                        <input onclick="loadtheme('superhero')" value="superhero" type="radio" name="theme" autocomplete="off" @if((Auth::user()->theme ?? 'default') == 'superhero') checked @endif> superhero
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Taal</label>
+        
+                            <div class="col-md-6">
+                                <div class="btn-group btn-group-toggle" id="name" data-toggle="buttons">
+                                    <label class="btn btn-secondary active">
+                                        <input value="nl" type="radio" name="lang" autocomplete="off" @if((Auth::user()->lang ?? 'nl') == 'nl') checked @endif> Nederlands
+                                    </label>
+                                    <label class="btn btn-secondary">
+                                        <input value="en" type="radio" name="lang" autocomplete="off" @if((Auth::user()->lang ?? 'nl') == 'en') checked @endif> Engels
+                                    </label>
+                                    <label class="btn btn-secondary">
+                                        <input value="vl" type="radio" name="lang" autocomplete="off" @if((Auth::user()->lang ?? 'nl') == 'vl') checked @endif> W-Vlaams
                                     </label>
                                 </div>
                             </div>

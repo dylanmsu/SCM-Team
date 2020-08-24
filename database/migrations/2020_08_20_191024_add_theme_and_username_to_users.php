@@ -14,8 +14,9 @@ class AddThemeAndUsernameToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('username')->nullable();
+            $table->string('username')->unique();
             $table->string('theme')->nullable();
+            $table->string('lang')->nullable();
         });
     }
 
@@ -27,7 +28,7 @@ class AddThemeAndUsernameToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['theme',  'username']);
+            $table->dropColumn(['theme',  'username', 'lang']);
         });
     }
 }

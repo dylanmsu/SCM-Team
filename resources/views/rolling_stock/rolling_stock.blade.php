@@ -42,7 +42,7 @@
                          -->
                         @forelse ($list['categories'] as $category)
                             <div class="card">
-                                <button class="py-2 card-header btn btn-link" data-toggle="collapse" data-target="#collapse-{{$list['type']}}-{{$category->category}}" aria-expanded="true" aria-controls="collapse-{{$list['type']}}-{{$category->category}}">
+                                <div class="py-2 card-header btn btn-link" data-toggle="collapse" role="button" data-target="#collapse-{{$list['type']}}-{{$category->category}}" aria-expanded="true" aria-controls="collapse-{{$list['type']}}-{{$category->category}}">
                                     <div class="container">
                                         <div class="row">
                                             <div class="col-6">
@@ -74,17 +74,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                </button>
+                                </div>
                             
                                 <!-- the list under each category -->
-                                <div id="collapse-{{$list['type']}}-{{$category->category}}" class="collapse" aria-labelle data-parent="#{{$list['type']}}-accordion">
+                                <div id="collapse-{{$list['type']}}-{{$category->category}}" class="collapse" data-parent="#{{$list['type']}}-accordion">
                                     <div class="card-body">
                                         <div class="list-group container">
 
                                             @forelse ($list['data'] as $item)
 
                                                 @if ($item->category == $category->category)
-                                                    <div class="panel-group" id="accordion2">
+                                                    <div class="panel-group">
                                                         <div class="panel panel-default">
                                                             <div class="panel-heading p-0">
                                                                 <div class="row m-0 list-group-item d-flex list-group-item-action">
@@ -92,7 +92,7 @@
 
                                                                         <!-- if the row has a comment, add icon next to name to show you can expand else, display only name -->
                                                                         @if ($item['comment'] != '')
-                                                                            <a id="accordion-{{$list['type']}}" data-toggle="collapse" data-parent="#accordion-normal" href="#collapse-normal-{{$item['id']}}">
+                                                                            <a id="accordion-{{$list['type']}}" data-toggle="collapse" data-parent="#accordion-{{$list['type']}}" href="#collapse-{{$item['id']}}">
                                                                                 <span class="align-middle"><b>{{$item['name']}}</b></span>
                                                                                 <span class="align-middle material-icons">expand_more</span>
                                                                             </a>
@@ -129,29 +129,29 @@
                                                                     <!-- add edit tools for each row -->
                                                                     <div class="col-5 col-sm col-md text-right">
                                                                         <div class="d-inline mx-2 text-right">
-                                                                            <a role="button" id="drpdwn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            <a role="button" id="edit-{{$item['id']}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                                 <i title="Aanpassen" data-toggle="tooltip" class="fas fa-cog text-info fa-1x"></i>
                                                                             </a>
-                                                                            <div class="dropdown-menu" aria-labelledby="drpdwn">
-                                                                                <form method="POST" autocomplete="off" id="delete">
+                                                                            <div class="dropdown-menu" aria-labelledby="edit-{{$item['id']}}">
+                                                                                <form method="POST" autocomplete="off" id="delete-{{$item['id']}}">
                                                                                     @csrf
-                                                                                    <button onclick="confirmation('delete')" formaction="rollend/verwijder/{{$item['id']}}" class="dropdown-item"><i class="fas fa-trash-alt"></i> Verwijderen</button>
+                                                                                    <button onclick="confirmation('delete-{{$item['id']}}')" formaction="rollend/verwijder/{{$item['id']}}" class="dropdown-item"><i class="fas fa-trash-alt"></i> Verwijderen</button>
                                                                                 </form>
                                                                                 <a class="dropdown-item" href="#"><i class="fas fa-edit"></i> Bijwerken</a>
                                                                             </div>
                                                                         </div>
                                                                         <div class="d-inline text-right">
-                                                                            <a role="button" id="drpdwn-status" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                            <a role="button" id="status-{{$item['id']}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                                 <i title="Status" data-toggle="tooltip" class="fas fa-exclamation-circle text-info fa-1x"></i>
                                                                             </a>
-                                                                            <div class="dropdown-menu" aria-labelledby="drpdwn-status">
+                                                                            <div class="dropdown-menu" aria-labelledby="status-{{$item['id']}}">
                                                                                 <form method="POST" autocomplete="off">
                                                                                     @csrf
-                                                                                    <button type="submit" formaction="rollend/update/{{$item['id']}}/in_dienst" class="dropdown-item" href="#"><span class="status text-success">&bull;</span>In Dienst</button>
-                                                                                    <button type="submit" formaction="rollend/update/{{$item['id']}}/buiten_dienst" class="dropdown-item" href="#"><span class="status text-danger">&bull;</span>Buiten Dienst</button>
-                                                                                    <button type="submit" formaction="rollend/update/{{$item['id']}}/in_reserve" class="dropdown-item" href="#"><span class="status text-primary">&bull;</span>In Reserve</button>
-                                                                                    <button type="submit" formaction="rollend/update/{{$item['id']}}/onder_voorwaarde" class="dropdown-item" href="#"><span class="status text-warning">&bull;</span>Onder Voorwaarde</button>
-                                                                                    <button type="submit" formaction="rollend/update/{{$item['id']}}/andere" class="dropdown-item" href="#"><span class="status text-secondary">&bull;</span>Andere</button>
+                                                                                    <button type="submit" formaction="rollend/update/{{$item['id']}}/in_dienst" class="dropdown-item"><span class="status text-success">&bull;</span>In Dienst</button>
+                                                                                    <button type="submit" formaction="rollend/update/{{$item['id']}}/buiten_dienst" class="dropdown-item"><span class="status text-danger">&bull;</span>Buiten Dienst</button>
+                                                                                    <button type="submit" formaction="rollend/update/{{$item['id']}}/in_reserve" class="dropdown-item"><span class="status text-primary">&bull;</span>In Reserve</button>
+                                                                                    <button type="submit" formaction="rollend/update/{{$item['id']}}/onder_voorwaarde" class="dropdown-item"><span class="status text-warning">&bull;</span>Onder Voorwaarde</button>
+                                                                                    <button type="submit" formaction="rollend/update/{{$item['id']}}/andere" class="dropdown-item"><span class="status text-secondary">&bull;</span>Andere</button>
                                                                                 </form>
                                                                             </div>
                                                                         </div>      
@@ -160,7 +160,7 @@
                                                             </div>
 
                                                             <!-- if there is a comment, display it -->
-                                                            <div id="collapse-normal-{{$item['id']}}" class="card-header collapse in">
+                                                            <div id="collapse-{{$item['id']}}" class="card-header collapse in">
                                                                 <div class="panel-body">
                                                                     @if ($item['comment'] != '')
                                                                         {{$item['comment']}}

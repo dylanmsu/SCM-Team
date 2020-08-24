@@ -16,6 +16,7 @@ class UserController extends Controller
     {
         $user = auth()->user();
         $user->theme = $request->get('theme');
+        $user->lang = $request->get('lang');
         $status = $user->save();
 
         if ($status) {

@@ -34,11 +34,9 @@
         <div class="col-md-8">
 
             <div class="card mt-4">
-                
                 <div class="card-body">
                     <div class="container">
                         <div class="row text-center">
-
                             <!-- loop through the array above to create the cards -->
                             @foreach ($home_cards as $card)
                                 <div class="my-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" >
@@ -46,22 +44,19 @@
 
                                         <img style="background-color: {{$card['color']}}" class="card-img-top" src="{{ asset('./images/main/blank.png') }}">
                                         <div class="card-img-overlay pt-4">
-                                        
-                                        <i class="fas fa-{{$card['icon']}} fa-6x text-light"></i>
-                                        
+                                            <i class="fas fa-{{$card['icon']}} fa-6x text-light"></i>
                                         </div>
-
                                         <div class="py-3 card-footer text-uppercase"><strong>{{ $card['name'] }}</strong></div>
                                     </a>
                                 </div>
                             @endforeach
-
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- right side -->
         <div class="col-md-4">
             <div class="card mt-4">
                 <div class="card-header text-center text-uppercase"><strong>Reizigersinformatie</strong></div>
