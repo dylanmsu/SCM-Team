@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class splitflap extends Model
+class Splitflap extends Model
 {
     protected $fillable = [
         'board', 

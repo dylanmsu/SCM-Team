@@ -13,16 +13,16 @@ class CreateVehiclesComments extends Migration
      */
     public function up()
     {
-        Schema::create('vehicles_comments', function (Blueprint $table) {
+        Schema::create('vehicle_comments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_vehicle');
-            $table->foreign('id_vehicle')->references('id')->on('vehicles');
+            $table->unsignedBigInteger('vehicle_id');
+            $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');
             $table->text('remarks')->nullable();
             $table->enum('state', ['actief', 'in_onderzoek', 'afgewerkt', 'andere']);
             $table->unsignedBigInteger('creator');
-            $table->foreign('creator')->references('id')->on('users');
+            $table->foreign('creator')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('editor')->nullable();
-            $table->foreign('editor')->references('id')->on('users');
+            $table->foreign('editor')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ class CreateVehiclesComments extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vehicles_comments');
+        Schema::dropIfExists('vehicle_comments');
     }
 }

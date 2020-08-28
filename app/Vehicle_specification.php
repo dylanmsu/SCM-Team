@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Solicitation extends Model
+class Vehicle_specification extends Model
 {
     //
 }

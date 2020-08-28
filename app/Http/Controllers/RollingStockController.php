@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
+use App\Vehicle;
+use App\Vehicle_comment;
+use App\User;
 use Illuminate\Http\Request;
-use App\vehicle;
-use App\vehicle_comments;
+use Illuminate\Support\Facades\DB;
 
 class RollingStockController extends Controller
 {
@@ -15,12 +18,10 @@ class RollingStockController extends Controller
 
     public function rolling()
     {
-        $normal_categories = vehicle::select('category')->where('type', '=', 'normaal')->groupBy('category')->get();
-        $normal_data = vehicle::select('*')->where('type', '=', 'normaal')->get();
-        $small_categories = vehicle::select('category')->where('type', '=', 'smal')->groupBy('category')->get();
-        $small_data = vehicle::select('*')->where('type', '=', 'smal')->get();
-
-
+        $normal_categories = Vehicle::select('category')->where('type', '=', 'normaal')->groupBy('category')->orderBy(\DB::raw('count(*)'), 'desc')->get();
+        $normal_data = Vehicle::select('*')->where('type', '=', 'normaal')->with('vehicle_comment.User')->get();
+        $small_categories = Vehicle::select('category')->where('type', '=', 'smal')->groupBy('category')->orderBy(\DB::raw('count(*)'), 'desc')->get();
+        $small_data = Vehicle::select('*')->where('type', '=', 'smal')->with('vehicle_comment.User')->get();
 
         return view('rolling_stock/rolling_stock', [
             'data' => [
@@ -40,7 +41,7 @@ class RollingStockController extends Controller
 
     public function update_state($id, $state) 
     {
-        vehicle::where('id', $id)->update(['state'=>$state]);
+        Vehicle::where('id', $id)->update(['state'=>$state]);
 
         return redirect()->route('rolling');
     }
@@ -62,7 +63,7 @@ class RollingStockController extends Controller
             'type' => 'required'
         ]);
 
-        $stock = new vehicle([
+        $stock = new Vehicle([
             'category' => $request->get('category'),
             'name' => $request->get('name'),
             'state' => $request->get('state'),
@@ -70,9 +71,17 @@ class RollingStockController extends Controller
             'type' => $request->get('type'),
         ]);
 
-        $status = $stock->save();
+        $comments = new Vehicle_comment([
+            'remarks' => $request->get('comment'),
+            'vehicle_id' => DB::table('vehicles')->max('id')+1,
+            'creator' => Auth::user()->id
+        ]);
 
-        if ($status) {
+        $statusA = $stock->save();
+        $statusB = $comments->save();
+
+
+        if ($statusA || $statusB) {
             return redirect()->route('rolling')->with('success', "Successfully Submitted!");
         } else {
             return redirect()->route('add_stock')->with('error', "Something went wrong.");
@@ -81,7 +90,22 @@ class RollingStockController extends Controller
 
     public function delete($id) 
     {
-        vehicle::where('id', $id)->delete();
+        Vehicle::where('id', $id)->delete();
+
+        return redirect()->route('rolling');
+    }
+
+    public function add_comment($id, Request $request) 
+    {
+        $comments = new Vehicle_comment([
+            'remarks' => $request->get('remarks'),
+            'vehicle_id' => $id,
+            'creator' => Auth::user()->id
+        ]);
+
+        $comments->save();
+        Vehicle::where('id', $id)->update(['state' => $request->get('state')]);
+
         return redirect()->route('rolling');
     }
 }

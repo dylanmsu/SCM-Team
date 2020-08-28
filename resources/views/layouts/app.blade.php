@@ -15,9 +15,9 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
 
     <!-- Styles and load theme -->
+    <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     @guest
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">        
@@ -40,21 +40,26 @@
     <link rel="icon" href="{{asset('./images/icon/ms-icon-310x310.png')}}">
 
     <!-- set language -->
-    @if (isset(Auth::user()->lang))
-        {{App::setLocale(Auth::user()->lang)}}
-    @endif
+    {{App::setLocale('nl')}}
 
     <script>
-        reloadcss();
         
+        // adds an alert message before submitting a form
+        // ex: 
+        // <form id="my-form"> 
+        //     <div class="btn btn-primary" onclick="confirmation('my-form')"></div>
+        // </form>
         function confirmation(forid){
-            if(confirm('Weet je het zeker?')){
+            let submit = confirm('Weet je het zeker?');
+            console.log(submit)
+            if(submit){
                 document.getElementById(forid).submit();
             } else {
                 return false;
             }
         }
         
+        // loads a theme temporary for preview purposes. 
         function loadtheme(theme) {
 
             // if "current-theme" exists, remove it
@@ -71,9 +76,11 @@
                 "<link id=\"current-theme\" rel=\"stylesheet\" href=\"" + @json(asset('css/themes/tobereplaced/bootstrap.css')).replace("tobereplaced", theme) + "\" />");
             }
             
+            // reloads css. obviously...
             reloadcss();
         }
 
+        // ...
         function reloadcss() {
             let links = document.getElementsByTagName("link");
             for (let cl in links){
@@ -139,6 +146,10 @@
 
         .nounderline {
             text-decoration: none !important
+        }
+
+        #more  {
+            display:  none;
         }
     </style>
 </head>

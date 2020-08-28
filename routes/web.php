@@ -43,5 +43,6 @@ Route::get('/rollend/toevoegen', 'RollingStockController@add_stock_page')->name(
 Route::post('/rollend/toevoegen', 'RollingStockController@add_stock');
 Route::post('/rollend/update/{id}/{state}', 'RollingStockController@update_state');
 Route::post('/rollend/verwijder/{id}', 'RollingStockController@delete');
+Route::post('/rollend/comment/add/{id}', 'RollingStockController@add_comment');
 
 Route::post('/user/update_settings', 'UserController@settings')->name('usersettings');

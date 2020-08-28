@@ -21,7 +21,8 @@ class CreateSplitflapsTable extends Migration
             $table->string('second_text', 14)->nullable();
             $table->integer('icon_index')->nullable();
             $table->timestamp('time');
-            $table->foreignId('user')->nullable();
+            $table->unsignedBigInteger('creator');
+            //$table->foreign('creator')->references('id')->on('users');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });

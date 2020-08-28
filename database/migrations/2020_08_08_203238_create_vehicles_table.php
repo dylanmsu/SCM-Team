@@ -18,9 +18,7 @@ class CreateVehiclesTable extends Migration
             $table->string('category'); //motorwagen, diesellocomotief, stoomlocomotief, werfvoertuig, rijtuig, wagen, Andere
             $table->string('name');
             $table->enum('state', ['in_dienst', 'buiten_dienst', 'in_reserve', 'onder_voorwaarde', 'andere']);
-            $table->string('comment')->nullable();
             $table->enum('type', ['normaal', 'smal']);
-            $table->string('test');
             $table->timestamps();
         });
     }

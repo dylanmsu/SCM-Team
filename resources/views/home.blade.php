@@ -40,7 +40,7 @@
                             <!-- loop through the array above to create the cards -->
                             @foreach ($home_cards as $card)
                                 <div class="my-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" >
-                                    <a class="card my-card text-decoration-none" href="{{ $card['link'] }}" target="{{ $card['target'] }}">
+                                    <a class="card shadow-sm my-card text-decoration-none" href="{{ $card['link'] }}" target="{{ $card['target'] }}">
 
                                         <img style="background-color: {{$card['color']}}" class="card-img-top" src="{{ asset('./images/main/blank.png') }}">
                                         <div class="card-img-overlay pt-4">

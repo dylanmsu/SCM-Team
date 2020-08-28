@@ -4,13 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class vehicles_comments extends Model
+class vehicle_comment extends Model
 {
     protected $fillable = [
-        'id_vehicle',
+        'vehicle_id',
         'remarks', 
         'state', 
         'creator', 
         'editor'
     ];
+
+    public function User()
+    {
+        return $this->hasOne('App\User', 'id', 'creator');
+    }
 }
