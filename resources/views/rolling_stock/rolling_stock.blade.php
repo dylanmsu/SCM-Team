@@ -146,7 +146,9 @@
                                                                                 <div class="container">
                                                                                     <div class="row justify-content-center">
                                                                                         <div class="my-2 col-10 card py-2">
-                                                                                            {{$comment->remarks}}
+                                                                                            <div class="card-body p-2">
+                                                                                                {{$comment->remarks}}
+                                                                                            </div>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -160,12 +162,10 @@
                                                                             <div><b>{{$comment->user->username}}</b>: <span style="float:right;">{{$comment->updated_at}}</span> </div>
                                                                             <div class="container">
                                                                                 <div class="row justify-content-center">
-                                                                                    <div class="card my-2 col-10 py-2">
-                                                                                        <div class="card-body">
+                                                                                    <div class="card my-2 col-10">
+                                                                                        <div class="card-body p-2">
                                                                                             {{$comment->remarks}}
                                                                                         </div>
-                                                                                        
-                                                                                        
                                                                                     </div>
                                                                                 </div>
                                                                             </div>

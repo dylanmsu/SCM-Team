@@ -27,9 +27,8 @@ Route::get('/home', 'HomeController@home')->name('home');
 Route::view('/links', 'links')->name('links'); 
 Route::view('/settings', 'users/user_settings')->name('user_settings');
 
-Route::get('/ris', 'HomeController@reizigersinformatie')->name('ris');
-Route::get('/ris/bord-setup', 'SplitflapController@board_setup')->name('ris/board-setup');
-Route::get('/ris/bord-info', 'SplitflapController@board_info')->name('ris/board-info');
+Route::get('/ris', 'SplitflapController@reizigersinformatie')->name('ris');
+Route::get('/ris/bord-setup', 'SplitflapController@board_setup')->name('board-setup');
 Route::post('/ris/splitflap', 'SplitflapController@store');
 Route::post('/ris/preview', 'SplitflapController@preview');
 

@@ -13,6 +13,11 @@ class Splitflap extends Model
         'second_text', 
         'icon_index', 
         'time',
-        'user'
+        'creator'
     ];
+
+    public function User()
+    {
+        return $this->hasOne('App\User', 'id', 'creator');
+    }
 }

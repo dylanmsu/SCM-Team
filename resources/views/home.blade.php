@@ -21,12 +21,12 @@
 
         @php
             $home_cards = array(
+                array('color' => '#00cec9', 'icon' => 'subway',          'name' => 'Rollend matrieel', 'target' => "",        'link' => route('rolling')),
                 array('color' => '#b2bec3', 'icon' => 'calendar-minus',  'name' => 'Splitflap',        'target' => "",        'link' => route('ris')),
                 array('color' => '#32ff7e', 'icon' => 'users',           'name' => 'Ledenbeheer',      'target' => "",        'link' => route('members')),
                 array('color' => '#d63031', 'icon' => 'folder-open',     'name' => 'Mijn bestanden',   'target' => "_blank",  'link' => "/filemanager"),
                 array('color' => '#0984e3', 'icon' => 'map',             'name' => 'Train maps',       'target' => "",        'link' => route('map')),
                 array('color' => '#ffaf40', 'icon' => 'link',            'name' => 'Links',            'target' => "",        'link' => route('links')),
-                array('color' => '#00cec9', 'icon' => 'subway',          'name' => 'Rollend matrieel', 'target' => "",        'link' => route('rolling')),
             );
         @endphp
 

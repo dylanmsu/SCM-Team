@@ -20,7 +20,7 @@ class HomeController extends Controller
             ->whereRaw('time >= now()')
             ->where('time', '<', Carbon::parse('+24 hours'))
             ->orderBy('time', 'asc')
-            ->get();
+            ->take(7)->get();
 
         $splitflapsA = splitflap::
             select('*')
@@ -44,11 +44,6 @@ class HomeController extends Controller
             'boardB' => $splitflapsB,
             'theme' => auth()->user()->get('theme')
         ]);
-    }
-
-    public function reizigersinformatie()
-    {
-        return view('reizigersInformatie/reizigersinformatie');
     }
 
 }

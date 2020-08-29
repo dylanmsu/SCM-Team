@@ -4,84 +4,86 @@
 
 @section('content')
 <div class="container">
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-        <li class="breadcrumb-item"><a href="{{route('ris')}}">ReizigersInformatie</a></li>
-        <li class="breadcrumb-item active" aria-current="page">BoardInfo</li>
-    </ol>
-</nav>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{route('ris')}}">ReizigersInformatie</a></li>
+            <li class="breadcrumb-item active" aria-current="page">BoardInfo</li>
+        </ol>
+    </nav>
 
-<div class="row justify-content-center">
-    @if (session('status'))
-        <div class="alert alert-success" role="alert">
-            {{ session('status') }}
-        </div>
-    @endif
-
-    <div class="col-md-8">
-        <div class="card">
-            <div class="card-header">Bord Info</div>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Bord</th>
-                            <th scope="col">Tekst</th>
-                            <th scope="col">Trein</th>
-                            <th scope="col">Tijd</th>
-                        </tr>
-                    </thead>
-
-                @if (!$data->isEmpty())
-                    <tbody>
-                    @foreach ($data as $item)
-                    <tr scope="row">
-                        <th>{{$item->board}}</th>
-                        <td>{{$item->first_text}} <br> {{$item->second_text}}</td>
-                        <td><my-icon v-bind:icon_index="{{$item->icon_index}}"></my-icon></td>
-                        <td>{{$item->time}}</td>
-                    </tr>
-                    @endforeach
-                    <tbody>
-                @else
-                    no data
-                @endif
-                
-                </table>
-                <div class="mx-2">{{ $data->links() }}</div>
-            </div>
-        </div>
-
-        @php
-        $blank = json_encode(array(
-            'align' => 'center',
-            'first_text' => 'geen treinen',
-            'second_text' => 'vandaag',
-            'icon_index' => '0',
-            'time' => ''
-        ));
-        @endphp
-                
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">Bord A</div>
-                <div id="prevA">
-                @if (!empty($boardA[0]))
-                    <board-preview splitflapdata="{{$boardA[0]}}"/>
-                @else
-                    <board-preview splitflapdata="{{$blank}}"/>
-                @endif
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card py-2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-5 my-2">
+                            <h2>Splitflap beheer</h2>
+                        </div>
+                        <div class="col-md-7 my-2 text-right">
+                            <a href="{{route('add_members')}}" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Toevoegen</span></a>					
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <br>
-            <div class="card">
-                <div class="card-header">Bord B</div>
-                <div id="prevB">
-                @if (!empty($boardB[0]))
-                    <board-preview splitflapdata="{{$boardB[0]}}"/>
-                @else
-                    <board-preview splitflapdata="{{$blank}}"/>
-                @endif
+                <div class="col-md-12">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Spoor</th>						
+                                <th scope="col">Text</th>
+                                <th scope="col">Datum</th>
+                                <th scope="col">Actie</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($data as $item)
+                            @if ($item->id == $boardA[0]->id || $item->id == $boardB[0]->id)
+                                <tr class="table-primary">
+                            @else
+                                <tr>
+                            @endif
+                                    <th scope="row">
+                                        {{$item->id}}
+                                    </th>
+                                    <td>
+                                        {{$item->board}}
+                                    </td>
+                                    <td>
+                                        {{$item->first_text}} {{$item->second_text}}
+                                    </td>                        
+                                    <td>
+                                        {{$item->time}}
+                                    </td>
+                                    <td>
+                                        <a role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i title="Aanpassen" data-toggle="tooltip" class="text-info material-icons">&#xE8B8;</i>
+                                        </a>
+                                    
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item" href="#">Bijwerken</a>
+                                            <a class="dropdown-item" href="#">Verwijderen</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                            <tr>
+                                <td>
+                                    geen data
+                                </td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+
+                    <!-- will be replaced with a laravel implementation -->
+                    <div class="clearfix">
+                        <div class="hint-text">Showing <b>{{count($data)}}</b> out of <b>{{$count[0]->count}}</b> entries</div>
+                        <ul class="pagination justify-content-end">
+                            {{ $data->links() }}
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </div>

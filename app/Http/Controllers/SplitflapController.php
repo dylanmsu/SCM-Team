@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Auth;
 use App\splitflap;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class SplitflapController extends Controller
 {
@@ -59,6 +60,7 @@ class SplitflapController extends Controller
             ->take(1)->get();
 
         return view('reizigersInformatie/board-info',[
+            'count' => splitflap::selectRaw('count(*) as count')->get(),
             'data' => $splitfflaps,
             'boardA' => $splitfflapsA,
             'boardB' => $splitfflapsB
@@ -85,16 +87,47 @@ class SplitflapController extends Controller
             'second_text' => $request->get('second_text'),
             'icon_index' => $request->get('icon_index'),
             'time' => $request->get('time'),
-            'user' => $request->user()->id
+            'creator' => Auth::user()->id
         ]);
         
         $status = $splitflap->save();
 
         if ($status) {
-            return redirect()->route('ris/board-setup')->with('success', "Successfully Submitted!");
+            return redirect()->route('board-setup')->with('success', "Successfully Submitted!");
         } else {
-            return redirect()->route('ris/board-setup')->with('error', "Something went wrong.");
+            return redirect()->route('board-setup')->with('error', "Something went wrong.");
         }
+    }
+
+    public function reizigersinformatie()
+    {
+        $splitfflaps = splitflap::
+        select('*')
+        ->whereRaw('time >= now()')
+        ->orderBy('time', 'asc')->simplePaginate(10)->onEachSide(1);;
+
+    $splitfflapsA = splitflap::
+        select('*')
+        ->whereRaw('time >= now()')
+        ->where('time', '<', Carbon::parse('+24 hours'))
+        ->where('board','A')
+        ->orderBy('time', 'asc')
+        ->take(1)->get();
+
+    $splitfflapsB = splitflap::
+        select('*')
+        ->whereRaw('time >= now()')
+        ->where('time', '<', Carbon::parse('+24 hours'))
+        ->where('board','B')
+        ->orderBy('time', 'asc')
+        ->take(1)->get();
+
+        return view('reizigersInformatie/reizigersinformatie', [
+            'count' => splitflap::selectRaw('count(*) as count')->get(),
+            'data' => $splitfflaps,
+            'boardA' => $splitfflapsA,
+            'boardB' => $splitfflapsB
+        ]);
     }
 
     public function preview(Request $request) {

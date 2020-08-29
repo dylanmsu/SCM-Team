@@ -22,7 +22,7 @@ class CreateSplitflapsTable extends Migration
             $table->integer('icon_index')->nullable();
             $table->timestamp('time');
             $table->unsignedBigInteger('creator');
-            //$table->foreign('creator')->references('id')->on('users');
+            $table->foreign('creator')->references('id')->on('users');
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });
