@@ -2025,11 +2025,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['splitflapdata'],
+  props: ['splitflapdata', 'board_width'],
   name: 'prev',
   data: function data() {
     return {
       data: JSON.parse(this.splitflapdata),
+      mywidth: this.board_width,
       hours: '',
       minsA: '',
       minsB: '',
@@ -2338,13 +2339,19 @@ __webpack_require__.r(__webpack_exports__);
       var cont = document.getElementById('preview');
 
       for (var i = 0; i < _char.length; i++) {
-        _char[i].style.fontSize = cont.getBoundingClientRect().width / 15 + 'px';
-        _char[i].style.height = cont.getBoundingClientRect().width / 9 + 'px';
-        _char[i].style.borderWidth = cont.getBoundingClientRect().width / 130 + 'px';
+        if (_this.board_width == undefined) {
+          _char[i].style.fontSize = cont.clientWidth / 15 + 'px';
+          _char[i].style.height = cont.clientWidth / 9 + 'px';
+          _char[i].style.borderWidth = cont.clientWidth / 130 + 'px';
+        } else {
+          _char[i].style.fontSize = _this.mywidth / 15 + 'px';
+          _char[i].style.height = _this.mywidth / 9 + 'px';
+          _char[i].style.borderWidth = _this.mywidth / 130 + 'px';
+        }
       }
 
       _this.updateText();
-    }, 0);
+    }, 100);
   }
 });
 
@@ -6782,7 +6789,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*  */\n#preview {\r\n    text-align: center;\r\n    display: grid;\r\n    grid-template-columns: repeat(14, 1fr);\n}\r\n\r\n/* style of the individual charakter */\n.previewchar {\r\n    background-color: #000;\r\n    border: 2px solid #222;\r\n    color: white;\r\n    font-weight: bold;\r\n    font-family: 'Roboto', sans-serif, monospace;\n}\r\n\r\n/* style of the icon */\n#icon {\r\n    grid-column: 1/9;\n}\r\n\r\n/* the gap between the time and icon */\n#gap {\r\n    grid-column: 9/11;\r\n    background-color: #222;\n}\r\n\r\n/* */\n#hours {\r\n    grid-column: 11/13;\n}\r\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\r\n/*  */\n#preview {\r\n    text-align: center;\r\n    display: grid;\r\n    grid-template-columns: repeat(14, 1fr);\n}\r\n\r\n/* style of the individual charakter */\n.previewchar {\r\n    background-color: #000;\r\n    border: 2px solid #222;\r\n    color: white;\r\n    font-weight: bold;\r\n    font-family: 'Roboto', sans-serif, monospace;\n}\r\n\r\n/* style of the icon */\n#icon {\r\n    grid-column: 1/9;\n}\r\n\r\n/* the gap between the time and icon */\n#gap {\r\n    grid-column: 9/11;\r\n    background-color: #222;\n}\r\n\r\n/* */\n#hours {\r\n    grid-column: 11/13;\n}\r\n", ""]);
 
 // exports
 

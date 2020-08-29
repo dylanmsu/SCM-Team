@@ -26,11 +26,12 @@
 <script>
 
 export default {
-    props: ['splitflapdata'],
+    props: ['splitflapdata', 'board_width'],
     name: 'prev',
     data() {
         return {
             data: JSON.parse(this.splitflapdata),
+            mywidth: this.board_width,
             hours: '',
             minsA: '',
             minsB: '',
@@ -201,6 +202,7 @@ export default {
             let spaceStr = ""
             for(let i = 0; i <= amount; i++){
                 spaceStr += " "
+
             }
             return spaceStr
         }
@@ -211,12 +213,18 @@ export default {
             let char = document.getElementsByClassName("previewchar")
             let cont = document.getElementById('preview')
             for (let i=0; i<char.length; i++){
-                char[i].style.fontSize = cont.getBoundingClientRect().width/15 + 'px';
-                char[i].style.height = cont.getBoundingClientRect().width/9 + 'px';
-                char[i].style.borderWidth = cont.getBoundingClientRect().width/130 + 'px';
+                if (this.board_width == undefined){
+                    char[i].style.fontSize = cont.clientWidth/15 + 'px';
+                    char[i].style.height = cont.clientWidth/9 + 'px';
+                    char[i].style.borderWidth = cont.clientWidth/130 + 'px';
+                } else {
+                    char[i].style.fontSize = this.mywidth/15 + 'px';
+                    char[i].style.height = this.mywidth/9 + 'px';
+                    char[i].style.borderWidth = this.mywidth/130 + 'px';
+                }
             }
             this.updateText();
-        }, 0);
+        }, 100);
     }
 }
 </script>

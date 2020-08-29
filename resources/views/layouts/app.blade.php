@@ -29,10 +29,8 @@
             @else
                 <link href="{{ asset('css/themes/'.strval(Auth::user()->theme).'/bootstrap.css') }}" rel="stylesheet">
             @endif
-            <script>reloadcss();</script>
         @else
             <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-            <script>reloadcss();</script>
         @endif
     @endguest
     
@@ -152,6 +150,37 @@
         #more  {
             display:  none;
         }
+
+        #preview {
+            text-align: center;
+            display: grid;
+            grid-template-columns: repeat(14, 1fr);
+        }
+
+        /* style of the individual charakter */
+        .previewchar {
+            background-color: #000;
+            border: 2px solid #222;
+            color: white;
+            font-weight: bold;
+            font-family: 'Roboto', sans-serif, monospace;
+        }
+
+        /* style of the icon */
+        #icon {
+            grid-column: 1/9;
+        }
+
+        /* the gap between the time and icon */
+        #gap {
+            grid-column: 9/11;
+            background-color: #222;
+        }
+
+        /* */
+        #hours {
+            grid-column: 11/13;
+        }
     </style>
 </head>
 <body>
@@ -165,9 +194,8 @@
                 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav mr-auto">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -203,6 +231,28 @@
                                 </div>
                             </li>
                         @endguest
+                    </ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mx-1 badge badge-pill badge-danger">1</span> meldingen <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-item container">
+                                    <div class="row">
+                                        <div style="width: 300px" class="card">
+                                            <div class="card-header">Mijn meldingen</div>
+                                            <div class="card-body">
+                                                nog niet geimplementeerd
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
