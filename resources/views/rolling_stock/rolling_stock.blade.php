@@ -21,11 +21,14 @@
                 <div class="card-header">
                     <div class="container-fluid m-0">
                         <div class="row">
-                            <div class="col-10 p-0">
+                            <div class="col-9 p-0">
                                 <h2 class="text-capitalize">{{$list['type']}}Spoor</h2>
                             </div>
-                            <div class="text-right col-2 p-0">
-                                <h2><a href="{{route('add_stock')}}"><i class="material-icons">&#xE147;</i></a></h2>
+                            <div class="text-right col-3 p-0">
+                                <h2>
+                                    <a title="voeg toe" href="{{route('add_stock')}}"><i class="fas fa-plus-square"></i></a>
+                                    <a title="exporteer Excel" href="{{route('export-vehicles')}}"><i class="fas fa-cloud-download-alt"></i></a>
+                                </h2>
                             </div>
                         </div>
                     </div> 

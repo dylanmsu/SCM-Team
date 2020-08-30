@@ -6,6 +6,8 @@ use Auth;
 use App\Vehicle;
 use App\Vehicle_comment;
 use App\User;
+use App\Exports\VehicleExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,6 +16,11 @@ class RollingStockController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function export() 
+    {
+        return Excel::download(new VehicleExport, 'Rollend_matrieel.xlsx');
     }
 
     public function rolling()

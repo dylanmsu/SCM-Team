@@ -104,7 +104,7 @@ class SplitflapController extends Controller
         $splitfflaps = splitflap::
         select('*')
         ->whereRaw('time >= now()')
-        ->orderBy('time', 'asc')->simplePaginate(10)->onEachSide(1);;
+        ->orderBy('time', 'asc')->paginate(10)->onEachSide(1);;
 
     $splitfflapsA = splitflap::
         select('*')
