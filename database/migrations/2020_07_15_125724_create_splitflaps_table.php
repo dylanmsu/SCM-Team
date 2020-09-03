@@ -14,7 +14,7 @@ class CreateSplitflapsTable extends Migration
     public function up()
     {
         Schema::create('splitflaps', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->enum('board', array('A', 'B'));
             $table->enum('align', array('left','center','right'))->nullable();
             $table->string('first_text', 14)->nullable();
@@ -23,8 +23,7 @@ class CreateSplitflapsTable extends Migration
             $table->timestamp('time');
             $table->unsignedBigInteger('creator');
             $table->foreign('creator')->references('id')->on('users');
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamps();
         });
     }
 

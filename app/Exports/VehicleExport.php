@@ -3,30 +3,22 @@
 namespace App\Exports;
 
 use App\Vehicle;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
-use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\FromView;
 
-class VehicleExport implements FromCollection, ShouldAutoSize, WithHeadings
+class VehicleExport implements ShouldAutoSize, FromView
 {
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function collection()
-    {
-        return Vehicle::all();
-    }
 
-    public function headings(): array
+    public function view(): View
     {
-        return [
-            'Id',
-            'Categorie',
-            'Naam',
-            'Status',
-            'Spoor',
-            'Bijwerkt op',
-            'Gemaakt op'
-        ];
+        return view('excel_exports.vehicles', [
+            'vehicles' => Vehicle::with('vehicle_comment.User')->get()
+        ]);
     }
 }

@@ -23,26 +23,33 @@ Route::redirect('/', '/home', 301); // set landing page to '/home' by redirectin
 
 Route::get('/home', 'HomeController@home')->name('home');
 
-// if we don't need to send data to the view, we can skip the controller and use route::view
+// if we don't need to send aditional data to the view, we can skip the controller and use route::view('[route name]', '[view name]')
 Route::view('/links', 'links')->name('links'); 
 Route::view('/settings', 'users/user_settings')->name('user_settings');
 
+// routes that link to the respective functions in their controllers
 Route::get('/ris', 'SplitflapController@reizigersinformatie')->name('ris');
+Route::get('/ris/export', 'SplitflapController@export')->name('export-splitflaps');
+Route::post('/ris/preview', 'SplitflapController@preview');
 Route::get('/ris/bord-setup', 'SplitflapController@board_setup')->name('board-setup');
 Route::post('/ris/splitflap', 'SplitflapController@store');
-Route::post('/ris/preview', 'SplitflapController@preview');
+Route::post('/ris/verwijder/{id}', 'SplitflapController@delete');
 
 Route::get('/map', 'MapController@trainmap')->name('map');
 
 Route::get('/leden', 'MemberController@members')->name('members');
 Route::get('/leden/toevoegen', 'MemberController@members')->name('add_members');
 
-Route::get('/rollend', 'RollingStockController@rolling')->name('rolling');
-Route::get('/rollend/toevoegen', 'RollingStockController@add_stock_page')->name('add_stock');
-Route::post('/rollend/toevoegen', 'RollingStockController@add_stock');
-Route::post('/rollend/update/{id}/{state}', 'RollingStockController@update_state');
-Route::post('/rollend/verwijder/{id}', 'RollingStockController@delete');
-Route::post('/rollend/comment/add/{id}', 'RollingStockController@add_comment');
-Route::get('/rollend/export', 'RollingStockController@export')->name('export-vehicles');
+Route::get('/rollend', 'VehicleController@vehicles')->name('vehicles');
+Route::get('/rollend/export', 'VehicleController@export')->name('export-vehicles');
+Route::get('/rollend/toevoegen', 'VehicleController@add_vehicle_page')->name('add_vehicle_page');
+Route::get('/rollend/bijwerken/{id}', 'VehicleController@show_edit')->name('show_edit');
+Route::get('/rollend/eigenschappen/{id}', 'VehicleController@show_properties')->name('show_properties');
+Route::post('/rollend/toevoegen', 'VehicleController@add_vehicle')->name('add_vehicle');
+Route::post('/rollend/bijwerken/{id}', 'VehicleController@edit');
+Route::post('/rollend/verwijder/{id}', 'VehicleController@delete');
+Route::post('/rollend/comment/add/{id}', 'VehicleController@add_comment');
+Route::post('/rollend/img/toevoegen/{id}', 'VehicleController@upload_img');
+Route::post('/rollend/prop/toevoegen/{id}', 'VehicleController@add_prop');
 
 Route::post('/user/update_settings', 'UserController@settings')->name('usersettings');

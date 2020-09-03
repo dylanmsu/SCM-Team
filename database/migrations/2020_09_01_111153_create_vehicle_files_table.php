@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSolicitationsTable extends Migration
+class CreateVehicleFilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateSolicitationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('solicitations', function (Blueprint $table) {
+        Schema::create('vehicle_files', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('vehicle_id');
+            $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');
             $table->string('type');
-            //TOTO: add columns for (safety)function solicitations
+            $table->string('url');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateSolicitationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('solicitations');
+        Schema::dropIfExists('vehicle_files');
     }
 }

@@ -20,7 +20,8 @@
                             <h2>Splitflap beheer</h2>
                         </div>
                         <div class="col-md-7 my-2 text-right">
-                            <a href="{{route('board-setup')}}" class="btn btn-secondary"> <i class="fas fa-plus"></i> Toevoegen</a>					
+                            <a href="{{route('board-setup')}}" class="ml-2 btn btn-primary"> <i class="fas fa-plus"></i> Toevoegen</a>	
+                            <a href="{{route('export-splitflaps')}}" class="ml-2 btn btn-primary"> <i class="fas fa-cloud-download-alt"></i> Download Excel</a>					
                         </div>
                     </div>
                 </div>
@@ -54,16 +55,19 @@
                                         </td>
                                         <td>
                                             <a role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i title="Aanpassen" data-toggle="tooltip" class="text-info material-icons">&#xE8B8;</i>
+                                                <i title="Aanpassen" class="fas fa-cog"></i>
                                             </a>
                                             
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                                 <a class="dropdown-item" href="#">Bijwerken</a>
-                                                <a class="dropdown-item" href="#">Verwijderen</a>
+                                                <form method="POST" autocomplete="off" action="ris/verwijder/{{$item->id}}" id="delete-{{$item->id}}">
+                                                    @csrf
+                                                    <div onclick="confirmation('delete-{{$item->id}}')" class="btn dropdown-item"><i class="fas fa-trash-alt"></i> Verwijderen</div>
+                                                </form>
                                             </div>
                                         </td>
                                         <td class="dropdown">
-                                            <!-- Button trigger modal -->
+                                            <!-- Button to trigger modal -->
                                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-{{$item->id}}">
                                                 Voorbeeld
                                             </button>

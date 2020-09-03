@@ -13,7 +13,7 @@ class CreateVehicleSpecificationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('vehicle_specifications', function (Blueprint $table) {
+        Schema::create('vehicle_properties', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('vehicle_id');
             $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');
@@ -30,6 +30,6 @@ class CreateVehicleSpecificationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vehicle_specifications');
+        Schema::dropIfExists('vehicle_properties');
     }
 }

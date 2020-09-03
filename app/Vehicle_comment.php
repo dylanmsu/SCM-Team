@@ -10,7 +10,8 @@ class Vehicle_comment extends Model
         'remarks', 
         'state', 
         'creator', 
-        'editor'
+        'editor',
+        'vehicle_id'
     ];
 
     public function User()

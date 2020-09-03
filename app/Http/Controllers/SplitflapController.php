@@ -6,12 +6,20 @@ use Auth;
 use App\splitflap;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Exports\VehicleExport;
+use App\Exports\SplitflapExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SplitflapController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['getBoards']]);
+    }
+
+    public function export() 
+    {
+        return Excel::download(new SplitflapExport, 'Splitflaps.xlsx');
     }
 
     public function getBoards() {
@@ -93,9 +101,9 @@ class SplitflapController extends Controller
         $status = $splitflap->save();
 
         if ($status) {
-            return redirect()->route('board-setup')->with('success', "Successfully Submitted!");
+            return redirect()->route('ris')->with('success', "Successfully Submitted!");
         } else {
-            return redirect()->route('board-setup')->with('error', "Something went wrong.");
+            return redirect()->route('ris')->with('error', "Something went wrong.");
         }
     }
 
@@ -149,4 +157,12 @@ class SplitflapController extends Controller
             'time' => $request->get('time')
          ]);
     }
+
+    public function delete($id) 
+    {
+        splitflap::where('id', $id)->delete();
+
+        return redirect()->route('ris');
+    }
+
 }

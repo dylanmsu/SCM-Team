@@ -2,6 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\User;
 use App\Splitflap;
 use Faker\Generator as Faker;
 
@@ -13,6 +14,6 @@ $factory->define(Splitflap::class, function (Faker $faker) {
         'second_text' => $faker->word, 
         'icon_index' => rand(5, 15), 
         'time' => $faker->dateTimeBetween($startDate = 'now', $endDate = '+30 days', $timezone = 'CEST'),
-        'creator' => 1
+        'creator' => User::all()->random()->id
     ];
 });

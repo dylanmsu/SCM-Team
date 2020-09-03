@@ -11,6 +11,7 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         
 
         <!-- Fonts -->
@@ -19,7 +20,6 @@
 
         <!-- Styles and load theme -->
         <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         @guest
             <link href="{{ asset('css/app.css') }}" rel="stylesheet">        
         @else
@@ -57,6 +57,36 @@
                     return false;
                 }
             }
+
+
+            // for the properties input in 'add_vehicle'
+            $(document).ready(function() {
+                var max_fields      = 10; //maximum input boxes allowed
+                var wrapper   		= $(".input_fields_wrap"); //Fields wrapper
+                var add_button      = $(".add_field_button"); //Add button ID
+                
+                var x = 1; //initlal text box count
+                $(add_button).click(function(e){ //on add input button click
+                    e.preventDefault();
+                    if(x < max_fields){ //max input box allowed
+                        x++; //text box increment
+
+                        //add new input box
+                        $(wrapper).append(
+                            '<div class="input-group">'+
+                                '<input placeholder="Eigenschap" class="form-control col" type="text" name="prop[]"/>'+
+                                '<input placeholder="Waarde" class="col form-control" type="text" name="val[]"/>'+
+                                '<div class="input-group-prepend">'+
+                                    '<div class="btn btn-danger remove_field">-</div>'+
+                                '</div>'+
+                            '</div>');
+                    }
+                });
+                
+                $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+                    e.preventDefault(); $(this).parent('div').parent('div').remove(); x--;
+                })
+            });
             
             // loads a theme temporary for preview purposes. 
             function loadtheme(theme) {
@@ -84,8 +114,9 @@
                 let links = document.getElementsByTagName("link");
                 for (let cl in links){
                     let link = links[cl];
-                    if (link.rel === "stylesheet")
+                    if (link.rel === "stylesheet"){
                         link.href += "";
+                    }
                 }
             }
         </script>

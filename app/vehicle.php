@@ -18,9 +18,13 @@ class Vehicle extends Model
         return $this->hasMany('App\Vehicle_comment', 'vehicle_id', 'id');
     }
 
-    /*
-    public function Vehicle_specification()
+    public function Vehicle_file()
     {
-        return $this->hasMany('App\Vehicle_specification', 'vehicle_id', 'id');
-    }*/
+        return $this->hasMany('App\Vehicle_file', 'vehicle_id', 'id');
+    }
+
+    public function Vehicle_property()
+    {
+        return $this->hasMany('App\vehicle_property', 'vehicle_id', 'id');
+    }
 }

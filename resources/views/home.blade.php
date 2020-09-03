@@ -21,7 +21,7 @@
 
         @php
             $home_cards = array(
-                array('color' => '#00cec9', 'icon' => 'subway',          'name' => 'Rollend matrieel', 'target' => "",        'link' => route('rolling')),
+                array('color' => '#00cec9', 'icon' => 'subway',          'name' => 'Rollend matrieel', 'target' => "",        'link' => route('vehicles')),
                 array('color' => '#b2bec3', 'icon' => 'calendar-minus',  'name' => 'Splitflap',        'target' => "",        'link' => route('ris')),
                 array('color' => '#32ff7e', 'icon' => 'users',           'name' => 'Ledenbeheer',      'target' => "",        'link' => route('members')),
                 array('color' => '#d63031', 'icon' => 'folder-open',     'name' => 'Mijn bestanden',   'target' => "",        'link' => "/filemanager"),

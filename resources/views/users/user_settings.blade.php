@@ -25,13 +25,16 @@
                             <div class="col-md-6">
                                 <div class="btn-group btn-group-toggle" id="name" data-toggle="buttons">
                                     <label class="btn btn-secondary active">
-                                        <input onclick="loadtheme('darkly')" value="darkly" type="radio" name="theme" autocomplete="off" @if((Auth::user()->theme ?? 'default') == 'darkly') checked @endif> darkly
+                                        <input onclick="loadtheme('darkly')" value="darkly" type="radio" name="theme" autocomplete="off" @if((Auth::user()->theme ?? 'default') == 'darkly') checked @endif> Darkly
                                     </label>
                                     <label class="btn btn-secondary">
-                                        <input onclick="loadtheme('default')" value="default" type="radio" name="theme" autocomplete="off" @if((Auth::user()->theme ?? 'default') == 'default') checked @endif> light
+                                        <input onclick="loadtheme('default')" value="default" type="radio" name="theme" autocomplete="off" @if((Auth::user()->theme ?? 'default') == 'default') checked @endif> Light
                                     </label>
                                     <label class="btn btn-secondary">
-                                        <input onclick="loadtheme('superhero')" value="superhero" type="radio" name="theme" autocomplete="off" @if((Auth::user()->theme ?? 'default') == 'superhero') checked @endif> superhero
+                                        <input onclick="loadtheme('superhero')" value="superhero" type="radio" name="theme" autocomplete="off" @if((Auth::user()->theme ?? 'default') == 'superhero') checked @endif> Superhero
+                                    </label>
+                                    <label class="btn btn-secondary">
+                                        <input onclick="loadtheme('sketchy')" value="sketchy" type="radio" name="theme" autocomplete="off" @if((Auth::user()->theme ?? 'default') == 'sketchy') checked @endif> Sketchy
                                     </label>
                                 </div>
                             </div>
