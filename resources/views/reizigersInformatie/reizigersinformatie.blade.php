@@ -12,16 +12,16 @@
     </nav>
 
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-sm-12 col-lg-8">
             <div class="card py-2">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-5 my-2">
+                        <div class="col-md-5 my-3 text-center text-md-left">
                             <h2>Splitflap beheer</h2>
                         </div>
-                        <div class="col-md-7 my-2 text-right">
+                        <div class="col-md-7 my-3 text-center text-md-right">
                             <a href="{{route('board-setup')}}" class="ml-2 btn btn-primary"> <i class="fas fa-plus"></i> Toevoegen</a>	
-                            <a href="{{route('export-splitflaps')}}" class="ml-2 btn btn-primary"> <i class="fas fa-cloud-download-alt"></i> Download Excel</a>					
+                            <a href="{{route('export-splitflaps')}}" class="m-2 btn btn-primary"> <i class="fas fa-cloud-download-alt"></i> Download Excel</a>					
                         </div>
                     </div>
                 </div>
@@ -30,16 +30,16 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th data-card-title>Text</th>
-                                    <th data-card>Spoor</th>
-                                    <th data-card>Datum</th>
-                                    <th data-card>actie</th>
-                                    <th data-card-footer>voorbeeld</th>
+                                    <th>Text</th>
+                                    <th>Spoor</th>
+                                    <th>Datum</th>
+                                    <th>actie</th>
+                                    <th class="text-right">voorbeeld</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($data as $item)
-                                @if ($item->id == $boardA[0]->id || $item->id == $boardB[0]->id)
+                                @if ($item->id == ($boardA[0]->id ?? '') || $item->id == ($boardB[0]->id ?? ''))
                                     <tr class="table-primary">
                                 @else
                                     <tr>
@@ -66,7 +66,7 @@
                                                 </form>
                                             </div>
                                         </td>
-                                        <td class="dropdown">
+                                        <td class="dropdown text-right">
                                             <!-- Button to trigger modal -->
                                             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-{{$item->id}}">
                                                 Voorbeeld

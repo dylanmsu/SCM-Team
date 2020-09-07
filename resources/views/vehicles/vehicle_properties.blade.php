@@ -19,7 +19,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-7 col-lg-12 col-xl-7 text-center text-sm-left text-lg-center text-xl-left">
-                                <h2 class="mb-0">Eigenschappen</h2>
+                                <h4 class="mt-2">Eigenschappen</h4>
                             </div>
                             <div class="col-sm-5 col-lg-12 col-xl-5 my-2 text-center text-sm-right text-lg-center text-xl-right">
                                 <a data-toggle="modal" data-target="#modal-prop" class="ml-2 btn btn-primary"> <i class="fas fa-plus"></i> Toevoegen</a>
@@ -38,9 +38,10 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="input_fields_wrap">
-                                                        <div class="input-group">
-                                                            <input placeholder="Eigenschap" class="form-control col" type="text" name="prop[]"/><input placeholder="Waarde" class="col form-control" type="text" name="val[]"/>
-                                                            <div class="input-group-prepend"><div class="btn btn-primary add_field_button">+</div></div>
+                                                        <div class="mb-1 input-group">
+                                                            <input placeholder="Eigenschap" class="form-control col" type="text" name="prop[]" required/>
+                                                            <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                                            <div id="addbtn" class="col-1 btn btn-primary add_field_button">+</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -128,6 +129,7 @@
                                 <li data-target="#carouselExampleIndicators" data-slide-to="{{$loop->index}}" @if($loop->first) class="active" @endif></li>
                             @empty
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0"></li>
                             @endforelse
                         </ol>
                         <div class="carousel-inner">
@@ -137,7 +139,10 @@
                                 </div>
                             @empty
                                 <div class="carousel-item active">
-                                    <img class="d-block w-100" src="https://via.placeholder.com/350x150">
+                                    <img class="d-block w-100" src="https://via.placeholder.com/1920x1080">
+                                </div>
+                                <div class="carousel-item">
+                                    <img class="d-block w-100" src="https://via.placeholder.com/1920x1080">
                                 </div>
                             @endforelse
                         </div>

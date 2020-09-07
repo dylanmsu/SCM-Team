@@ -11,7 +11,7 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         
 
         <!-- Fonts -->
@@ -41,8 +41,8 @@
         <!-- set language -->
         {{App::setLocale('nl')}}
 
-        <script>
-            
+        <script type="text/javascript">
+
             // adds an alert message before submitting a form
             // ex: 
             // <form id="my-form"> 
@@ -58,33 +58,64 @@
                 }
             }
 
+            // send an asynchronous request to mark a notification as read
+            function sendMarkRequest(id) {
+                return $.ajax("{{ route('markNotification') }}", {
+                    method: 'POST',
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        id: id
+                    },
+                    success: function (response) {
+                        $("#"+id ).alert('close')
+                        if (response >= 1) {
+                            $("#notification-count").text(response);
+                        } else {
+                            $("#notification-count").remove();
+                        }
+                    }
+                });
+            }
 
-            // for the properties input in 'add_vehicle'
+            // open accordion based on url and scroll it into view
+            $(document).ready(function () {
+                if(location.hash != null && location.hash != ""){
+                    $('.collapse').removeClass('in');
+                    $(location.hash + '.collapse').collapse('show');
+                    $(location.hash).scrollIntoView();
+                }
+            });
+
+            // for the properties input in 'add_vehicle'.
             $(document).ready(function() {
                 var max_fields      = 10; //maximum input boxes allowed
                 var wrapper   		= $(".input_fields_wrap"); //Fields wrapper
                 var add_button      = $(".add_field_button"); //Add button ID
                 
                 var x = 1; //initlal text box count
-                $(add_button).click(function(e){ //on add input button click
+                $(document).on('click','.add_field_button', function(e){ //on add input button click
                     e.preventDefault();
                     if(x < max_fields){ //max input box allowed
                         x++; //text box increment
 
+                        $('<div class="col-1 btn btn-danger remove_field">-</div>').replaceAll('#addbtn');
+
                         //add new input box
-                        $(wrapper).append(
-                            '<div class="input-group">'+
-                                '<input placeholder="Eigenschap" class="form-control col" type="text" name="prop[]"/>'+
-                                '<input placeholder="Waarde" class="col form-control" type="text" name="val[]"/>'+
-                                '<div class="input-group-prepend">'+
-                                    '<div class="btn btn-danger remove_field">-</div>'+
-                                '</div>'+
+                        $(wrapper).append(function(){
+                            return $(
+                            '<div class="mb-1 input-group">'+
+                                '<input placeholder="Eigenschap" class="form-control col" type="text" name="prop[]" required/>'+
+                                '<input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>'+
+                                '<div id="addbtn" class="col-1 btn btn-primary add_field_button">+</div>'+
                             '</div>');
+                        });
                     }
                 });
                 
                 $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-                    e.preventDefault(); $(this).parent('div').parent('div').remove(); x--;
+                    e.preventDefault(); 
+                    $(this).parent('div').remove(); 
+                    x--;
                 })
             });
             
@@ -129,15 +160,6 @@
 
             ::-webkit-scrollbar {
                 display: none;
-            }
-
-            body {
-                background-attachment: fixed;
-                font-family: Arial, Helvetica, sans-serif, sans-serif;
-            }
-
-            a:hover {
-                color: inherit;
             }
 
             .my-card {
@@ -272,19 +294,32 @@
                                 <!-- notifications button in navbar -->
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="mx-1 badge badge-pill badge-danger">1</span> meldingen <span class="caret"></span>
+                                        @if (Auth::user()->unreadNotifications != '[]')
+                                            <span id="notification-count" class="mx-1 badge badge-pill badge-danger">
+                                                {{ auth()->user()->unreadNotifications->count() }}
+                                            </span>
+                                        @else
+                                            <i class="far fa-bell"></i>
+                                        @endif
+                                        meldingen <span class="caret"></span>
                                     </a>
 
                                     <!-- notification list -->
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <div class="dropdown-item container">
-                                            <div class="row">
-                                                <div class="card">
-                                                    <div class="card-header">Mijn meldingen</div>
-                                                    <div class="card-body">
-                                                        nog niet geimplementeerd
+                                    <div class="p-0 m-0 dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <div style="min-width: 320px" class="card">
+                                            <div class="card-header">Mijn meldingen</div>
+                                            <div class="card-body">
+                                                
+                                                <!-- loop through the notifications -->
+                                                @forelse(Auth::user()->unreadNotifications; as $notification)
+                                                    <div id="{{$notification->id}}" class="alert alert-{{$notification->data['severity']}} alert-dismissible" role="alert">
+                                                        <h4>{{strval($notification->data['title'])}}</h4>
+                                                        {{strval($notification->data['body'])}}
+                                                        <button onclick="sendMarkRequest('{{$notification->id}}')" type="button" class="close"><i class="fas fa-check"></i></button>
                                                     </div>
-                                                </div>
+                                                @empty
+                                                    Er zijn geen nieuwe meldingen
+                                                @endforelse
                                             </div>
                                         </div>
                                     </div>

@@ -3,7 +3,7 @@
 @section('title', 'Rollend')
 
 @section('content')
-<div class="container">
+<div class="container px-1">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
@@ -15,22 +15,22 @@
             <div class="card mt-2">
                 <div class="card-header container">
                     <div class="row">
-                        <div class="col-md-5 my-2 text-center text-sm-left">
+                        <div class="col-md-6 my-2 text-center text-md-left">
                             <h2 class="mb-0">Rollend Matrieel</h2>
                         </div>
-                        <div class="col-md-7 my-2 text-center text-sm-right">
-                            <a href="{{route('add_vehicle_page')}}" class="ml-2 btn btn-primary"> <i class="fas fa-plus"></i> Toevoegen</a>	
-                            <a href="{{route('export-vehicles')}}" class="ml-2 btn btn-primary"> <i class="fas fa-cloud-download-alt"></i> Download Excel</a>					
+                        <div class="col-md-6 my-2 text-center text-md-right">
+                            <a href="{{route('add_vehicle_page')}}" class="ml-2 my-2 btn btn-primary"> <i class="fas fa-plus"></i> Toevoegen</a>	
+                            <a href="{{route('export-vehicles')}}" class="ml-2 my-2 btn btn-primary"> <i class="fas fa-cloud-download-alt"></i> Download Excel</a>					
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="container">
+                <div class="card-body px-0 px-sm-3">
+                    <div class="container p-1 p-sm-3">
                         <div class="row">
                             
                         @forelse ($data as $list)
-                            <!-- normaalspoor list -->
-                            <div class="my-2 col-sm-12 col-sm-12 col-lg-6 col-xl-6">
+                            <!-- normaalspoor / smalspoor list -->
+                            <div class="col-sm-12 col-sm-12 col-lg-6 col-xl-6">
                                 <div class="card shadow-sm">
 
                                     <!-- title and add-button of the normaalspoor list -->
@@ -39,7 +39,7 @@
                                     </div>
 
                                     <!-- category accoidion list -->
-                                    <div class="card-body p-0">
+                                    <div class="card-body p-1 p-sm-3">
                                         <div id="{{$list['type']}}-accordion">
 
                                             <!-- loop through the categories and display them in a list.  -->
@@ -49,7 +49,7 @@
                                                         
                                                         <!-- category name -->
                                                         <div class="text-left container">
-                                                            <b class="my-2">{{$category->category}}</b>
+                                                            <b class="my-2 h4"><strong>{{$category->category}}</strong></b>
 
                                                             <!-- display the status dots  -->
                                                             <span style="line-height: 0">
@@ -60,16 +60,16 @@
                                                                                 <span style="float: right;" class="my-2 text-right status text-success">&bull;</span><!-- green -->
                                                                                 @break
                                                                             @case('buiten_dienst')
-                                                                                <span style="float: right" class="my-2 status text-danger">&bull;</span><!-- red -->
+                                                                                <span style="float: right;" class="my-2 text-right status text-danger">&bull;</span><!-- red -->
                                                                                 @break
                                                                             @case('in_reserve')
-                                                                                <span style="float: right" class="my-2 status text-primary">&bull;</span><!-- blue -->
+                                                                                <span style="float: right;" class="my-2 text-right status text-primary">&bull;</span><!-- blue -->
                                                                                 @break
                                                                             @case('onder_voorwaarde')
-                                                                                <span style="float: right" class="my-2 status text-warning">&bull;</span><!-- yellow -->
+                                                                                <span style="float: right;" class="my-2 text-right status text-warning">&bull;</span><!-- yellow -->
                                                                                 @break
                                                                             @default
-                                                                                <span style="float: right" class="my-2 status text-secondary">&bull;</span><!-- gray -->
+                                                                                <span style="float: right;" class="my-2 text-right status text-secondary">&bull;</span><!-- gray -->
                                                                         @endswitch
                                                                     @endif
                                                                 @endforeach
@@ -79,50 +79,52 @@
                                                 
                                                     <!-- the list under each category -->
                                                     <div id="collapse-{{$list['type']}}-{{$category->category}}" class="collapse" data-parent="#{{$list['type']}}-accordion">
-                                                        <div class="card-body">
-                                                            <div class="container px-0">
-                                                                
+                                                        <div class="card-body px-1">
+                                                            <div class="container-fluid px-0">
+
                                                                 @forelse ($list['data'] as $item)
                                                                     @if ($item->category == $category->category)
+
                                                                     <div class="list-group">
                                                                         <div class="row btn m-0 list-group-item d-flex list-group-item-action" id="accordion-{{$list['type']}}" data-parent="#accordion-{{$list['type']}}">
-                                                                            <div class="col-7 col-sm col-md">
-                                                                                <a href="#collapse-{{$item->id}}" data-toggle="collapse">
-                                                                                    <span class="my-0 align-middle"><b>{{$item->name}}</b></span>
-                                                                                    <i class="fas fa-chevron-down"></i>
+                                                                            
+                                                                            <div class="col-4 px-0">
+                                                                                <a  href="{{route('show_properties', $item->id)}}">
+                                                                                    <span class="my-0"><b>{{$item->name}}</b></span>
                                                                                 </a>
-                                                                            </div>                     
-                                                                            <div class="col-7 col-sm col-md">
+                                                                            </div>    
+
+                                                                            <a class="col-7 px-0" href="#collapse-{{$item->id}}" data-toggle="collapse">
                                                                                 @switch($item->state)
                                                                                     @case('in_dienst')
-                                                                                        <span class="my-0 status text-success">&bull;</span>
-                                                                                        In Dienst
+                                                                                        <span class="text-success">&bull;</span>
+                                                                                        <b>In Dienst</b>
                                                                                         @break
                                                                                     @case('buiten_dienst')
-                                                                                        <span class="my-0 status text-danger">&bull;</span>
+                                                                                        <span class="text-danger">&bull;</span>
                                                                                         Buiten Dienst
                                                                                         @break
                                                                                     @case('in_reserve')
-                                                                                        <span class="my-0 status text-primary">&bull;</span>
+                                                                                        <span class="text-primary">&bull;</span>
                                                                                         In Reserve
                                                                                         @break
                                                                                     @case('onder_voorwaarde')
-                                                                                        <span class="my-0 status text-warning">&bull;</span>
+                                                                                        <span class="text-warning">&bull;</span>
                                                                                         Voorwaarde
                                                                                         @break
                                                                                     @default
-                                                                                        <span class="my-0 status text-secondary">&bull;</span>
+                                                                                        <span class="text-secondary">&bull;</span>
                                                                                         Andere
                                                                                 @endswitch
-                                                                            </div>
+                                                                            </a>
 
                                                                             <!-- add edit tools for each row -->
-                                                                            <div class="my-0 h5 col-5 col-sm col-md text-right">
-                                                                                <span class="ml-2 d-inline text-right align-bottom">
+                                                                            <div class="col-1 px-0 px-0 my-0 h5 text-right">
+                                                                                <span class="d-inline text-right">
                                                                                     <a role="button" id="edit-{{$item->id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                                         <i title="Aanpassen" data-toggle="tooltip" class="fas fa-cog text-info fa-1x"></i>
                                                                                     </a>
-                                                                                    <div class="dropdown-menu" aria-labelledby="edit-{{$item->id}}">
+                                                                                    <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="edit-{{$item->id}}">
                                                                                         <form method="POST" autocomplete="off" action="rollend/verwijder/{{$item->id}}" id="delete-{{$item->id}}">
                                                                                             @csrf
                                                                                             <div onclick="confirmation('delete-{{$item->id}}')" class="btn dropdown-item"><i class="fas fa-trash-alt"></i> Verwijderen</div>
@@ -130,7 +132,6 @@
                                                                                         <a class="dropdown-item" href="rollend/bijwerken/{{$item->id}}"><i class="fas fa-edit"></i> Bijwerken</a>
                                                                                     </div>
                                                                                 </span>
-                                                                                <a class="ml-2" href="{{route('show_properties', $item->id)}}"><i class="fas fa-eye"></i></a>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -207,7 +208,7 @@
                                                                                 </div>
                                                                             </form>
                                                                         </div>
-                                                                    </div>
+                                                                    </div>  
                                                                     @endif
                                                                 @empty
                                                                 @endforelse

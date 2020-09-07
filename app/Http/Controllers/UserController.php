@@ -25,4 +25,14 @@ class UserController extends Controller
             return redirect()->route('home')->with('error', "Something went wrong.");
         }
     }
+
+    public function mark_read(Request $request)
+    {
+        $notification = auth()->user()->notifications()->find($request->input('id'));
+        if($notification) {
+            $notification->markAsRead();
+        }
+
+        return auth()->user()->unreadNotifications->count();
+    }
 }

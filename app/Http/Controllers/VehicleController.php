@@ -3,15 +3,19 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use File;
 use App\User;
 use App\Vehicle;
 use App\Vehicle_file;
 use App\Vehicle_comment;
 use App\Vehicle_property;
+use App\Notifications\Hello;
 use Illuminate\Http\Request;
 use App\Exports\VehicleExport;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Redirect;
 
 class VehicleController extends Controller
 {
@@ -46,11 +50,6 @@ class VehicleController extends Controller
                 ]
             ],
         ]);
-    }
-
-    public function add_vehicle_page()
-    {
-        return view('vehicles/add_vehicle');
     }
 
     public function add_vehicle(Request $request)
@@ -148,11 +147,19 @@ class VehicleController extends Controller
         $vehicle->state = $request->get('state');
 
         $vehicle->save();
-        return redirect()->route('vehicles');
+
+        $viewelement = '#collapse-'.$request->get('type').'-'.$request->get('category');
+        return redirect(route('vehicles').$viewelement)->with(['scrollto' => $viewelement]);
     }
 
     public function delete($id) 
     {
+        $files = Vehicle::where('id', $id)->with('vehicle_file')->get()[0]->vehicle_file;
+        foreach ($files as $key => $file) {
+            File::delete(public_path('storage/vehicle_img/').$file->url);
+        }
+
+
         Vehicle::where('id', $id)->delete();
 
         return redirect()->route('vehicles');

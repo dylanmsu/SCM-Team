@@ -38,15 +38,24 @@
                         <form method="post" enctype="multipart/form-data" action="{{route('add_vehicle')}}">
                     @endif
                         @csrf
+                        
+                        <div class="form-group row">
+                            <label for="name" class="col-lg-4 col-form-label text-lg-right">Naam Voertuig</label>
+                            
+                            <div class="col-lg-6">
+                                <input id="name" type="text" value="{{ $vehicle->name ?? '' }}" class="form-control" name="name" required autocomplete="train-name">
+                            </div>
+                        </div>
+
                         <div class="form-group row">
                             <label for="type" class="col-lg-4 col-form-label text-lg-right">Type</label>
 
                             <div class="col-lg-6">
                                 <select id="type" class="form-control" name="type" required>
-                                    <option value="normaal" {{ $vehicle->type ?? '' == 'normaal' ? 'selected' : '' }}>
+                                    <option value="normaal" @if(($vehicle->type ?? 'normaal') == 'normaal')  selected="selected" @endif>
                                         Normaalspoor
                                     </option>
-                                    <option value="smal" {{ $vehicle->type ?? '' == 'smal' ? 'selected' : '' }}>
+                                    <option value="smal" @if(($vehicle->type ?? 'normaal') == 'smal')  selected="selected" @endif>
                                         Smalspoor
                                     </option>
                                 </select>
@@ -58,25 +67,25 @@
 
                             <div class="col-lg-6">
                                 <select id="category" class="form-control" name="category" required>
-                                    <option value="motorwagen" {{ $vehicle->category ?? '' == 'motorwagen' ? 'selected' : '' }}>
+                                    <option value="motorwagen" @if(($vehicle->category ?? 'andere') == 'motorwagen')  selected="selected" @endif>
                                         Motorwagen
                                     </option>
-                                    <option value="diesellocomotief" {{ $vehicle->category ?? '' == 'diesellocomotief' ? 'selected' : '' }}>
+                                    <option value="diesellocomotief" @if(($vehicle->category ?? 'andere') == 'diesellocomotief')  selected="selected" @endif>
                                         Diesellocomotief
                                     </option>
-                                    <option value="stoomlocomotief" {{ $vehicle->category ?? '' == 'stoomlocomotief' ? 'selected' : '' }}>
+                                    <option value="stoomlocomotief" @if(($vehicle->category ?? 'andere') == 'stoomlocomotief')  selected="selected" @endif>
                                         Stoomlocomotief
                                     </option>
-                                    <option value="werfvoertuig" {{ $vehicle->category ?? '' == 'werfvoertuig' ? 'selected' : '' }}>
+                                    <option value="werfvoertuig" @if(($vehicle->category ?? 'andere') == 'werfvoertuig')  selected="selected" @endif>
                                         Werfvoertuig
                                     </option>
-                                    <option value="rijtuig" {{ $vehicle->category ?? '' == 'rijtuig' ? 'selected' : '' }}>
+                                    <option value="rijtuig" @if(($vehicle->category ?? 'andere') == 'rijtuig')  selected="selected" @endif>
                                         Rijtuig
                                     </option>
-                                    <option value="wagen" {{ $vehicle->category ?? '' == 'wagen' ? 'selected' : '' }}>
+                                    <option value="wagen" @if(($vehicle->category ?? 'andere') == 'wagen')  selected="selected" @endif>
                                         Wagen
                                     </option>
-                                    <option value="andere" {{ $vehicle->category ?? '' == 'andere' ? 'selected' : '' }}>
+                                    <option value="andere" @if(($vehicle->category ?? 'andere') == 'andere')  selected="selected" @endif>
                                         Andere
                                     </option>
                                 </select>
@@ -84,32 +93,24 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="name" class="col-lg-4 col-form-label text-lg-right">Naam Voertuig</label>
-                            
-                            <div class="col-lg-6">
-                                <input id="name" type="text" value="{{ $vehicle->name ?? '' }}" class="form-control" name="name" required autocomplete="train-name">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label for="state" class="col-lg-4 col-form-label text-lg-right">Status</label>
 
-                            @if ($action ?? '' == 'edit')
+                            @if (($vehicle ?? ''))
                                 <div class="col-lg-6 input-group">
                                     <select id="state" class="form-control" name="state">
-                                        <option value="in_dienst" {{ $vehicle->state ?? '' == 'in_dienst' ? 'selected' : '' }}>
+                                        <option value="in_dienst"  @if(($vehicle->state ?? 'andere') == 'in_dienst')  selected="selected" @endif>
                                             In Dienst
                                         </option>
-                                        <option value="buiten_dienst" {{ $vehicle->state ?? '' == 'buiten_dienst' ? 'selected' : '' }}>
+                                        <option value="buiten_dienst"  @if(($vehicle->state ?? 'andere') == 'buiten_dienst')  selected="selected" @endif>
                                             Buiten Dienst
                                         </option>
-                                        <option value="in_reserve" {{ $vehicle->state ?? '' == 'in_reserve' ? 'selected' : '' }}>
+                                        <option value="in_reserve"  @if(($vehicle->state ?? 'andere') == 'in_reserve')  selected="selected" @endif>
                                             In Reserve
                                         </option>
-                                        <option value="onder_voorwaarde" {{ $vehicle->state ?? '' == 'onder_voorwaarde' ? 'selected' : '' }}>
+                                        <option value="onder_voorwaarde" @if(($vehicle->state ?? 'andere') == 'onder_voorwaarde')  selected="selected" @endif>
                                             Voorwaarde
                                         </option>
-                                        <option value="andere" {{ $vehicle->state ?? '' == 'andere' ? 'selected' : '' }}>
+                                        <option value="andere" @if(($vehicle->state ?? 'andere') == 'andere')  selected="selected" @endif>
                                             Andere
                                         </option>
                                     </select>
@@ -140,31 +141,38 @@
                             @endif
                         </div>
 
-                        <div class="form-group row">
-                            <label for="image" class="col-lg-4 col-form-label text-lg-right">Afbeeldingen trein</label>
-                            
-                            <div class="col-lg-6">
-                                <input id="image" type="file" class="form-control-file" name="image[]" multiple>
+                        @if (!($action ?? '' == 'edit'))
+                            <div class="form-group row">
+                                <label for="image" class="col-lg-4 col-form-label text-lg-right">Afbeeldingen trein</label>
+                                
+                                <div class="col-lg-6">
+                                    <input id="image" type="file" class="form-control-file" name="image[]" multiple>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <label for="description" class="col-lg-4 col-form-label text-lg-right">Eigenschappen</label>
-                            
-                            <div class="col-lg-6">
-                                <div class="input_fields_wrap">
-                                    <div class="input-group">
-                                        <input placeholder="Eigenschap" class="form-control col" type="text" name="prop[]"/><input placeholder="Waarde" class="col form-control" type="text" name="val[]"/>
-                                        <div class="input-group-prepend"><div class="btn btn-primary add_field_button">+</div></div>
+                            <div class="form-group row">
+                                <label for="description" class="col-lg-4 col-form-label text-lg-right">Eigenschappen</label>
+                                
+                                <div class="col-lg-6">
+                                    <div class="input_fields_wrap">
+                                        <div class="mb-1 input-group">
+                                            <input placeholder="Eigenschap" class="form-control col" type="text" name="prop[]" required/>
+                                            <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                            <div id="addbtn" class="col-1 btn btn-primary add_field_button">+</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
 
                         <div class="form-group row mb-0">
                             <div class="col-lg-6 offset-lg-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Toevoegen
+                                    @if ($action ?? '' == 'edit')
+                                        Bijwerken
+                                    @else
+                                        Toevoegen
+                                    @endif
                                 </button>
                             </div>
                         </div>
