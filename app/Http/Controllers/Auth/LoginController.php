@@ -41,7 +41,7 @@ class LoginController extends Controller
     }
 
     public function login(Request $request)
-    {   
+    {
         $input = $request->all();
   
         $this->validate($request, [
@@ -52,11 +52,9 @@ class LoginController extends Controller
         $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         if(auth()->attempt(array($fieldType => $input['username'], 'password' => $input['password'])))
         {
-            auth()->user()->notify(new RegistrationSuccessful());
             return redirect()->route('home');
         }else{
-            return redirect()->route('login')
-                ->withInput()->withErrors(['password' => __('auth.failed')]);
+            return redirect()->route('login')->withInput()->withErrors(['password' => __('auth.failed')]);
         }
           
     }

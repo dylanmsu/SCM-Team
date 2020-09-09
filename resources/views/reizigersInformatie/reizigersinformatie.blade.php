@@ -16,10 +16,10 @@
             <div class="card py-2">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-5 my-3 text-center text-md-left">
+                        <div class="col-md-6 my-3 text-center text-md-left">
                             <h2>Splitflap beheer</h2>
                         </div>
-                        <div class="col-md-7 my-3 text-center text-md-right">
+                        <div class="col-md-6 my-3 text-center text-md-right">
                             <a href="{{route('board-setup')}}" class="ml-2 btn btn-primary"> <i class="fas fa-plus"></i> Toevoegen</a>	
                             <a href="{{route('export-splitflaps')}}" class="m-2 btn btn-primary"> <i class="fas fa-cloud-download-alt"></i> Download Excel</a>					
                         </div>

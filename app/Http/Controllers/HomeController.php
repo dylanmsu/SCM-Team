@@ -8,13 +8,16 @@ use Carbon\Carbon;
 
 class HomeController extends Controller
 {
+    // adds middleware auth so users who arent logged in cant access these methods
     public function __construct()
     {
         $this->middleware('auth');
     }
 
+    // fetches data from database and returns to view
     public function home()
     {
+        // get data from database
         $splitflaps = splitflap::
             select('*')
             ->whereRaw('time >= now()')
@@ -38,11 +41,11 @@ class HomeController extends Controller
             ->orderBy('time', 'asc')
             ->take(1)->get();
 
+        // go to the home view with the data
         return view('home', [
             'data' => $splitflaps,
             'boardA' => $splitflapsA,
             'boardB' => $splitflapsB,
-            'theme' => auth()->user()->get('theme')
         ]);
     }
 

@@ -12,21 +12,27 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class SplitflapController extends Controller
 {
+    // display trains on the splitflap boards that are within now and 24h
+    private $interval = '+24 hours';
+
+    // adds middleware auth so users who arent logged in cant access these methods
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['getBoards']]);
     }
 
+    // export to excel
     public function export() 
     {
         return Excel::download(new SplitflapExport, 'Splitflaps.xlsx');
     }
 
+    
     public function getBoards() {
         $splitfflapsA = splitflap::
             select('*')
             ->whereRaw('time >= now()')
-            ->where('time', '<', Carbon::parse('+24 hours'))
+            ->where('time', '<', Carbon::parse($interval))
             ->where('board','A')
             ->orderBy('time', 'asc')
             ->take(1)->get();
@@ -34,7 +40,7 @@ class SplitflapController extends Controller
         $splitfflapsB = splitflap::
             select('*')
             ->whereRaw('time >= now()')
-            ->where('time', '<', Carbon::parse('+24 hours'))
+            ->where('time', '<', Carbon::parse($interval))
             ->where('board','B')
             ->orderBy('time', 'asc')
             ->take(1)->get();
@@ -54,7 +60,7 @@ class SplitflapController extends Controller
         $splitfflapsA = splitflap::
             select('*')
             ->whereRaw('time >= now()')
-            ->where('time', '<', Carbon::parse('+24 hours'))
+            ->where('time', '<', Carbon::parse($interval))
             ->where('board','A')
             ->orderBy('time', 'asc')
             ->take(1)->get();
@@ -62,7 +68,7 @@ class SplitflapController extends Controller
         $splitfflapsB = splitflap::
             select('*')
             ->whereRaw('time >= now()')
-            ->where('time', '<', Carbon::parse('+24 hours'))
+            ->where('time', '<', Carbon::parse($interval))
             ->where('board','B')
             ->orderBy('time', 'asc')
             ->take(1)->get();
@@ -117,7 +123,7 @@ class SplitflapController extends Controller
     $splitfflapsA = splitflap::
         select('*')
         ->whereRaw('time >= now()')
-        ->where('time', '<', Carbon::parse('+24 hours'))
+        ->where('time', '<', Carbon::parse($interval))
         ->where('board','A')
         ->orderBy('time', 'asc')
         ->take(1)->get();
@@ -125,7 +131,7 @@ class SplitflapController extends Controller
     $splitfflapsB = splitflap::
         select('*')
         ->whereRaw('time >= now()')
-        ->where('time', '<', Carbon::parse('+24 hours'))
+        ->where('time', '<', Carbon::parse($interval))
         ->where('board','B')
         ->orderBy('time', 'asc')
         ->take(1)->get();

@@ -58,7 +58,7 @@
                 }
             }
 
-            // send an asynchronous request to mark a notification as read
+            // send an asynchronous request to mark a notification as read without refreshing the page
             function sendMarkRequest(id) {
                 return $.ajax("{{ route('markNotification') }}", {
                     method: 'POST',
@@ -136,7 +136,7 @@
                     "<link id=\"current-theme\" rel=\"stylesheet\" href=\"" + @json(asset('css/themes/tobereplaced/bootstrap.css')).replace("tobereplaced", theme) + "\" />");
                 }
                 
-                // reloads css. obviously...
+                // reloads style
                 reloadcss();
             }
 
@@ -249,6 +249,7 @@
 
                         <!-- Left Side Of Navbar -->
                         <ul class="navbar-nav mr-auto">
+
                             <!-- Authentication Links -->
                             @guest
                                 <li class="nav-item">

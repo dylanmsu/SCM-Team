@@ -8,7 +8,6 @@
         @endif
         
         
-        
         {{ "Page " . $paginator->currentPage() . "  of  " . $paginator->lastPage() }}
        
         
