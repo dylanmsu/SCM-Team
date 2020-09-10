@@ -302,7 +302,7 @@
                                         @else
                                             <i class="far fa-bell"></i>
                                         @endif
-                                        meldingen <span class="caret"></span>
+                                        Meldingen <span class="caret"></span>
                                     </a>
 
                                     <!-- notification list -->

@@ -123,7 +123,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                    <div id="carouselExampleControls" class="carousel slide">
                         <ol class="carousel-indicators">
                             @forelse ($data[0]->vehicle_file as $item)
                                 <li data-target="#carouselExampleIndicators" data-slide-to="{{$loop->index}}" @if($loop->first) class="active" @endif></li>
