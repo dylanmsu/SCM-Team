@@ -129,13 +129,13 @@
                                 <li data-target="#carouselExampleIndicators" data-slide-to="{{$loop->index}}" @if($loop->first) class="active" @endif></li>
                             @empty
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="0"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                             @endforelse
                         </ol>
                         <div class="carousel-inner">
                             @forelse ($data[0]->vehicle_file as $item)
                                 <div class="carousel-item @if($loop->first) active @endif">
-                                    <img class="d-block w-100" src="storage/app/public/vehicle_img/{{$item->url}}" alt="slide">
+                                    <img class="d-block w-100" src="storage/vehicle_img/{{$item->url}}" alt="slide">
                                 </div>
                             @empty
                                 <div class="carousel-item active">
