@@ -25,6 +25,6 @@ class Vehicle extends Model
 
     public function Vehicle_property()
     {
-        return $this->hasMany('App\vehicle_property', 'vehicle_id', 'id');
+        return $this->hasMany('App\Vehicle_property', 'vehicle_id', 'id');
     }
 }
