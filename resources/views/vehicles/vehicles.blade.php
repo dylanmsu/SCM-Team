@@ -53,7 +53,7 @@
                                                 
                                                 <!-- category name -->
                                                 <div class="text-left container">
-                                                    <b class="my-2 h4"><strong>{{$category->category}}</strong></b>
+                                                    <b class="my-2"><strong class="text-capitalize">{{$category->category}}</strong></b>
 
                                                     <!-- display the status dots  -->
                                                     <span style="line-height: 0">
