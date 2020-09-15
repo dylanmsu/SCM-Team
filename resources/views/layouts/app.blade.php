@@ -112,7 +112,8 @@
                     }
                 });
                 
-                $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+                $(wrapper).on("click",".remove_field", function(e){ // remove on user click
+                
                     e.preventDefault(); 
                     $(this).parent('div').remove(); 
                     x--;

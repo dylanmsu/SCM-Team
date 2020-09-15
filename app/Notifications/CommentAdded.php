@@ -45,7 +45,7 @@ class CommentAdded extends Notification
         return [
             'severity' => 'info',
             'title' => 'Nieuw commentaar',
-            'body' => 'Yaay! Je bent geregistreerd! :)',
+            'body' => '... heeft commentaar toegevoegd.',
         ];
     }
 }

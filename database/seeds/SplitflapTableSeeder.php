@@ -11,7 +11,7 @@ class SplitflapTableSeeder extends Seeder
      */
     public function run()
     {
-        // create 500 fake splitflaps
+        // create 200 fake splitflaps
         factory(App\Splitflap::class, 200)->create();
     }
 }

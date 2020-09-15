@@ -17,9 +17,13 @@
     <div class="card mt-2">
         <div class="card-header container">
             <div class="row">
+                
+                <!-- major title -->
                 <div class="col-md-6 my-2 text-center text-md-left">
                     <h2 class="mb-0">Rollend Matrieel</h2>
                 </div>
+
+                <!-- add and export buttons -->
                 <div class="col-md-6 my-2 text-center text-md-right">
                     <a href="{{route('add_vehicle_page')}}" class="ml-2 my-2 btn btn-primary"> <i class="fas fa-plus"></i> Toevoegen</a>	
                     <a href="{{route('export-vehicles')}}" class="ml-2 my-2 btn btn-primary"> <i class="fas fa-cloud-download-alt"></i> Download Excel</a>					
@@ -27,7 +31,7 @@
             </div>
         </div>
 
-
+        <!-- the content under the title and buttons -->
         <div class="card-body px-0 px-sm-3">
             <div class="container p-1 p-sm-3">
                 <div class="row">
@@ -51,14 +55,18 @@
                                         <div class="card">
                                             <div class="py-2 card-header btn btn-link" data-toggle="collapse" role="button" data-target="#collapse-{{$list['type']}}-{{$category->category}}" aria-expanded="true" aria-controls="collapse-{{$list['type']}}-{{$category->category}}">
                                                 
-                                                <!-- category name -->
+                                                <!-- category -->
                                                 <div class="text-left container">
+
+                                                    <!-- category name -->
                                                     <b class="my-2"><strong class="text-capitalize">{{$category->category}}</strong></b>
 
-                                                    <!-- display the status dots  -->
+                                                    <!-- display the status dots -->
                                                     <span style="line-height: 0">
                                                         @foreach ($list['data'] as $item)
                                                             @if ($item->category == $category->category)
+
+                                                                <!-- display a dot based on the corresponding state -->
                                                                 @switch($item->state)
                                                                     @case('in_dienst')
                                                                         <span style="float: right;" class="my-2 text-right status text-success">&bull;</span><!-- green -->
@@ -90,6 +98,7 @@
                                                         @forelse ($list['data'] as $item)
                                                             @if ($item->category == $category->category)
 
+                                                            <!-- the vehicles under each category -->
                                                             <div class="list-group">
                                                                 <div class="row btn m-0 list-group-item d-flex list-group-item-action" id="accordion-{{$list['type']}}" data-parent="#accordion-{{$list['type']}}">
                                                                     
