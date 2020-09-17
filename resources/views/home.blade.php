@@ -27,6 +27,7 @@
                 array('color' => '#d63031', 'icon' => 'folder-open',     'name' => 'Mijn bestanden',   'target' => "",        'link' => "/filemanager"),
                 array('color' => '#0984e3', 'icon' => 'map',             'name' => 'Train maps',       'target' => "",        'link' => route('map')),
                 array('color' => '#ffaf40', 'icon' => 'link',            'name' => 'Links',            'target' => "",        'link' => route('links')),
+                array('color' => '#ffaf40', 'icon' => 'link',            'name' => 'Forms',            'target' => "",        'link' => "/form-builder/forms"),
             );
         @endphp
 

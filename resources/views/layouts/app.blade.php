@@ -236,6 +236,7 @@
                 grid-column: 11/13;
             }
         </style>
+        @stack('styles')
     </head>
     <body>
         <div id="app">
@@ -337,5 +338,6 @@
                 @yield('content')
             </main>
         </div>
+        @stack('scripts')
     </body>
 </html>
