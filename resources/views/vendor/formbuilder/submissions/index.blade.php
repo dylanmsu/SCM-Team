@@ -1,7 +1,17 @@
 @extends('formbuilder::layout')
 
 @section('content')
-<div class="container-fluid">
+<div class="container">
+    
+    <!-- breadcrumbs -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('formbuilder::forms.index') }}">Forms</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Form Reacties</li>
+        </ol>
+    </nav>
+
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card rounded-0">
@@ -17,7 +27,7 @@
 
                 @if($submissions->count())
                     <div class="table-responsive">
-                        <table class="table table-bordered d-table table-striped pb-0 mb-0">
+                        <table class="table table-bordered d-table pb-0 mb-0">
                             <thead>
                                 <tr>
                                     <th class="five">#</th>

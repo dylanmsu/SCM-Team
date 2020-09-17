@@ -2,8 +2,18 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-10">
+    
+    <!-- breadcrumbs -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('formbuilder::forms.index') }}">Forms</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Form maken</li>
+        </ol>
+    </nav>
+
+    <div class="row justify-content-center mt-2">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     <h5 class="card-title">

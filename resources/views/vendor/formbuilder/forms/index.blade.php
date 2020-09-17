@@ -2,8 +2,17 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-10">
+
+    <!-- breadcrumbs -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Forms</li>
+        </ol>
+    </nav>
+
+    <div class="row justify-content-center mt-2">
+        <div class="col-md-12">
             <div class="card rounded-0">
                 <div class="card-header">
                     <h5 class="card-title">

@@ -1,10 +1,20 @@
 @extends('formbuilder::layout')
 
 @section('content')
-<div class="">
+<div class="container">
+    
+    <!-- breadcrumbs -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('formbuilder::forms.index') }}">Forms</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Form eigenschappen</li>
+        </ol>
+    </nav>
+
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card rounded-0">
+            <div class="card">
                 <div class="card-header">
                     <h5 class="card-title">
                         Form Preview for '{{ $form->name }}' 

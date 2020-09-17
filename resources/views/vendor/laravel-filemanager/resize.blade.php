@@ -24,7 +24,7 @@
       <div id="resize_mobile" style="background-image: url({{ $img->url . '?timestamp=' . $img->time }})" class="d-block d-md-none"></div>
     </div>
     <div class="col-md-4 pt-3">
-      <table class="table table-compact table-striped">
+      <table class="table table-compact">
         <thead></thead>
         <tbody>
           @if ($scaled)
