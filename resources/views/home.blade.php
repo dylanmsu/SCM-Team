@@ -21,13 +21,17 @@
 
         @php
             $home_cards = array(
-                array('color' => '#00cec9', 'icon' => 'subway',          'name' => 'Rollend matrieel', 'target' => "",        'link' => route('vehicles')),
-                array('color' => '#b2bec3', 'icon' => 'calendar-minus',  'name' => 'Splitflap',        'target' => "",        'link' => route('ris')),
-                array('color' => '#32ff7e', 'icon' => 'users',           'name' => 'Ledenbeheer',      'target' => "",        'link' => route('members')),
-                array('color' => '#d63031', 'icon' => 'folder-open',     'name' => 'Mijn bestanden',   'target' => "",        'link' => "/filemanager"),
-                array('color' => '#0984e3', 'icon' => 'map',             'name' => 'Train maps',       'target' => "",        'link' => route('map')),
-                array('color' => '#ffaf40', 'icon' => 'link',            'name' => 'Links',            'target' => "",        'link' => route('links')),
-                array('color' => '#ffaf40', 'icon' => 'link',            'name' => 'Forms',            'target' => "",        'link' => "/form-builder/forms"),
+                /**
+                 * https://codepen.io/aniketkudale/pen/BaNxomQ
+                 * Dutch palette
+                 */
+                array('color' => '#ffc312', 'icon' => 'subway',          'name' => 'Rollend matrieel', 'target' => "",        'link' => route('vehicles')),
+                array('color' => '#c4e538', 'icon' => 'calendar-minus',  'name' => 'Splitflap',        'target' => "",        'link' => route('ris')),
+                array('color' => '#12cbc4', 'icon' => 'users',           'name' => 'Ledenbeheer',      'target' => "",        'link' => route('members')),
+                array('color' => '#fda7df', 'icon' => 'folder-open',     'name' => 'Mijn bestanden',   'target' => "",        'link' => "/filemanager"),
+                array('color' => '#ed4c67', 'icon' => 'map',             'name' => 'Train maps',       'target' => "",        'link' => route('map')),
+                array('color' => '#b53471', 'icon' => 'link',            'name' => 'Links',            'target' => "",        'link' => route('links')),
+                array('color' => '#1289a7', 'icon' => 'link',            'name' => 'Forms',            'target' => "",        'link' => "/form-builder/forms"),
             );
         @endphp
 

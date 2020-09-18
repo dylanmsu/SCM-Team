@@ -27,7 +27,7 @@
                 @if (strval(Auth::user()->theme) == 'default')
                     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
                 @else
-                    <link href="{{ asset('css/themes/'.strval(Auth::user()->theme).'/bootstrap.css') }}" rel="stylesheet">
+                    <link href="{{ asset('css/themes/'.strval(Auth::user()->theme).'/bootstrap.min.css') }}" rel="stylesheet">
                 @endif
             @else
                 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
