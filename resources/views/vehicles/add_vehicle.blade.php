@@ -147,10 +147,13 @@
                                 </div>
                             </div>
 
+                            <br>
+
                             <div class="form-group row">
                                 <label for="description" class="col-lg-4 col-form-label text-lg-right">Eigenschappen</label>
                                 
                                 <div class="col-lg-6" ng-switch on="category">
+
                                     <div ng-switch-when="motorwagen" >
                                         <div class="mb-1 input-group">
                                             <input value="As-indeling" class="form-control col" type="text" name="prop[]" readonly/>
@@ -316,6 +319,37 @@
                                             <input placeholder="Waarde" class="form-control col" type="text" name="val[]" required/>
                                             <div id="addbtn" class="col-1 btn btn-primary add_field_button">+</div>
                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="description" class="col-lg-4 col-form-label text-lg-right">Wielen en assen</label>
+                                
+                                <div class="col-lg-6" ng-switch on="category">
+                                    <div class="mb-1 input-group">
+                                        <input value="Wieldiameter" class="form-control col" type="text" name="prop2[]" readonly/>
+                                        <input placeholder="Waarde" class="col form-control" type="text" name="val2[]" required/>
+                                    </div>
+                                    <div class="mb-1 input-group">
+                                        <input value="Aantal assen" class="form-control col" type="text" name="prop2[]" readonly/>
+                                        <input placeholder="Waarde" class="col form-control" type="text" name="val2[]" required/>
+                                    </div>
+                                    <div class="mb-1 input-group">
+                                        <input value="Infrabel Uitzondering" class="form-control col" type="text" name="prop2[]" readonly/>
+                                        <input placeholder="Waarde" class="col form-control" type="text" name="val2[]" required/>
+                                    </div>
+                                    <div class="mb-1 input-group">
+                                        <input value="Kleinste as-afstand" class="form-control col" type="text" name="prop2[]" readonly/>
+                                        <input placeholder="Waarde" class="col form-control" type="text" name="val2[]" required/>
+                                    </div>
+                                    <div class="mb-1 input-group">
+                                        <input value="Grootste as-afstand" class="form-control col" type="text" name="pro2p[]" readonly/>
+                                        <input placeholder="Waarde" class="col form-control" type="text" name="val2[]" required/>
+                                    </div>
+                                    <div class="mb-1 input-group">
+                                        <input value="Spoorbreedte" class="form-control col" type="text" name="prop2[]" readonly/>
+                                        <input placeholder="Waarde" class="col form-control" type="text" name="val2[]" required/>
                                     </div>
                                 </div>
                             </div>
