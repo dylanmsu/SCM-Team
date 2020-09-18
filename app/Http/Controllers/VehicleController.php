@@ -243,4 +243,9 @@ class VehicleController extends Controller
         // redirect back to properties
         return redirect()->route('show_properties', $id);
     }
+
+    public function add_vehicle_page()
+    {
+        return view('vehicles/add_vehicle');
+    }
 }

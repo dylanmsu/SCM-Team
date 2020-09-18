@@ -42,6 +42,7 @@ Route::get('/leden/toevoegen', 'MemberController@members')->name('add_members');
 
 Route::get('/rollend', 'VehicleController@vehicles')->name('vehicles');
 Route::get('/rollend/export', 'VehicleController@export')->name('export-vehicles');
+Route::get('/rollend/toevoegen', 'VehicleController@add_vehicle_page')->name('add_vehicle_page');
 Route::get('/rollend/bijwerken/{id}', 'VehicleController@show_edit')->name('show_edit');
 Route::get('/rollend/eigenschappen/{id}', 'VehicleController@show_properties')->name('show_properties');
 Route::post('/rollend/toevoegen', 'VehicleController@add_vehicle')->name('add_vehicle');
@@ -50,7 +51,6 @@ Route::post('/rollend/verwijder/{id}', 'VehicleController@delete');
 Route::post('/rollend/comment/add/{id}', 'VehicleController@add_comment');
 Route::post('/rollend/img/toevoegen/{id}', 'VehicleController@upload_img');
 Route::post('/rollend/prop/toevoegen/{id}', 'VehicleController@add_prop');
-Route::view('/rollend/toevoegen', 'vehicles/add_vehicle')->name('add_vehicle_page');
 
 Route::post('/user/update_settings', 'UserController@settings')->name('usersettings');
 Route::post('markeer-als-gelezen', 'UserController@mark_read')->name('markNotification');
