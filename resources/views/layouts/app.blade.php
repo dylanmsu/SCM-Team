@@ -11,8 +11,8 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="{{ asset('js/angular.min.js') }}"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
         
 
         <!-- Fonts -->
@@ -43,7 +43,8 @@
         {{App::setLocale('nl')}}
 
         <script type="text/javascript">
-
+            
+            
             // adds an alert message before submitting a form
             // ex: 
             // <form id="my-form"> 

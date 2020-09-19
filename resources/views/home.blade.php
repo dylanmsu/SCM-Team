@@ -10,7 +10,6 @@
 @endphp
 
 <div class="container">
-
     
     <div class="row justify-content-center">
         @if (session('status'))
@@ -25,13 +24,13 @@
                  * https://codepen.io/aniketkudale/pen/BaNxomQ
                  * Dutch palette
                  */
-                array('color' => '#ffc312', 'icon' => 'subway',          'name' => 'Rollend matrieel', 'target' => "",        'link' => route('vehicles')),
-                array('color' => '#c4e538', 'icon' => 'calendar-minus',  'name' => 'Splitflap',        'target' => "",        'link' => route('ris')),
-                array('color' => '#12cbc4', 'icon' => 'users',           'name' => 'Ledenbeheer',      'target' => "",        'link' => route('members')),
-                array('color' => '#fda7df', 'icon' => 'folder-open',     'name' => 'Mijn bestanden',   'target' => "",        'link' => "/filemanager"),
-                array('color' => '#ed4c67', 'icon' => 'map',             'name' => 'Train maps',       'target' => "",        'link' => route('map')),
-                array('color' => '#b53471', 'icon' => 'link',            'name' => 'Links',            'target' => "",        'link' => route('links')),
-                array('color' => '#1289a7', 'icon' => 'link',            'name' => 'Forms',            'target' => "",        'link' => "/form-builder/forms"),
+                array('img' => './images/main/svg/vehicles.svg',  'name' => 'Rollend matrieel', 'target' => "",        'link' => route('vehicles')),
+                array('img' => './images/main/svg/splitflap.svg', 'name' => 'Splitflap',        'target' => "",        'link' => route('ris')),
+                array('img' => './images/main/svg/members.svg',   'name' => 'Ledenbeheer',      'target' => "",        'link' => route('members')),
+                array('img' => './images/main/svg/files.svg',     'name' => 'Mijn bestanden',   'target' => "",        'link' => "/filemanager"),
+                array('img' => './images/main/svg/maps.svg',      'name' => 'Train maps',       'target' => "",        'link' => route('map')),
+                array('img' => './images/main/svg/links.svg',     'name' => 'Links',            'target' => "",        'link' => route('links')),
+                array('img' => './images/main/svg/forms.svg',     'name' => 'Forms',            'target' => "",        'link' => "/form-builder/forms"),
             );
         @endphp
 
@@ -44,16 +43,18 @@
                         <div class="row text-center">
                             <!-- loop through the array above to create the cards -->
                             @foreach ($home_cards as $card)
+
                                 <div class="my-4 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" >
+
                                     <a class="card shadow-sm my-card text-decoration-none" href="{{ $card['link'] }}" target="{{ $card['target'] }}">
 
-                                        <img style="background-color: {{$card['color']}}" class="card-img-top" src="{{ asset('./images/main/blank.png') }}">
-                                        <div class="card-img-overlay pt-4">
-                                            <i class="fas fa-{{$card['icon']}} fa-6x text-light"></i>
-                                        </div>
+                                        <img class="card-img-top" src="{{ asset($card['img']) }}">
                                         <div class="py-3 card-footer text-uppercase"><strong>{{ $card['name'] }}</strong></div>
+                                        
                                     </a>
+
                                 </div>
+
                             @endforeach
                         </div>
                     </div>
