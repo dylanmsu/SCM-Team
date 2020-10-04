@@ -33,7 +33,7 @@
         "html2canvas": "^1.0.0-rc.7",
         "jquery": "^3.5.1",
         "propper": "^1.0.3",
-        "puppeteer": "^5.3.0",
+        "puppeteer": "^5.3.1",
         "vue-resize-text": "^0.1.1"
     }
 }
