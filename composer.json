@@ -15,6 +15,7 @@
         "intervention/image": "^2.5",
         "jazmy/jaz-form-builder": "dev-master",
         "laravel/framework": "^7.0",
+        "laravel/legacy-factories": "^1.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.2",
         "maatwebsite/excel": "^3.1",

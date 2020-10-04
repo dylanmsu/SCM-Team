@@ -19,6 +19,7 @@ class CreateVehicleFilesTable extends Migration
             $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');
             $table->string('type');
             $table->string('url');
+            $table->string('name');
             $table->text('description')->nullable();
             $table->timestamps();
         });

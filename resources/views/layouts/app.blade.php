@@ -177,14 +177,7 @@
                 opacity: .5;
 
             }
-
-            .avatar {
-                vertical-align: middle;
-                width: 1.5em;
-                height: 1.5em;
-                border-radius: 50%;
-            }
-
+            
             .status {
                 font-size: 30px;
                 margin: 2px 2px 0 0;
@@ -205,37 +198,6 @@
 
             #more  {
                 display:  none;
-            }
-
-            #preview {
-                text-align: center;
-                display: grid;
-                grid-template-columns: repeat(14, 1fr);
-            }
-
-            /* style of the individual charakter */
-            .previewchar {
-                background-color: #000;
-                border: 2px solid #222;
-                color: white;
-                font-weight: bold;
-                font-family: 'Roboto', sans-serif, monospace;
-            }
-
-            /* style of the icon */
-            #icon {
-                grid-column: 1/9;
-            }
-
-            /* the gap between the time and icon */
-            #gap {
-                grid-column: 9/11;
-                background-color: #222;
-            }
-
-            /* */
-            #hours {
-                grid-column: 11/13;
             }
         </style>
         @stack('styles')

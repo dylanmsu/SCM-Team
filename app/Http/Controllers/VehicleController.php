@@ -94,10 +94,31 @@ class VehicleController extends Controller
 
                 // store image name in database
                 $file = new Vehicle_file([
-                    'url' => $name,
+                    'url' => 'storage/vehicle_img/'.$name,
                     'vehicle_id' => $id,
-                    'description' => 'hello',
-                    'type' => 'hello'
+                    'name' => $name,
+                    'type' => 'img'
+                ]);
+                $file->save();
+            }
+        }
+
+        // store the documents
+        if ($request->hasfile('docs')) {
+
+            // loop through the documents
+            foreach ($request->file('docs') as $key => $file) {
+
+                // store docs in storage
+                $name = time() . $key . '.' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
+                $file->storeAs('vehicle_docs', $name);
+
+                // store doc name in database
+                $file = new Vehicle_file([
+                    'url' => 'storage/vehicle_docs/'.$name,
+                    'vehicle_id' => $id,
+                    'name' => $name,
+                    'type' => 'doc'
                 ]);
                 $file->save();
             }
@@ -134,10 +155,37 @@ class VehicleController extends Controller
 
                 // store image name in database
                 $file = new Vehicle_file([
-                    'url' => $name,
+                    'url' => 'storage/vehicle_img/'.$name,
                     'vehicle_id' => $id,
-                    'description' => 'hello',
-                    'type' => 'hello'
+                    'name' => $name,
+                    'type' => 'img'
+                ]);
+                $file->save();
+            }
+        }
+
+        // return back to show_properties
+        return redirect()->route('show_properties', $id);
+    }
+
+    public function upload_doc(Request $request, $id)
+    {
+        // store the documents
+        if ($request->hasfile('docs')) {
+
+            // loop through the documents
+            foreach ($request->file('docs') as $key => $file) {
+
+                // store docs in storage
+                $name = time() . $key . '.' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
+                $file->storeAs('vehicle_docs', $name);
+
+                // store doc name in database
+                $file = new Vehicle_file([
+                    'url' => 'storage/vehicle_docs/'.$name,
+                    'vehicle_id' => $id,
+                    'name' => $name,
+                    'type' => 'doc'
                 ]);
                 $file->save();
             }

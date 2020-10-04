@@ -139,13 +139,6 @@
                         </div>
 
                         @if (!($action ?? '' == 'edit'))
-                            <div class="form-group row">
-                                <label for="image" class="col-lg-4 col-form-label text-lg-right">Afbeeldingen trein</label>
-                                
-                                <div class="col-lg-6">
-                                    <input id="image" type="file" class="form-control-file" name="image[]" multiple>
-                                </div>
-                            </div>
 
                             <br>
 
@@ -351,6 +344,22 @@
                                         <input value="Spoorbreedte" class="form-control col" type="text" name="prop2[]" readonly/>
                                         <input placeholder="Waarde" class="col form-control" type="text" name="val2[]" required/>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="image" class="col-lg-4 col-form-label text-lg-right">Afbeeldingen trein</label>
+                                
+                                <div class="col-lg-6">
+                                    <input id="image" type="file" class="form-control-file" name="image[]" multiple>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="image" class="col-lg-4 col-form-label text-lg-right">Documenten</label>
+                                
+                                <div class="col-lg-6">
+                                    <input id="image" type="file" class="form-control-file" name="docs[]" multiple>
                                 </div>
                             </div>
                         @endif

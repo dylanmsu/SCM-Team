@@ -33,7 +33,7 @@
                                             <form method="post" enctype="multipart/form-data" action="/rollend/prop/toevoegen/{{$data[0]->id}}">
                                                 @csrf
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title text-center" id="exampleModalLabel">Voorbeeld</h5>
+                                                    <h5 class="modal-title text-center" id="exampleModalLabel">Eigenschappen toevoegen</h5>
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
@@ -72,6 +72,70 @@
                                     @empty
                                     <tr>
                                         <td class="text-center">Voeg een eigenschap toe</td>
+                                    </tr>
+                                    @endforelse
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-7 col-lg-12 col-xl-7 text-center text-sm-left text-lg-center text-xl-left">
+                                <h4 class="mt-2">Documenten</h4>
+                            </div>
+                            <div class="col-sm-5 col-lg-12 col-xl-5 my-2 text-center text-sm-right text-lg-center text-xl-right">
+                                <a data-toggle="modal" data-target="#modal-doc" class="ml-2 btn btn-primary"> <i class="fas fa-plus"></i> Toevoegen</a>
+                                
+                                <!-- Modal -->
+                                <div class="modal fade" id="modal-doc" tabindex="-1" role="dialog" aria-labelledby="documentupload" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <form method="post" enctype="multipart/form-data" action="/rollend/doc/toevoegen/{{$data[0]->id}}">
+                                                @csrf
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-center" id="documentupload">Documenten uploaden</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group row">
+                                                        <div class="col-md-12">
+                                                            <input type="file" class="form-control-file" name="docs[]" multiple>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <input type="submit" class="btn btn-primary">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>	
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <tbody>
+
+                                    @forelse ($data[0]->vehicle_file->where('type', 'doc') as $item)
+                                    <tr>
+                                        <td class="p-1 text-right"><a href="{{asset($item->url)}}">{{$item->name}}</a></td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td class="text-center">Geen documenten beschikbaar.</td>
                                     </tr>
                                     @endforelse
                                     
@@ -127,7 +191,7 @@
                 <div class="card-body">
                     <div id="carouselExampleControls" class="carousel slide">
                         <ol class="carousel-indicators">
-                            @forelse ($data[0]->vehicle_file as $item)
+                            @forelse ($data[0]->vehicle_file->where('type', 'img') as $item)
                                 <li data-target="#carouselExampleIndicators" data-slide-to="{{$loop->index}}" @if($loop->first) class="active" @endif></li>
                             @empty
                                 <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -135,9 +199,9 @@
                             @endforelse
                         </ol>
                         <div class="carousel-inner">
-                            @forelse ($data[0]->vehicle_file as $item)
+                            @forelse ($data[0]->vehicle_file->where('type', 'img') as $item)
                                 <div class="carousel-item @if($loop->first) active @endif">
-                                    <img class="d-block w-100" src="{{asset('storage/vehicle_img').'/'.$item->url}}" alt="slide">
+                                    <img class="d-block w-100" src="{{asset($item->url)}}" alt="slide">
                                 </div>
                             @empty
                                 <div class="carousel-item active">
