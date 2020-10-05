@@ -250,14 +250,6 @@ class VehicleController extends Controller
 
         // update state of the vehicle
         Vehicle::where('id', $id)->update(['state' => $request->get('state')]);
-
-        // notify the users that a comment is added
-        $vehicle = Vehicle::select('*')->where('id', '=', $id)->with('vehicle_comment.User')->get();
-        $users = User::where('id', '!=', auth()->id())->get();
-        foreach($users as $user)
-        {
-            $user->notify(new CommentAdded($vehicle));
-        }
         
         // redirect to vehicles
         return redirect()->route('vehicles');

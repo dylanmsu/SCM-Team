@@ -16,7 +16,7 @@
 
     <div class="row justify-content-center">
         <div class="col-lg-5 mb-4">
-            <div class="card">
+            <div class="mb-3 card">
                 <div class="card-header">
                     <div class="container">
                         <div class="row">
@@ -24,7 +24,7 @@
                                 <h4 class="mt-2">Eigenschappen</h4>
                             </div>
                             <div class="col-sm-5 col-lg-12 col-xl-5 my-2 text-center text-sm-right text-lg-center text-xl-right">
-                                <a data-toggle="modal" data-target="#modal-prop" class="ml-2 btn btn-primary"> <i class="fas fa-plus"></i> Toevoegen</a>
+                                <a data-toggle="modal" data-target="#modal-prop" class="ml-2 btn btn-primary"> <i class="fas fa-plus"></i></a>
                                 
                                 <!-- Modal -->
                                 <div class="modal fade" id="modal-prop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -90,7 +90,7 @@
                                 <h4 class="mt-2">Documenten</h4>
                             </div>
                             <div class="col-sm-5 col-lg-12 col-xl-5 my-2 text-center text-sm-right text-lg-center text-xl-right">
-                                <a data-toggle="modal" data-target="#modal-doc" class="ml-2 btn btn-primary"> <i class="fas fa-plus"></i> Toevoegen</a>
+                                <a data-toggle="modal" data-target="#modal-doc" class="ml-2 btn btn-primary"> <i class="fas fa-plus"></i></a>
                                 
                                 <!-- Modal -->
                                 <div class="modal fade" id="modal-doc" tabindex="-1" role="dialog" aria-labelledby="documentupload" aria-hidden="true">
@@ -131,7 +131,7 @@
 
                                     @forelse ($data[0]->vehicle_file->where('type', 'doc') as $item)
                                     <tr>
-                                        <td class="p-1 text-right"><a href="{{asset($item->url)}}">{{$item->name}}</a></td>
+                                        <td class="p-2"><a href="{{asset($item->url)}}">{{$item->name}}</a></td>
                                     </tr>
                                     @empty
                                     <tr>
@@ -152,10 +152,10 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-5 my-2 text-center text-sm-left">
-                                <h2 class="mb-0">{{$data[0]->name}}</h2>
+                                <h3 class="mb-0"><b>{{$data[0]->name}}</b></h3>
                             </div>
                             <div class="col-sm-7 my-2 text-center text-sm-right">
-                                <a data-toggle="modal" data-target="#modal-img" class="ml-2 btn btn-primary"> <i class="fas fa-plus"></i> Afbeeldingen toevoegen</a>
+                                <a data-toggle="modal" data-target="#modal-img" class="ml-2 btn btn-primary"> <i class="fas fa-plus"></i></a>
                                 
                                 <!-- Modal -->
                                 <div class="modal fade" id="modal-img" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
