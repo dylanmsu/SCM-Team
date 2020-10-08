@@ -11,6 +11,8 @@ class Vehicle_file extends Model
         'type', 
         'description',
         'name',
+        'category',
+        'test_date',
         'vehicle_id'
     ];
 }

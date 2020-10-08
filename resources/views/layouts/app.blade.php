@@ -199,6 +199,7 @@
             #more  {
                 display:  none;
             }
+            
         </style>
         @stack('styles')
     </head>

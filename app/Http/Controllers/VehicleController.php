@@ -82,47 +82,8 @@ class VehicleController extends Controller
         ]);
         $comments->save();
 
-        // store the images
-        if ($request->hasfile('image')) {
-
-            // loop through the images
-            foreach ($request->file('image') as $key => $file) {
-
-                // store image in storage
-                $name = $id . '_vehicle_'. time() . $key . '.' . $file->getClientOriginalExtension();
-                $file->storeAs('vehicle_img', $name);
-
-                // store image name in database
-                $file = new Vehicle_file([
-                    'url' => 'storage/vehicle_img/'.$name,
-                    'vehicle_id' => $id,
-                    'name' => $name,
-                    'type' => 'img'
-                ]);
-                $file->save();
-            }
-        }
-
-        // store the documents
-        if ($request->hasfile('docs')) {
-
-            // loop through the documents
-            foreach ($request->file('docs') as $key => $file) {
-
-                // store docs in storage
-                $name = time() . $key . '.' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
-                $file->storeAs('vehicle_docs', $name);
-
-                // store doc name in database
-                $file = new Vehicle_file([
-                    'url' => 'storage/vehicle_docs/'.$name,
-                    'vehicle_id' => $id,
-                    'name' => $name,
-                    'type' => 'doc'
-                ]);
-                $file->save();
-            }
-        }
+        $this->upload_images($request, $id);
+        $this->upload_documents($request, $id);
 
         // store the properties
         if ($request->has('prop') && $request->has('val')) {
@@ -143,26 +104,7 @@ class VehicleController extends Controller
 
     public function upload_img(Request $request, $id)
     {
-        // store the images
-        if ($request->hasfile('image')) {
-
-            // loop through the images
-            foreach ($request->file('image') as $key => $file) {
-
-                // store image in storage
-                $name = $id . '_vehicle_'. time() . $key . '.' . $file->getClientOriginalExtension();
-                $file->storeAs('vehicle_img', $name);
-
-                // store image name in database
-                $file = new Vehicle_file([
-                    'url' => 'storage/vehicle_img/'.$name,
-                    'vehicle_id' => $id,
-                    'name' => $name,
-                    'type' => 'img'
-                ]);
-                $file->save();
-            }
-        }
+        $this->upload_images($request, $id);
 
         // return back to show_properties
         return redirect()->route('show_properties', $id);
@@ -170,26 +112,15 @@ class VehicleController extends Controller
 
     public function upload_doc(Request $request, $id)
     {
-        // store the documents
-        if ($request->hasfile('docs')) {
+        $this->upload_documents($request, $id);
 
-            // loop through the documents
-            foreach ($request->file('docs') as $key => $file) {
+        // return back to show_properties
+        return redirect()->route('show_properties', $id);
+    }
 
-                // store docs in storage
-                $name = time() . $key . '.' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
-                $file->storeAs('vehicle_docs', $name);
-
-                // store doc name in database
-                $file = new Vehicle_file([
-                    'url' => 'storage/vehicle_docs/'.$name,
-                    'vehicle_id' => $id,
-                    'name' => $name,
-                    'type' => 'doc'
-                ]);
-                $file->save();
-            }
-        }
+    public function upload_exam(Request $request, $id)
+    {
+        $this->upload_examination($request, $id);
 
         // return back to show_properties
         return redirect()->route('show_properties', $id);
@@ -259,7 +190,8 @@ class VehicleController extends Controller
     public function show_properties($id)
     {
         return view('vehicles/vehicle_properties',[
-            'data' => Vehicle::select('*')->where('id', '=', $id)->with('vehicle_file', 'Vehicle_property')->get()
+            'data' => Vehicle::select('*')->where('id', '=', $id)->orderBy('category')->with('vehicle_file', 'Vehicle_property')->get(),
+            'exams' => Vehicle::select('*')->where('id', '=', $id)->orderBy('category')->with('vehicle_file', 'Vehicle_property')->where('type', 'exam')->get()
         ]);
     }
 
@@ -287,5 +219,77 @@ class VehicleController extends Controller
     public function add_vehicle_page()
     {
         return view('vehicles/add_vehicle');
+    }
+
+    /*----------------------------- private methods ------------------------------- */
+
+    private function upload_images($request, $id) {
+        // store the images
+        if ($request->hasfile('image')) {
+
+            // loop through the images
+            foreach ($request->file('image') as $key => $file) {
+
+                // store image in storage
+                $name = $id . '_vehicle_'. time() . $key . '.' . $file->getClientOriginalExtension();
+                $file->storeAs('vehicle_img', $name);
+
+                // store image name in database
+                $file = new Vehicle_file([
+                    'url' => 'storage/vehicle_img/'.$name,
+                    'vehicle_id' => $id,
+                    'name' => $name,
+                    'type' => 'img'
+                ]);
+                $file->save();
+            }
+        }
+    }
+
+    private function upload_examination($request, $id) {
+        // store the documents
+        if ($request->hasfile('exam')) {
+
+            // store docs in storage
+            $file = $request->file('exam');
+            $name = $id . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
+            $file->storeAs('vehicle_docs', $name);
+            $category = $request->get('exam_category');
+
+            // store doc name in database
+            $file = new Vehicle_file([
+                'url' => 'storage/vehicle_docs/'.$name,
+                'vehicle_id' => $id,
+                'name' => $name,
+                'category' => $category,
+                'type' => 'exam'
+            ]);
+            $file->save();
+        }
+    }
+
+    private function upload_documents($request, $id) {
+        // store the documents
+        if ($request->hasfile('docs')) {
+
+            // loop through the documents
+            foreach ($request->file('docs') as $key => $file) {
+
+                // store docs in storage
+                $name = $id . $key . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
+                $file->storeAs('vehicle_docs', $name);
+                $category = $request->get('file_category');
+
+                // store doc name in database
+                $file = new Vehicle_file([
+                    'url' => 'storage/vehicle_docs/'.$name,
+                    'vehicle_id' => $id,
+                    'name' => $name,
+                    'category' => $category,
+                    'type' => 'doc'
+                ]);
+                $file->save();
+            }
+        }
     }
 }

@@ -20,6 +20,8 @@ class CreateVehicleFilesTable extends Migration
             $table->string('type');
             $table->string('url');
             $table->string('name');
+            $table->date('test_date')->nullable();
+            $table->string('category')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
         });

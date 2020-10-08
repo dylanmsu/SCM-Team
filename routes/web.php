@@ -50,6 +50,7 @@ Route::post('/rollend/bijwerken/{id}', 'VehicleController@edit');
 Route::post('/rollend/verwijder/{id}', 'VehicleController@delete');
 Route::post('/rollend/comment/add/{id}', 'VehicleController@add_comment');
 Route::post('/rollend/img/toevoegen/{id}', 'VehicleController@upload_img');
+Route::post('/rollend/exam/toevoegen/{id}', 'VehicleController@upload_exam');
 Route::post('/rollend/doc/toevoegen/{id}', 'VehicleController@upload_doc');
 Route::post('/rollend/prop/toevoegen/{id}', 'VehicleController@add_prop');
 

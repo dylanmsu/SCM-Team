@@ -15,15 +15,15 @@
     </nav>
 
     <div class="row justify-content-center">
-        <div class="col-lg-5 mb-4">
-            <div class="mb-3 card">
+        <div class="col-lg-5">
+            <div class="mb-4 card">
                 <div class="card-header">
                     <div class="container">
                         <div class="row">
-                            <div class="col-sm-7 col-lg-12 col-xl-7 text-center text-sm-left text-lg-center text-xl-left">
+                            <div class="col-8">
                                 <h4 class="mt-2">Eigenschappen</h4>
                             </div>
-                            <div class="col-sm-5 col-lg-12 col-xl-5 my-2 text-center text-sm-right text-lg-center text-xl-right">
+                            <div class="col-4 text-right my-2">
                                 <a data-toggle="modal" data-target="#modal-prop" class="ml-2 btn btn-primary"> <i class="fas fa-plus"></i></a>
                                 
                                 <!-- Modal -->
@@ -82,14 +82,14 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card mb-4">
                 <div class="card-header">
                     <div class="container">
                         <div class="row">
-                            <div class="col-sm-7 col-lg-12 col-xl-7 text-center text-sm-left text-lg-center text-xl-left">
+                            <div class="col-8">
                                 <h4 class="mt-2">Documenten</h4>
                             </div>
-                            <div class="col-sm-5 col-lg-12 col-xl-5 my-2 text-center text-sm-right text-lg-center text-xl-right">
+                            <div class="col-4 text-right my-2">
                                 <a data-toggle="modal" data-target="#modal-doc" class="ml-2 btn btn-primary"> <i class="fas fa-plus"></i></a>
                                 
                                 <!-- Modal -->
@@ -107,7 +107,32 @@
                                                 <div class="modal-body">
                                                     <div class="form-group row">
                                                         <div class="col-md-12">
-                                                            <input type="file" class="form-control-file" name="docs[]" multiple>
+                                                            <div class="form-group row">
+                                                                <label for="image" class="col-lg-4 col-form-label text-lg-right">Afbeeldingen trein</label>
+                                                                
+                                                                <div class="col-lg-7 text-left">
+                                                                    <label class="btn btn-primary" id="doc-iput-label" for="my-file-selector">
+                                                                        <input name="docs[]" id="my-file-selector" type="file" style="display:none" 
+                                                                        onchange="$('#upload-file-info').html(this.files[0].name)">
+                                                                        Kies bestanden
+                                                                    </label>
+                                                                    <span class='label label-info' id="upload-file-info"></span>
+                                                                </div>
+                                                            </div>
+                                
+                                                            <div class="form-group row">
+                                                                <label for="image" class="col-lg-4 col-form-label text-lg-right">Documenten</label>
+                                                                
+                                                                <div class="col-lg-7">
+                                                                    <select name="file_category" class="form-control" id="category" required>
+                                                                        <option value="dossier">Dossiers</option>
+                                                                        <option value="handleiding">Handleidingen</option>
+                                                                        <option value="info">Informatie</option>
+                                                                        <option value="attest">Attesten</option>
+                                                                        <option value="anderen">Anderen</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -131,7 +156,8 @@
 
                                     @forelse ($data[0]->vehicle_file->where('type', 'doc') as $item)
                                     <tr>
-                                        <td class="p-2"><a href="{{asset($item->url)}}">{{$item->name}}</a></td>
+                                        <td class="p-2"></td>
+                                        <td class="p-1 text-right"><b>{{$item->category}}</b>: </td><td class="p-1 text-left"><a href="{{asset($item->url)}}">{{$item->name}}</a></td>
                                     </tr>
                                     @empty
                                     <tr>
@@ -147,14 +173,14 @@
             </div>
         </div>
         <div class="col-lg-7">
-            <div class="card">
+            <div class="card mb-4">
                 <div class="card-header">
                     <div class="container">
                         <div class="row">
-                            <div class="col-sm-5 my-2 text-center text-sm-left">
+                            <div class="col-8">
                                 <h3 class="mb-0"><b>{{$data[0]->name}}</b></h3>
                             </div>
-                            <div class="col-sm-7 my-2 text-center text-sm-right">
+                            <div class="col-4 text-right my-2">
                                 <a data-toggle="modal" data-target="#modal-img" class="ml-2 btn btn-primary"> <i class="fas fa-plus"></i></a>
                                 
                                 <!-- Modal -->
@@ -221,6 +247,112 @@
                             <span class="sr-only">Next</span>
                         </a>
                     </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-8">
+                                <h4 class="mt-2">Keuringen</h4>
+                            </div>
+                            <div class="col-4 text-right my-2">
+                                <a data-toggle="modal" data-target="#modal-exam" class="ml-2 btn btn-primary"> <i class="fas fa-plus"></i></a>
+                                
+                                <!-- Modal -->
+                                <div class="modal fade" id="modal-exam" tabindex="-1" role="dialog" aria-labelledby="documentupload" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <form method="post" enctype="multipart/form-data" action="/rollend/exam/toevoegen/{{$data[0]->id}}">
+                                                @csrf
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-center" id="documentupload">Documenten uploaden</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group row">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group row">
+                                                                <label for="image" class="col-lg-4 col-form-label text-lg-right">Document</label>
+                                                                
+                                                                <div class="col-lg-7 text-left">
+                                                                    <label class="btn btn-primary" id="ex-iput-label" for="examimations">
+                                                                        <input name="exam" id="examimations" type="file" style="display:none" 
+                                                                        onchange="$('#exam-file-info').html(this.files[0].name)">
+                                                                        Kies bestand
+                                                                    </label>
+                                                                    <span class='label label-info' id="exam-file-info"></span>
+                                                                </div>
+                                                            </div>
+                                
+                                                            <div class="form-group row">
+                                                                <label for="image" class="col-lg-4 col-form-label text-lg-right">Categorie</label>
+                                                                
+                                                                <div class="col-lg-7">
+                                                                    <select name="exam_category" class="form-control" id="category" required>
+                                                                        @if ('[]' == strval($data[0]->vehicle_file->where('type', 'exam')->where('category', 'internal')))
+                                                                            <option value="internal">Inwendig onderzoek</option>
+                                                                        @endif
+
+                                                                        @if ('[]' == strval($data[0]->vehicle_file->where('type', 'exam')->where('category', 'external')))
+                                                                            <option value="external">Uitwendig onderzoek</option>
+                                                                        @endif
+
+                                                                        @if ('[]' == strval($data[0]->vehicle_file->where('type', 'exam')->where('category', 'water')))
+                                                                            <option value="water">Waterdruktest</option>
+                                                                        @endif
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <input type="submit" class="btn btn-primary">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>	
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-hover">
+                        <tbody>
+                            @foreach ($data[0]->vehicle_file->where('type', 'exam') as $item)
+                                <tr>
+                                    @switch($item->category)
+                                        @case('internal')
+                                            <td class="p-1"><b>Inwendig onderzoek</b>: </td>
+                                            @break
+                                        @case('external')
+                                            <td class="p-1"><b>Uitwendig onderzoek</b>: </td> 
+                                            @break
+                                        @case('water')
+                                            <td class="p-1"><b>Waterdrukproef</b>: </td> 
+                                            @break
+                                    @endswitch
+                                    <td class="p-1 text-left"><a href="">{{$item->name}}</a></td>
+                                    <td class="p-1 m-1 badge badge-pill badge-success text-left">08-10-2020</td>
+                                </tr>
+                            @endforeach
+                            
+                            
+
+                            <!--
+                            <tr>
+                                <td class="text-center">Voeg een eigenschap toe</td>
+                            </tr>
+                            -->
+                            
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
