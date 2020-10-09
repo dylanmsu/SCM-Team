@@ -9,6 +9,7 @@ class Vehicle_property extends Model
     protected $fillable = [
         'key', 
         'value', 
-        'vehicle_id'
+        'vehicle_id',
+        'type'
     ];
 }

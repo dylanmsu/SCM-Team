@@ -140,7 +140,7 @@
 
                         @if (!($action ?? '' == 'edit'))
 
-                            <br>
+                            <hr>
 
                             <div class="form-group row">
                                 <label for="description" class="col-lg-4 col-form-label text-lg-right">Eigenschappen</label>
@@ -351,17 +351,103 @@
                                 <label for="image" class="col-lg-4 col-form-label text-lg-right">Afbeeldingen trein</label>
                                 
                                 <div class="col-lg-6">
-                                    <input id="image" type="file" class="form-control-file" name="image[]" multiple>
+                                    <label class="btn btn-primary" id="image" for="image-train">
+                                        <input name="image[]" id="image-train" type="file" style="display:none" 
+                                        onchange="$('#vehicle-image').html(this.files[0].name)">
+                                        Kies bestand
+                                    </label>
+                                    <span class='label label-info' id="vehicle-image"></span>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-lg-4 col-form-label text-lg-right">Type Onderzoek</label>
+                                <div class="col-lg-7 text-left">
+                                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="Inwendig onderzoek">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="image" class="col-lg-4 col-form-label text-lg-right">Documenten</label>
+                                <label for="image" class="col-lg-4 col-form-label text-lg-right">Document</label>
                                 
-                                <div class="col-lg-6">
-                                    <input id="image" type="file" class="form-control-file" name="docs[]" multiple>
+                                <div class="col-lg-7 text-left">
+                                    <label class="btn btn-primary" id="ex-iput-label" for="int-examimations">
+                                        <input name="external" id="int-examimations" type="file" style="display:none" 
+                                        onchange="$('#int-exam').html(this.files[0].name)">
+                                        Kies bestand
+                                    </label>
+                                    <span class='label label-info' id="int-exam"></span>
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-lg-4 col-form-label text-lg-right">Datum Onderzoek</label>
+                                <div class="col-lg-7 text-left">
+                                    <input type="datetime-local" name="date-external" class="form-control" id="staticEmail">
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-lg-4 col-form-label text-lg-right">Type Onderzoek</label>
+                                <div class="col-lg-7 text-left">
+                                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="Uitwendig onderzoek">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="image" class="col-lg-4 col-form-label text-lg-right">Document</label>
+                                
+                                <div class="col-lg-7 text-left">
+                                    <label class="btn btn-primary" id="in-iput-label" for="ext-examimations">
+                                        <input name="internal" id="ext-examimations" type="file" style="display:none" 
+                                        onchange="$('#ext-exam').html(this.files[0].name)">
+                                        Kies bestand
+                                    </label>
+                                    <span class='label label-info' id="ext-exam"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-lg-4 col-form-label text-lg-right">Datum Onderzoek</label>
+                                <div class="col-lg-7 text-left">
+                                    <input type="datetime-local" name="date-internal" class="form-control" id="staticEmail">
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-lg-4 col-form-label text-lg-right">Type Onderzoek</label>
+                                <div class="col-lg-7 text-left">
+                                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="Waterdruktest">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="water-examimations" class="col-lg-4 col-form-label text-lg-right">Document</label>
+                                
+                                <div class="col-lg-7 text-left">
+                                    <label class="btn btn-primary" id="water-label" for="water-examimations">
+                                        <input name="water" id="water-examimations" type="file" style="display:none" 
+                                        onchange="$('#water-exam').html(this.files[0].name)">
+                                        Kies bestand
+                                    </label>
+                                    <span class='label label-info' id="water-exam"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="staticEmail" class="col-lg-4 col-form-label text-lg-right">Datum Onderzoek</label>
+                                <div class="col-lg-7 text-left">
+                                    <input type="datetime-local" name="date-water" class="form-control" id="staticEmail">
+                                </div>
+                            </div>
+
+                            <hr><br><br>
                         @endif
 
                         <div class="form-group row mb-0">

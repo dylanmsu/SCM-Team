@@ -293,18 +293,17 @@
                                                                 
                                                                 <div class="col-lg-7">
                                                                     <select name="exam_category" class="form-control" id="category" required>
-                                                                        @if ('[]' == strval($data[0]->vehicle_file->where('type', 'exam')->where('category', 'internal')))
-                                                                            <option value="internal">Inwendig onderzoek</option>
-                                                                        @endif
-
-                                                                        @if ('[]' == strval($data[0]->vehicle_file->where('type', 'exam')->where('category', 'external')))
-                                                                            <option value="external">Uitwendig onderzoek</option>
-                                                                        @endif
-
-                                                                        @if ('[]' == strval($data[0]->vehicle_file->where('type', 'exam')->where('category', 'water')))
-                                                                            <option value="water">Waterdruktest</option>
-                                                                        @endif
+                                                                        <option value="internal">Inwendig onderzoek</option>
+                                                                        <option value="external">Uitwendig onderzoek</option>
+                                                                        <option value="water">Waterdruktest</option>
                                                                     </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row">
+                                                                <label for="staticEmail" class="col-lg-4 col-form-label text-lg-right">Datum Onderzoek</label>
+                                                                <div class="col-lg-7 text-left">
+                                                                    <input type="datetime-local" name="test_date" class="form-control" id="staticEmail">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -325,32 +324,31 @@
                 <div class="card-body">
                     <table class="table table-striped table-hover">
                         <tbody>
-                            @foreach ($data[0]->vehicle_file->where('type', 'exam') as $item)
+                            @forelse ($data[0]->vehicle_file->where('type', 'exam') as $item)
                                 <tr>
                                     @switch($item->category)
                                         @case('internal')
                                             <td class="p-1"><b>Inwendig onderzoek</b>: </td>
+                                            <td class="p-1 text-left"><a href="{{asset($item->url)}}">{{$item->name}}</a></td>
+                                            <td class="p-1 m-1 badge badge-pill {{$internal}} text-left">{{$item->test_date}}</td>
                                             @break
                                         @case('external')
                                             <td class="p-1"><b>Uitwendig onderzoek</b>: </td> 
+                                            <td class="p-1 text-left"><a href="{{asset($item->url)}}">{{$item->name}}</a></td>
+                                            <td class="p-1 m-1 badge badge-pill {{$external}} text-left">{{$item->test_date}}</td>
                                             @break
                                         @case('water')
                                             <td class="p-1"><b>Waterdrukproef</b>: </td> 
+                                            <td class="p-1 text-left"><a href="{{asset($item->url)}}">{{$item->name}}</a></td>
+                                            <td class="p-1 m-1 badge badge-pill {{$water}} text-left">{{$item->test_date}}</td>
                                             @break
                                     @endswitch
-                                    <td class="p-1 text-left"><a href="">{{$item->name}}</a></td>
-                                    <td class="p-1 m-1 badge badge-pill badge-success text-left">08-10-2020</td>
                                 </tr>
-                            @endforeach
-                            
-                            
-
-                            <!--
-                            <tr>
-                                <td class="text-center">Voeg een eigenschap toe</td>
-                            </tr>
-                            -->
-                            
+                            @empty
+                                <tr>
+                                    <td class="text-center">Geen documenten beschikbaar.</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

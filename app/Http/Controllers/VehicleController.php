@@ -6,6 +6,7 @@ use Auth;
 use File;
 use App\User;
 use App\Vehicle;
+use Carbon\Carbon;
 use App\Vehicle_file;
 use App\Vehicle_comment;
 use App\Vehicle_property;
@@ -58,6 +59,11 @@ class VehicleController extends Controller
         ]);
     }
 
+    public function add_vehicle_page()
+    {
+        return view('vehicles/add_vehicle');
+    }
+
     // add vehicle to database
     public function add_vehicle(Request $request)
     {
@@ -84,6 +90,7 @@ class VehicleController extends Controller
 
         $this->upload_images($request, $id);
         $this->upload_documents($request, $id);
+        $this->upload_examination($request, $id);
 
         // store the properties
         if ($request->has('prop') && $request->has('val')) {
@@ -92,11 +99,87 @@ class VehicleController extends Controller
                 $property = new Vehicle_property([
                     'key' => $request->get('prop')[$key], 
                     'value' => $request->get('val')[$key], 
-                    'vehicle_id' => $id
+                    'vehicle_id' => $id,
+                    'type' => 'normal'
                 ]);
                 $property->save();
             }
         }
+
+        // store the wheel and shaft properties
+        if ($request->has('prop2') && $request->has('val2')) {
+            foreach ($request->get('prop2') as $key => $value) {
+
+                $property = new Vehicle_property([
+                    'key' => $request->get('prop2')[$key], 
+                    'value' => $request->get('val2')[$key], 
+                    'vehicle_id' => $id,
+                    'type' => 'wheels'
+                ]);
+                $property->save();
+            }
+        }
+
+        // store the examinations
+        if ($request->hasfile('external')) {
+
+            // store docs in storage
+            $file = $request->file('external');
+            $name = $id . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
+            $file->storeAs('vehicle_docs', $name);
+
+            // store doc name in database
+            $file = new Vehicle_file([
+                'url' => 'storage/vehicle_docs/'.$name,
+                'vehicle_id' => $id,
+                'name' => $name,
+                'test_date' => $request->get('date-external'),
+                'category' => 'external',
+                'type' => 'exam'
+            ]);
+            $file->save();
+        }
+
+        // store the examinations
+        if ($request->hasfile('internal')) {
+
+            // store docs in storage
+            $file = $request->file('internal');
+            $name = $id . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
+            $file->storeAs('vehicle_docs', $name);
+
+            // store doc name in database
+            $file = new Vehicle_file([
+                'url' => 'storage/vehicle_docs/'.$name,
+                'vehicle_id' => $id,
+                'name' => $name,
+                'test_date' => $request->get('date-internal'),
+                'category' => 'internal',
+                'type' => 'exam'
+            ]);
+            $file->save();
+        }
+
+        // store the examinations
+        if ($request->hasfile('water')) {
+
+            // store docs in storage
+            $file = $request->file('water');
+            $name = $id . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
+            $file->storeAs('vehicle_docs', $name);
+
+            // store doc name in database
+            $file = new Vehicle_file([
+                'url' => 'storage/vehicle_docs/'.$name,
+                'vehicle_id' => $id,
+                'name' => $name,
+                'test_date' => $request->get('date-water'),
+                'category' => 'water',
+                'type' => 'exam'
+            ]);
+            $file->save();
+        }
+
 
         // return back to the vehicle home page
         return redirect()->route('vehicles');
@@ -120,6 +203,16 @@ class VehicleController extends Controller
 
     public function upload_exam(Request $request, $id)
     {
+        // delete files before entering new data
+        $file = Vehicle_file::where('vehicle_id', $id)->where('category', $request->get('exam_category'));
+        if ($file->count() !== 0) {
+            foreach ($file->get() as $item){
+                File::delete($item->url);
+                $item->delete();
+            }
+            
+        }
+
         $this->upload_examination($request, $id);
 
         // return back to show_properties
@@ -189,9 +282,27 @@ class VehicleController extends Controller
     // show properties view
     public function show_properties($id)
     {
+        $vehicle_properties = Vehicle::select('*')->where('id', '=', $id)->orderBy('category')->with('vehicle_file', 'Vehicle_property')->get();
+        
+        $internal = "";
+        $external = "";
+        $water = "";
+
+        foreach ($vehicle_properties[0]->vehicle_file->where('category', 'internal')->take(1) as $key => $value) {
+            $internal = $this->return_bootstrap_status($value->test_date, 12);
+        }
+        foreach ($vehicle_properties[0]->vehicle_file->where('category', 'external')->take(1) as $key => $value) {
+            $external = $this->return_bootstrap_status($value->test_date, 12);;
+        }
+        foreach ($vehicle_properties[0]->vehicle_file->where('category', 'water')->take(1) as $key => $value) {
+            $water = $this->return_bootstrap_status($value->test_date, 3 * 12);
+        }
+        
         return view('vehicles/vehicle_properties',[
-            'data' => Vehicle::select('*')->where('id', '=', $id)->orderBy('category')->with('vehicle_file', 'Vehicle_property')->get(),
-            'exams' => Vehicle::select('*')->where('id', '=', $id)->orderBy('category')->with('vehicle_file', 'Vehicle_property')->where('type', 'exam')->get()
+            'data' => $vehicle_properties,
+            'external' => $external,
+            'internal' => $internal,
+            'water' => $water
         ]);
     }
 
@@ -216,14 +327,10 @@ class VehicleController extends Controller
         return redirect()->route('show_properties', $id);
     }
 
-    public function add_vehicle_page()
-    {
-        return view('vehicles/add_vehicle');
-    }
-
     /*----------------------------- private methods ------------------------------- */
 
-    private function upload_images($request, $id) {
+    private function upload_images($request, $id) 
+    {
         // store the images
         if ($request->hasfile('image')) {
 
@@ -246,7 +353,8 @@ class VehicleController extends Controller
         }
     }
 
-    private function upload_examination($request, $id) {
+    private function upload_examination($request, $id) 
+    {
         // store the documents
         if ($request->hasfile('exam')) {
 
@@ -262,13 +370,15 @@ class VehicleController extends Controller
                 'vehicle_id' => $id,
                 'name' => $name,
                 'category' => $category,
+                'test_date' => $request->get('test_date'),
                 'type' => 'exam'
             ]);
             $file->save();
         }
     }
 
-    private function upload_documents($request, $id) {
+    private function upload_documents($request, $id) 
+    {
         // store the documents
         if ($request->hasfile('docs')) {
 
@@ -291,5 +401,28 @@ class VehicleController extends Controller
                 $file->save();
             }
         }
+    }
+
+    private function return_bootstrap_status($date, $interval_in_months)
+    {
+        if ($date !== null) {
+
+            $expiry_date = Carbon::createFromFormat('Y-m-d', $date)->addMonths($interval_in_months);
+
+            if (Carbon::now()->gt($expiry_date) && Carbon::now()->lt($expiry_date->addMonths(3))){
+                return 'badge-warning';
+            } 
+            else if (Carbon::now()->gt($expiry_date->addMonths(3))) {
+                return 'badge-danger';
+            } 
+            else{
+                return 'badge-success';
+            }
+        }
+        else
+        {
+            return 'badge-secondary';
+        }
+        
     }
 }
