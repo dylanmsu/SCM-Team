@@ -42,7 +42,7 @@
         <!-- set language -->
         {{App::setLocale('nl')}}
 
-        <script type="text/javascript">
+        <script>
             
             
             // adds an alert message before submitting a form
@@ -199,7 +199,7 @@
             #more  {
                 display:  none;
             }
-            
+
         </style>
         @stack('styles')
     </head>

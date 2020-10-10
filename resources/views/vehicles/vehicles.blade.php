@@ -69,16 +69,16 @@
                                                                 <!-- display a dot based on the corresponding state -->
                                                                 @switch($item->state)
                                                                     @case('in_dienst')
-                                                                        <span style="float: right;" class="my-2 text-right status text-success">&bull;</span><!-- green -->
+                                                                        <span title="In dienst" style="float: right;" class="my-2 text-right status text-success">&bull;</span><!-- green -->
                                                                         @break
                                                                     @case('buiten_dienst')
-                                                                        <span style="float: right;" class="my-2 text-right status text-danger">&bull;</span><!-- red -->
+                                                                        <span title="Buiten dienst" style="float: right;" class="my-2 text-right status text-danger">&bull;</span><!-- red -->
                                                                         @break
                                                                     @case('in_reserve')
-                                                                        <span style="float: right;" class="my-2 text-right status text-primary">&bull;</span><!-- blue -->
+                                                                        <span title="In reserve" style="float: right;" class="my-2 text-right status text-primary">&bull;</span><!-- blue -->
                                                                         @break
                                                                     @case('onder_voorwaarde')
-                                                                        <span style="float: right;" class="my-2 text-right status text-warning">&bull;</span><!-- yellow -->
+                                                                        <span title="Onder voorwaarde" style="float: right;" class="my-2 text-right status text-warning">&bull;</span><!-- yellow -->
                                                                         @break
                                                                     @default
                                                                         <span style="float: right;" class="my-2 text-right status text-secondary">&bull;</span><!-- gray -->
