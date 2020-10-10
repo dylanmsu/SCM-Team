@@ -392,12 +392,9 @@
                             <input type="datetime-local" name="date-internal" class="form-control" id="staticEmail">
                         </div>
                     </div>
-                </div>
-            </div>
 
-                            
-            <div class="card mb-1">
-                <div class="card-body">
+
+                    
                     <div class="form-group container row">
                         <div class="col-lg-4">
                             <br>
@@ -420,12 +417,9 @@
                             <input type="datetime-local" name="date-external" class="form-control" id="staticEmail">
                         </div>
                     </div>
-                </div>
-            </div>
 
-                            
-            <div class="card mb-1">
-                <div class="card-body">
+
+
                     <div class="form-group container row">
                         <div class="col-lg-4">
                             <br>

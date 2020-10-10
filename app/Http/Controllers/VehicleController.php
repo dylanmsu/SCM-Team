@@ -317,7 +317,8 @@ class VehicleController extends Controller
                 $property = new Vehicle_property([
                     'key' => $request->get('prop')[$key], 
                     'value' => $request->get('val')[$key], 
-                    'vehicle_id' => $id
+                    'vehicle_id' => $id,
+                    'type' => 'aded'
                 ]);
                 $property->save();
             }
