@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Vehicles;
 
 use Auth;
 use File;
@@ -15,12 +15,12 @@ use Illuminate\Http\Request;
 use App\Exports\VehicleExport;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
+use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Redirect;
 
-class VehicleController extends Controller
+class VehicleFormController extends Controller
 {
-
     // adds middleware auth so users who arent logged in cant access these methods
     public function __construct()
     {
@@ -31,37 +31,6 @@ class VehicleController extends Controller
     public function export() 
     {
         return Excel::download(new VehicleExport, 'Rollend_matrieel.xlsx');
-    }
-
-    // vehicles homepage
-    public function vehicles()
-    {
-        // get all data from database so we can later display it in the view
-        $normal_categories = Vehicle::select('category')->where('type', '=', 'normaal')->groupBy('category')->orderBy(\DB::raw('count(*)'), 'desc')->get();
-        $normal_data = Vehicle::select('*')->where('type', '=', 'normaal')->with('vehicle_comment.User')->get();
-        $small_categories = Vehicle::select('category')->where('type', '=', 'smal')->groupBy('category')->orderBy(\DB::raw('count(*)'), 'desc')->get();
-        $small_data = Vehicle::select('*')->where('type', '=', 'smal')->with('vehicle_comment.User')->get();
-
-        //send view to front end with the data
-        return view('vehicles/vehicles', [
-            'data' => [
-                [
-                    'type' => 'normaal',
-                    'categories' => $normal_categories,
-                    'data' => $normal_data
-                ],
-                [
-                    'type' => 'smal',
-                    'categories' => $small_categories,
-                    'data' => $small_data
-                ]
-            ],
-        ]);
-    }
-
-    public function add_vehicle_page()
-    {
-        return view('vehicles/add_vehicle');
     }
 
     // add vehicle to database
@@ -121,65 +90,27 @@ class VehicleController extends Controller
         }
 
         // store the examinations
-        if ($request->hasfile('external')) {
+        $examination_types = array('external', 'internal', 'water');
+        foreach ($examination_types as $key => $type) {
+            if ($request->hasfile($type)) {
 
-            // store docs in storage
-            $file = $request->file('external');
-            $name = $id . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
-            $file->storeAs('vehicle_docs', $name);
+                // store docs in storage
+                $file = $request->file($type);
+                $name = $id . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
+                $file->storeAs('vehicle_docs', $name);
 
-            // store doc name in database
-            $file = new Vehicle_file([
-                'url' => 'storage/vehicle_docs/'.$name,
-                'vehicle_id' => $id,
-                'name' => $name,
-                'test_date' => $request->get('date-external'),
-                'category' => 'external',
-                'type' => 'exam'
-            ]);
-            $file->save();
+                // store doc name in database
+                $file = new Vehicle_file([
+                    'url' => 'storage/vehicle_docs/'.$name,
+                    'vehicle_id' => $id,
+                    'name' => $name,
+                    'test_date' => $request->get('date-'.$type),
+                    'category' => $type,
+                    'type' => 'exam'
+                ]);
+                $file->save();
+            }
         }
-
-        // store the examinations
-        if ($request->hasfile('internal')) {
-
-            // store docs in storage
-            $file = $request->file('internal');
-            $name = $id . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
-            $file->storeAs('vehicle_docs', $name);
-
-            // store doc name in database
-            $file = new Vehicle_file([
-                'url' => 'storage/vehicle_docs/'.$name,
-                'vehicle_id' => $id,
-                'name' => $name,
-                'test_date' => $request->get('date-internal'),
-                'category' => 'internal',
-                'type' => 'exam'
-            ]);
-            $file->save();
-        }
-
-        // store the examinations
-        if ($request->hasfile('water')) {
-
-            // store docs in storage
-            $file = $request->file('water');
-            $name = $id . '_' . preg_replace('/\s+/', '_', $file->getClientOriginalName());
-            $file->storeAs('vehicle_docs', $name);
-
-            // store doc name in database
-            $file = new Vehicle_file([
-                'url' => 'storage/vehicle_docs/'.$name,
-                'vehicle_id' => $id,
-                'name' => $name,
-                'test_date' => $request->get('date-water'),
-                'category' => 'water',
-                'type' => 'exam'
-            ]);
-            $file->save();
-        }
-
 
         // return back to the vehicle home page
         return redirect()->route('vehicles');
@@ -280,33 +211,6 @@ class VehicleController extends Controller
         return redirect(route('vehicles').$viewelement.$request->get('vehicle'));
     }
 
-    // show properties view
-    public function show_properties($id)
-    {
-        $vehicle_properties = Vehicle::select('*')->where('id', '=', $id)->orderBy('category')->with('vehicle_file', 'Vehicle_property')->get();
-        
-        $internal = "";
-        $external = "";
-        $water = "";
-
-        foreach ($vehicle_properties[0]->vehicle_file->where('category', 'internal')->take(1) as $key => $value) {
-            $internal = $this->return_bootstrap_status($value->test_date, 12);
-        }
-        foreach ($vehicle_properties[0]->vehicle_file->where('category', 'external')->take(1) as $key => $value) {
-            $external = $this->return_bootstrap_status($value->test_date, 12);;
-        }
-        foreach ($vehicle_properties[0]->vehicle_file->where('category', 'water')->take(1) as $key => $value) {
-            $water = $this->return_bootstrap_status($value->test_date, 3 * 12);
-        }
-        
-        return view('vehicles/vehicle_properties',[
-            'data' => $vehicle_properties,
-            'external' => $external,
-            'internal' => $internal,
-            'water' => $water
-        ]);
-    }
-
     // add property to vehicle
     public function add_prop($id, Request $request)
     {
@@ -403,28 +307,5 @@ class VehicleController extends Controller
                 $file->save();
             }
         }
-    }
-
-    private function return_bootstrap_status($date, $interval_in_months)
-    {
-        if ($date !== null) {
-
-            $expiry_date = Carbon::createFromFormat('Y-m-d', $date)->addMonths($interval_in_months);
-
-            if (Carbon::now()->gt($expiry_date) && Carbon::now()->lt($expiry_date->addMonths(3))){
-                return 'badge-warning';
-            } 
-            else if (Carbon::now()->gt($expiry_date->addMonths(3))) {
-                return 'badge-danger';
-            } 
-            else{
-                return 'badge-success';
-            }
-        }
-        else
-        {
-            return 'badge-secondary';
-        }
-        
     }
 }

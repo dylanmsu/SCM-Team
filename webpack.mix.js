@@ -14,8 +14,6 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css').sourceMaps();
 
-mix.js('node_modules/html2canvas/dist/html2canvas.min.js', 'public/js').sourceMaps();
-
 mix.js('node_modules/jquery/dist/jquery.js', 'public/js/jquery').sourceMaps();
 mix.js('node_modules/jquery/dist/jquery.slim.js', 'public/js/jquery').sourceMaps();
 
