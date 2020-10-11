@@ -276,7 +276,8 @@ class VehicleController extends Controller
         Vehicle::where('id', $id)->update(['state' => $request->get('state')]);
         
         // redirect to vehicles
-        return redirect()->route('vehicles');
+        $viewelement = '#collapse-'.$request->get('type').'-'.$request->get('category');
+        return redirect(route('vehicles').$viewelement.$request->get('vehicle'));
     }
 
     // show properties view

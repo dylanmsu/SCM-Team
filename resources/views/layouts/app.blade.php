@@ -83,8 +83,12 @@
             $(document).ready(function () {
                 if(location.hash != null && location.hash != ""){
                     $('.collapse').removeClass('in');
-                    $(location.hash + '.collapse').collapse('show');
-                    $(location.hash).scrollIntoView();
+                    location.hash.split('#').forEach(function(item) {
+                        if (item != "") {
+                            $('#' + item + '.collapse').collapse('show');
+                            console.log('#' + item)
+                        }
+                    })
                 }
             });
 

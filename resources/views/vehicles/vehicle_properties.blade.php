@@ -322,7 +322,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-striped table-hover table-responsive">
                         <tbody>
                             @forelse ($data[0]->vehicle_file->where('type', 'exam') as $item)
                                 <tr>
@@ -346,7 +346,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td class="text-center">Geen documenten beschikbaar.</td>
+                                    <td class="text-center">Geen keuringen beschikbaar.</td>
                                 </tr>
                             @endforelse
                         </tbody>

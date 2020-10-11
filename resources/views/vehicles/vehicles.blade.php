@@ -39,7 +39,7 @@
                 @forelse ($data as $list)
                     <!-- normaalspoor / smalspoor list -->
                     <div class="col-sm-12 col-sm-12 col-lg-6 col-xl-6">
-                        <div class="card shadow-sm">
+                        <div class="card shadow-sm mb-4">
 
                             <!-- title and add-button of the normaalspoor list -->
                             <div class="card-header">
@@ -59,7 +59,7 @@
                                                 <div class="text-left container">
 
                                                     <!-- category name -->
-                                                    <b class="my-2"><strong class="text-capitalize">{{$category->category}}</strong></b>
+                                                    <b class="my-2"><strong class="text-capitalize" data-toggle="tooltip" data-placement="top" title="klik op de category om de voertuigen te zien">{{$category->category}}</strong></b>
 
                                                     <!-- display the status dots -->
                                                     <span style="line-height: 0">
@@ -105,12 +105,12 @@
                                                                     <!-- vehicle name -->
                                                                     <div class="col-4 px-0">
                                                                         <a  href="{{route('show_properties', $item->id)}}">
-                                                                            <span class="my-0"><b>{{$item->name}}</b></span>
+                                                                            <span title="Toon eigenschappen" class="my-0"><b>{{$item->name}}</b></span>
                                                                         </a>
                                                                     </div>    
 
                                                                     <!-- vehicle status -->
-                                                                    <a class="col-7 px-0" href="#collapse-{{$item->id}}" data-toggle="collapse">
+                                                                    <a class="col-7 px-0" title="Toon status en commentaar" href="#collapse-{{$item->id}}" data-toggle="collapse">
                                                                         @switch($item->state)
                                                                             @case('in_dienst')
                                                                                 <span class="text-success">&bull;</span>
@@ -199,6 +199,10 @@
                                                                     <!-- add comment form -->
                                                                     <form class="mt-2 input-group" action="/rollend/comment/add/{{$item->id}}" method="POST">
                                                                         @csrf
+
+                                                                        <input type="hidden" name="type" value="{{$list['type']}}">
+                                                                        <input type="hidden" name="category" value="{{$category->category}}">
+                                                                        <input type="hidden" name="vehicle" value="#collapse-{{$item->id}}">
                                                                         
                                                                         <div class="input-group-prepend">
                                                                             <select id="state" class="input-group-text form-control" name="state">

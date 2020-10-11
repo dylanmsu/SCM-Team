@@ -36,7 +36,7 @@
             <div class="card mb-1">
 
                 <div class="card-header">
-                    Toevoegen
+                    <h2>Trein Toevoegen</h2> 
                 </div>
 
                 <div class="card-body">
