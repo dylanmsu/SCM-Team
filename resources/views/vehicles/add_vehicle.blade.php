@@ -79,7 +79,7 @@
                                     <option value="werfvoertuig" @if(($vehicle->category ?? 'andere') == 'werfvoertuig')  selected="selected" @endif>
                                         Werfvoertuig
                                     </option>
-                                    <option value="" @if(($vehicle->category ?? 'andere') == 'andere')  selected="selected" @endif>
+                                    <option value="andere" @if(($vehicle->category ?? 'andere') == 'andere')  selected="selected" @endif>
                                         Andere
                                     </option>
                                 </select>
@@ -164,7 +164,7 @@
                                     <input placeholder="Waarde" class="col form-control" type="text" name="val2[]" required/>
                                 </div>
                                 <div class="mb-1 input-group">
-                                    <input value="Grootste as-afstand" class="form-control col" type="text" name="pro2p[]" readonly/>
+                                    <input value="Grootste as-afstand" class="form-control col" type="text" name="prop2[]" readonly/>
                                     <input placeholder="Waarde" class="col form-control" type="text" name="val2[]" required/>
                                 </div>
                                 <div class="mb-1 input-group">

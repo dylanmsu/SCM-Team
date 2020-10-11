@@ -20,6 +20,15 @@ class VehicleViewsController extends Controller
         return view('vehicles/add_vehicle');
     }
 
+    // return vehicle edit page
+    public function show_edit($id)
+    {
+        return view('vehicles/add_vehicle', [
+            'vehicle' => Vehicle::find($id),
+            'action' => 'edit'
+        ]);
+    }
+
     // vehicles homepage
     public function vehicles()
     {
@@ -59,7 +68,7 @@ class VehicleViewsController extends Controller
             $internal = $this->return_bootstrap_status($value->test_date, 12);
         }
         foreach ($vehicle_properties[0]->vehicle_file->where('category', 'external')->take(1) as $key => $value) {
-            $external = $this->return_bootstrap_status($value->test_date, 12);;
+            $external = $this->return_bootstrap_status($value->test_date, 12);
         }
         foreach ($vehicle_properties[0]->vehicle_file->where('category', 'water')->take(1) as $key => $value) {
             $water = $this->return_bootstrap_status($value->test_date, 3 * 12);
