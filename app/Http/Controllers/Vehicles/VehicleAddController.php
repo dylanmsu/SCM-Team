@@ -44,6 +44,8 @@ class VehicleAddController extends Controller
         ]);
         $comments->save();
 
+        // because i use these functionalities miltiple times, i turned them into methods.
+        // these methods are located in App/Http/Vehicles/VehicleController.php on the bottom of the file
         VehicleController::upload_images($request, $id);
         VehicleController::upload_documents($request, $id);
         VehicleController::upload_examination($request, $id);

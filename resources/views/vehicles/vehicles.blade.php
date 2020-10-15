@@ -241,7 +241,11 @@
                                         </div>
                                     @empty
                                         <div class="card">
+<<<<<<< HEAD
                                             <div class="card-header text-center">Geen gegevens beschikbaar <strong>:-(</strong></div>
+=======
+                                            <div class="card-header text-center">Geen voertuigen :(</div>
+>>>>>>> 36b87482def400e6a4377f263768cbb70c3be676
                                         </div>
                                     @endforelse
                                 </div>

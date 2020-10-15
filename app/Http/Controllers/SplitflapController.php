@@ -46,9 +46,26 @@ class SplitflapController extends Controller
             ->where('board','B')
             ->orderBy('time', 'asc')
             ->take(1)->get();
+            
         return [
-            'A' => $splitfflapsA,
-            'B' => $splitfflapsB
+            'A' => [
+                'first_text' => $splitfflapsA[0]->first_text,
+                'second_text' => $splitfflapsA[0]->second_text,
+                'icon_index' => $splitfflapsA[0]->icon_index,
+                'hours' => Carbon::createFromFormat('Y-m-d H:m:i', $splitfflapsA[0]->time ?? Carbon::now())->format('H'),
+                'minutes' => Carbon::createFromFormat('Y-m-d H:m:i', $splitfflapsA[0]->time ?? Carbon::now())->format('m'),
+                'date' => $splitfflapsA[0]->time,
+                'align' => $splitfflapsA[0]->align
+            ],
+            'B' => [
+                'first_text' => $splitfflapsB[0]->first_text,
+                'second_text' => $splitfflapsB[0]->second_text,
+                'icon_index' => $splitfflapsB[0]->icon_index,
+                'hours' => Carbon::createFromFormat('Y-m-d H:m:i', $splitfflapsB[0]->time ?? Carbon::now())->format('H'),
+                'minutes' => Carbon::createFromFormat('Y-m-d H:m:i', $splitfflapsB[0]->time ?? Carbon::now())->format('m'),
+                'date' => $splitfflapsB[0]->time,
+                'align' => $splitfflapsB[0]->align
+            ]
         ];
     }
 
@@ -122,21 +139,21 @@ class SplitflapController extends Controller
         ->whereRaw('time >= now()')
         ->orderBy('time', 'asc')->paginate(10)->onEachSide(1);;
 
-    $splitfflapsA = splitflap::
-        select('*')
-        ->whereRaw('time >= now()')
-        ->where('time', '<', Carbon::parse($this->interval))
-        ->where('board','A')
-        ->orderBy('time', 'asc')
-        ->take(1)->get();
+        $splitfflapsA = splitflap::
+            select('*')
+            ->whereRaw('time >= now()')
+            ->where('time', '<', Carbon::parse($this->interval))
+            ->where('board','A')
+            ->orderBy('time', 'asc')
+            ->take(1)->get();
 
-    $splitfflapsB = splitflap::
-        select('*')
-        ->whereRaw('time >= now()')
-        ->where('time', '<', Carbon::parse($this->interval))
-        ->where('board','B')
-        ->orderBy('time', 'asc')
-        ->take(1)->get();
+        $splitfflapsB = splitflap::
+            select('*')
+            ->whereRaw('time >= now()')
+            ->where('time', '<', Carbon::parse($this->interval))
+            ->where('board','B')
+            ->orderBy('time', 'asc')
+            ->take(1)->get();
 
         return view('reizigersInformatie/reizigersinformatie', [
             'count' => splitflap::selectRaw('count(*) as count')->get(),

@@ -37,7 +37,7 @@
                     <td>{{ $vehicle->name }}</td>
     
                     <!-- vehicle state -->
-                    @switch($vehicle->state)
+                    @switch( $vehicle->state )
                         @case('in_dienst')
                             <td style="background-color: #90ee90; border: 2px solid #d3d3d3;">{{ $vehicle->state }}</td>
                             @break
@@ -58,11 +58,11 @@
                     <td>{{ $vehicle->created_at }}</td>
                     <td>{{ $vehicle->updated_at }}</td>
     
-                    <!-- loop through comments and select the last one -->
+                    <!-- loop through comments and select the latest one -->
                     @forelse ($vehicle->vehicle_comment as $comment)
                         @if($loop->last)
 
-                            <td>{{$comment->user->username}}</td>
+                            <td>{{ $comment->user->username }}</td>
                             <td>{{ $comment->remarks }}</td>
                             
                         @endif
