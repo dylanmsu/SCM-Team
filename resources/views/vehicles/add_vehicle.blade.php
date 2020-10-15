@@ -36,19 +36,19 @@
             <div class="card mb-1">
 
                 <div class="card-header">
-                    <h2>Trein Toevoegen</h2> 
+                    <h2>Trein toevoegen</h2> 
                 </div>
 
                 <div class="card-body">
                     <div class="container">
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label for="name">Naam Voertuig</label>
+                                <label for="name"><strong>Naam Voertuig</strong></label>
                                 <input id="name" type="text" value="{{ $vehicle->name ?? '' }}" class="form-control" name="name" required autocomplete="train-name">
                             </div>
                         
                             <div class="col-lg-6">
-                                <label for="type">Type</label>
+                                <label for="type"><strong>Type</strong></label>
                                 <select id="type" class="form-control" name="type" required>
                                     <option value="normaal" @if(($vehicle->type ?? 'normaal') == 'normaal')  selected="selected" @endif>
                                         Normaalspoor
@@ -62,7 +62,7 @@
 
                         <div class="form-group row">
                             <div class="col-lg-6">
-                                <label for="category">Categorie</label>
+                                <label for="category"><strong>Categorie</strong></label>
                                 <select id="category" class="form-control" name="category" ng-model="category" required>
                                     <option value="stoomlocomotief" @if(($vehicle->category ?? 'andere') == 'stoomlocomotief')  selected="selected" @endif>
                                         Stoomlocomotief
@@ -87,7 +87,7 @@
 
                             @if (($vehicle ?? ''))
                                 <div class="col-lg-6 input-group">
-                                <label for="state">Status</label>
+                                <label for="state"><strong>Status</strong></label>
                                     <select id="state" class="form-control" name="state">
                                         <option value="in_dienst"  @if(($vehicle->state ?? 'andere') == 'in_dienst')  selected="selected" @endif>
                                             In Dienst
@@ -109,7 +109,7 @@
                             @else
                             
                                 <div class="col-lg-6">
-                                    <label for="state">Status</label>
+                                    <label for="state"><strong>Status</strong></label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <select class="input-group-text form-control" name="state">
@@ -146,193 +146,343 @@
                     <div class="container">
                         <div class="form-group row">
                             <div class="col-lg-6" ng-switch on="category">
-                                <label for="description">Wielen en assen</label>
+
+                                <label for="description"><strong>Algemeen</strong></label>
                                 <div class="mb-1 input-group">
-                                    <input value="Wieldiameter" class="form-control col" type="text" name="prop2[]" readonly/>
-                                    <input placeholder="Waarde" class="col form-control" type="text" name="val2[]" required/>
+                                    <input value="Bouwjaar" class="form-control col" type="text" name="prop2[]" disabled/>
+                                    <input class="col form-control" type="text" name="val2[]" tabindex="0">
                                 </div>
                                 <div class="mb-1 input-group">
-                                    <input value="Aantal assen" class="form-control col" type="text" name="prop2[]" readonly/>
-                                    <input placeholder="Waarde" class="col form-control" type="text" name="val2[]" required/>
+                                    <input value="Lengte (in m)" class="form-control col" type="text" name="prop2[]" disabled/>
+                                    <input class="col form-control" type="text" name="val2[]">
+                                </div>
+                                <div class="mb-4 input-group">
+                                    <input value="Maximum snelheid (in km/u)" class="form-control col" type="text" name="prop2[]" disabled/>
+                                    <input class="col form-control" type="text" name="val2[]">
+                                </div>
+
+                                <label for="description"><strong>Wielen en assen</strong></label>
+                                <div class="mb-1 input-group">
+                                    <input value="Wieldiameter (in mm)" class="form-control col" type="text" name="prop2[]" disabled/>
+                                    <input class="col form-control" type="text" name="val2[]">
                                 </div>
                                 <div class="mb-1 input-group">
-                                    <input value="Infrabel uitzondering" class="form-control col" type="text" name="prop2[]" readonly/>
-                                    <input class="col form-control" type="checkbox" name="val2[]" value="Ja"/>
+                                    <input value="Aantal assen" class="form-control col" type="text" name="prop2[]" disabled/>
+                                    <select name="val2[]" class="col form-control">
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4" selected>4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
                                 </div>
                                 <div class="mb-1 input-group">
-                                    <input value="Kleinste as-afstand" class="form-control col" type="text" name="prop2[]" readonly/>
-                                    <input placeholder="Waarde" class="col form-control" type="text" name="val2[]" required/>
+                                    <input value="Draaistellen" class="form-control col" type="text" name="prop2[]" disabled/>
+                                    <select name="val2[]" class="col form-control">
+                                        <option value="Ja" selected>Ja</option>
+                                        <option value="Nee">Nee</option>
+                                    </select>   
                                 </div>
                                 <div class="mb-1 input-group">
-                                    <input value="Grootste as-afstand" class="form-control col" type="text" name="prop2[]" readonly/>
-                                    <input placeholder="Waarde" class="col form-control" type="text" name="val2[]" required/>
+                                    <input value="Monobloc wielen" class="form-control col" type="text" name="prop2[]" disabled/>
+                                    <select name="val2[]" class="col form-control">
+                                        <option value="Ja" selected>Ja</option>
+                                        <option value="Nee">Nee</option>
+                                        <option value="Gedeeltelijk">Gedeeltelijk</option>
+                                    </select>   
                                 </div>
                                 <div class="mb-1 input-group">
-                                    <input value="Spoorbreedte" class="form-control col" type="text" name="prop2[]" readonly/>
-                                    <input placeholder="Waarde" class="col form-control" type="text" name="val2[]" required/>
+                                    <input value="Infrabel uitzondering" class="form-control col" type="text" name="prop2[]" disabled/>
+                                    <select name="val2[]" class="col form-control">
+                                        <option value="Ja" selected>Ja</option>
+                                        <option value="Nee">Nee</option>
+                                    </select>   
+                                </div>
+                                <div class="mb-1 input-group">
+                                    <input value="Kleinste as-afstand (in mm)" class="form-control col" type="text" name="prop2[]" disabled/>
+                                    <input class="col form-control" type="text" name="val2[]">
+                                </div>
+                                <div class="mb-1 input-group">
+                                    <input value="Grootste as-afstand (in mm)" class="form-control col" type="text" name="prop2[]" disabled/>
+                                    <input class="col form-control" type="text" name="val2[]">
+                                </div>
+                                <div class="mb-4 input-group">
+                                    <input value="Spoorbreedte (in mm)" class="form-control col" type="text" name="prop2[]" disabled/>
+                                    <input class="col form-control" type="text" name="val2[]" value="1435">
+                                </div>
+
+                                <label for="description"><strong>Gewicht</strong></label>
+                                <div class="mb-1 input-group">
+                                    <input value="Leeg (in ton)" class="form-control col" type="text" name="prop2[]" disabled/>
+                                    <input class="col form-control" type="text" name="val2[]">
+                                </div>
+                                <div class="mb-1 input-group">
+                                    <input value="Beladen (in ton)" class="form-control col" type="text" name="prop2[]" disabled/>
+                                    <input class="col form-control" type="text" name="val2[]">
+                                </div>
+                                <div class="mb-4 input-group">
+                                    <input value="Remgewicht (in ton)" class="form-control col" type="text" name="prop2[]" disabled/>
+                                    <input class="col form-control" type="text" name="val2[]"/>
                                 </div>
                             </div>
                             
                             <div class="col-lg-6" ng-switch on="category">
                                 
-                            <label for="description">Eigenschappen</label>
+                            <label for="description"><strong>Eigenschappen</strong></label>
 
                                 <div ng-switch-when="motorwagen" >
                                     <div class="mb-1 input-group">
-                                        <input value="As-indeling" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="As-indeling" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]">
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Boogstraal" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Minimum boogstraal (in m)" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]">
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Snelheidsaanduiding" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Snelheidsaanduiding" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <select name="val[]" class="col form-control">
+                                            <option value="Teloc RT12">Teloc RT12</option>
+                                            <option value="Teloc RT15" selected>Teloc RT15</option>
+                                            <option value="Tacograaf Kienzle">Tacograaf Kienzle</option>
+                                            <option value="GPS met dataregistratie">GPS met dataregistratie</option>
+                                            <option value="GPS zonder dataregistratie">GPS zonder dataregistratie</option>
+                                            <option value="Andere">Andere</option>
+                                        </select>
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Remregime" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Remregime" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <select name="val[]" class="col form-control">
+                                            <option value="P-O" selected>P-O</option>
+                                            <option value="P-W">P-W</option>
+                                            <option value="P-K">P-K</option>
+                                            <option value="R-O">R-O</option>
+                                            <option value="R-K">R-K</option>
+                                            <option value="Andere">Andere</option>
+                                        </select>
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Zitplaatsen" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Zitplaatsen" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]">
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Motor" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Motor" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]">
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Vermogen" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Vermogen (in kW)" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]">
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Overbrenging" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Overbrenging" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]">
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Toerental" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Toerental (in tr/min)" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]">
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Brandstoftanks" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Brandstoftanks (in liter)" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]">
+                                    </div>
+                                    <div class="mb-1 input-group">
+                                        <input value="Opmerkingen" class="form-control col py-5" type="text" name="prop[]" disabled/>
+                                        <textarea name="val[]" rows="3" class="col form-control"></textarea>
                                     </div>
                                 </div>
 
                                 <div ng-switch-when="diesellocomotief" >
                                     <div class="mb-1 input-group">
-                                        <input value="As-indeling" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="As-indeling" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]">
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Min. Boogstraal" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Minimum boogstraal (in m)" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]">
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Snelheidsaanduiding" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Snelheidsaanduiding" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <select name="val[]" class="col form-control">
+                                            <option value="Teloc RT12" selected>Teloc RT12</option>
+                                            <option value="Teloc RT15">Teloc RT15</option>
+                                            <option value="Tacograaf Kienzle">Tacograaf Kienzle</option>
+                                            <option value="GPS met dataregistratie">GPS met dataregistratie</option>
+                                            <option value="GPS zonder dataregistratie">GPS zonder dataregistratie</option>
+                                            <option value="Andere">Andere</option>
+                                        </select>
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Remregime" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Remregime" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <select name="val[]" class="col form-control">
+                                            <option value="P-O" selected>P-O</option>
+                                            <option value="P-W">P-W</option>
+                                            <option value="P-K">P-K</option>
+                                            <option value="R-O">R-O</option>
+                                            <option value="R-K">R-K</option>
+                                            <option value="Andere">Andere</option>
+                                        </select>
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Vermogen" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Vermogen (in kW)" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]">
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Motor" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Motor" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]">
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Overbrenging" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Overbrenging" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]">
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Toerental" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Toerental (in tr/min)" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]">
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Brandstoftanks" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Brandstoftanks (in liter)" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]">
+                                    </div>
+                                    <div class="mb-1 input-group">
+                                        <input value="Opmerkingen" class="form-control col py-5" type="text" name="prop[]" disabled/>
+                                        <textarea name="val[]" rows="3" class="col form-control"></textarea>
                                     </div>
                                 </div>
 
                                 <div ng-switch-when="stoomlocomotief" >
                                     <div class="mb-1 input-group">
-                                        <input value="As-indeling" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="As-indeling" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]">
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Keteldruk" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Minimum boogstraal (in m)" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]">
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Snelheidsaanduiding" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Keteldruk (in bar)" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]">
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Remregime" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Snelheidsaanduiding" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <select name="val[]" class="col form-control">
+                                            <option value="Teloc RT12">Teloc RT12</option>
+                                            <option value="Teloc RT15">Teloc RT15</option>
+                                            <option value="Tacograaf Kienzle">Tacograaf Kienzle</option>
+                                            <option value="GPS met dataregistratie" selected>GPS met dataregistratie</option>
+                                            <option value="GPS zonder dataregistratie">GPS zonder dataregistratie</option>
+                                            <option value="Andere">Andere</option>
+                                        </select>
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Koleninhoud" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Remregime" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <select name="val[]" class="col form-control">
+                                            <option value="P-O" selected>P-O</option>
+                                            <option value="P-W">P-W</option>
+                                            <option value="P-K">P-K</option>
+                                            <option value="R-O">R-O</option>
+                                            <option value="R-K">R-K</option>
+                                            <option value="Andere">Andere</option>
+                                        </select>
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Watertankinhoud" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Koleninhoud (in ton)" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]">
+                                    </div>
+                                    <div class="mb-1 input-group">
+                                        <input value="Watertankinhoud (in m³)" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]">
+                                    </div>
+                                    <div class="mb-1 input-group">
+                                        <input value="Opmerkingen" class="form-control col py-5" type="text" name="prop[]" disabled/>
+                                        <textarea name="val[]" rows="3" class="col form-control"></textarea>
                                     </div>
                                 </div>
 
                                 <div ng-switch-when="rijtuig" >
                                     <div class="mb-1 input-group">
-                                        <input value="Min. Boogstraal" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Minimum boogstraal (in m)" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]">
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Zitplaatsen" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Zitplaatsen" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]">
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Intercirculatie" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Intercirculatie" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <select name="val[]" class="col form-control">
+                                            <option value="Ja" selected>Ja</option>
+                                            <option value="Nee">Nee</option>
+                                            <option value="Aan één kant">Aan één kant</option>
+                                        </select>
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Eindseinen" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Eindseinen" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <select name="val[]" class="col form-control">
+                                            <option value="Ja" selected>Ja</option>
+                                            <option value="Nee">Nee</option>
+                                            <option value="Aan één kant">Aan één kant</option>
+                                        </select>
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Remverdeler" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Remverdeler" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <select name="val[]" class="col form-control">
+                                            <option value="Oerlikon EST" selected>Oerlikon EST</option>
+                                            <option value="Tripleklep">Tripleklep</option>
+                                            <option value="Knorr">Knorr</option>
+                                            <option value="Westinghouse">Westinghouse</option>
+                                            <option value="Andere">Andere</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-1 input-group">
+                                        <input value="Opmerkingen" class="form-control col py-5" type="text" name="prop[]" disabled/>
+                                        <textarea name="val[]" rows="3" class="col form-control"></textarea>
                                     </div>
                                 </div>
 
                                 <div ng-switch-when="werfvoertuig" >
                                     <div class="mb-1 input-group">
-                                        <input value="Max. Hoogte" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Max. hoogte (in m)" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]"/>
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Breedte" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Breedte (in m)" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]"/>
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Max. Laadoppervlakte" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Max. laadoppervlakte (in m²)" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]"/>
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Draag-vermogen" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Draagvermogen (in ton)" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <input class="col form-control" type="text" name="val[]"/>
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Eindseinen" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Eindseinen" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <select name="val[]" class="col form-control">
+                                            <option value="Ja" selected>Ja</option>
+                                            <option value="Nee">Nee</option>
+                                            <option value="Aan één kant">Aan één kant</option>
+                                        </select>
                                     </div>
                                     <div class="mb-1 input-group">
-                                        <input value="Remverdeler" class="form-control col" type="text" name="prop[]" readonly/>
-                                        <input placeholder="Waarde" class="col form-control" type="text" name="val[]" required/>
+                                        <input value="Remverdeler" class="form-control col" type="text" name="prop[]" disabled/>
+                                        <select name="val[]" class="col form-control">
+                                            <option value="Niet aanwezig" selected>Niet aanwezig</option>
+                                            <option value="Oerlikon EST">Oerlikon EST</option>
+                                            <option value="Tripleklep">Tripleklep</option>
+                                            <option value="Knorr">Knorr</option>
+                                            <option value="Westinghouse">Westinghouse</option>
+                                            <option value="Andere">Andere</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-1 input-group">
+                                        <input value="Opmerkingen" class="form-control col py-5" type="text" name="prop[]" disabled/>
+                                        <textarea name="val[]" rows="3" class="col form-control"></textarea>
                                     </div>
                                 </div>
                                 
@@ -341,6 +491,10 @@
                                         <input placeholder="Eigenschap" class="form-control col" type="text" name="prop[]" required/>
                                         <input placeholder="Waarde" class="form-control col" type="text" name="val[]" required/>
                                         <div id="addbtn" class="col-1 btn btn-primary add_field_button">+</div>
+                                    </div>
+                                    <div class="mb-1 input-group">
+                                        <input value="Opmerkingen" class="form-control col py-5" type="text" name="prop[]" disabled/>
+                                        <textarea name="val[]" rows="3" class="col form-control"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -353,97 +507,77 @@
             <div class="card mb-1">
                 <div class="card-body">
                     <div class="form-group row">
-                        <label for="image" class="col-lg-4 col-form-label text-lg-right">Afbeeldingen trein</label>
-                        
                         <div class="col-lg-6">
+                        <label for="image" class="col-lg-4 col-form-label"><strong>Treinfoto's</strong></label>
+                            <div class="col-lg-6">
                             <label class="btn btn-primary" id="image" for="image-train">
-                                <input name="image[]" id="image-train" type="file" style="display:none" 
-                                onchange="$('#vehicle-image').html(this.files[0].name)" multiple>
-                                Kies bestand
-                            </label>
+                            <input name="image[]" id="image-train" type="file" style="display:none" onchange="$('#vehicle-image').html(this.files[0].name)" multiple>Kies bestand</label>
                             <span class='label label-info' id="vehicle-image"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="image" class="col-lg-4 col-form-label"><strong>DVIS Dossier</strong></label>
+                            <div class="col-lg-6">
+                            <label class="btn btn-primary" id="dossier" for="dossier-train">
+                            <input name="dossier[]" id="dossier-train" type="file" style="display:none" onchange="$('#vehicle-dossier').html(this.files[0].name)" multiple>Kies bestand</label>
+                            <span class='label label-info' id="vehicle-dossier"></span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-                            
-            <div class="card mb-1">
+             <div ng-switch on="category">               
+            <div class="card mb-1" ng-switch-when="stoomlocomotief" >
                 <div class="card-body">
                     <div class="form-group container row">
                         <div class="col-lg-4">
-                            <br>
-                            <p>Inwendig onderzoek:</p>
+                            <p><strong>Inwendig onderzoek:</strong></p>
                         </div>
-                    
-                        
                         <div class="col-lg-4">
-                            <label for="int-examimations" class="">Document</label><br>
-                            <label class="btn btn-primary" id="ex-iput-label" for="int-examimations">
-                                <input name="external" id="int-examimations" type="file" style="display:none" 
-                                onchange="$('#int-exam').html(this.files[0].name)">
-                                Kies bestand
-                            </label>
+                                <label class="btn btn-primary" id="ex-iput-label" for="int-examimations">
+                                <input name="external" id="int-examimations" type="file" style="display:none" onchange="$('#int-exam').html(this.files[0].name)">Kies bestand</label>
                             <span class='label label-info' id="int-exam"></span>
                         </div>
-                    
                         <div class="col-lg-4">
                             <label for="int-date" class="">Datum Onderzoek</label>
-                            <input type="datetime-local" name="date-internal" class="form-control" id="staticEmail">
+                            <input type="date" name="date-internal" class="form-control" id="staticEmail">
                         </div>
                     </div>
-
-
-                    
+                  
                     <div class="form-group container row">
                         <div class="col-lg-4">
-                            <br>
-                            <p>Uitwendig onderzoek:</p>
+                            <p><strong>Uitwendig onderzoek:</strong></p>
                         </div>
-                    
-                        
                         <div class="col-lg-4 text-left">
-                            <label for="image">Document</label><br>
-                            <label class="btn btn-primary" id="in-iput-label" for="ext-examimations">
-                                <input name="internal" id="ext-examimations" type="file" style="display:none" 
-                                onchange="$('#ext-exam').html(this.files[0].name)">
-                                Kies bestand
-                            </label>
+                                <label class="btn btn-primary" id="in-iput-label" for="ext-examimations">
+                                <input name="internal" id="ext-examimations" type="file" style="display:none" onchange="$('#ext-exam').html(this.files[0].name)">Kies bestand</label>
                             <span class='label label-info' id="ext-exam"></span>
                         </div>
                     
                         <div class="col-lg-4 text-left">
                             <label for="staticEmail">Datum Onderzoek</label>
-                            <input type="datetime-local" name="date-external" class="form-control" id="staticEmail">
+                            <input type="date" name="date-external" class="form-control" id="staticEmail">
                         </div>
                     </div>
 
-
-
                     <div class="form-group container row">
                         <div class="col-lg-4">
-                            <br>
-                            <p>Waterdruktest:</p>
+                                <p><strong>Waterdrukproef:</strong></p>
                         </div>
-                    
-                        
                         <div class="col-lg-4 text-left">
-                            <label for="water-examimations">Document</label><br>
-                            <label class="btn btn-primary" id="water-label" for="water-examimations">
-                                <input name="water" id="water-examimations" type="file" style="display:none" 
-                                onchange="$('#water-exam').html(this.files[0].name)">
-                                Kies bestand
-                            </label>
+                                <label class="btn btn-primary" id="water-label" for="water-examimations">
+                                <input name="water" id="water-examimations" type="file" style="display:none" onchange="$('#water-exam').html(this.files[0].name)">Kies bestand</label>
                             <span class='label label-info' id="water-exam"></span>
                         </div>
-                    
                         <div class="col-lg-4 text-left">
                             <label for="staticEmail">Datum Onderzoek</label>
-                            <input type="datetime-local" name="date-water" class="form-control" id="staticEmail">
+                            <input type="date" name="date-water" class="form-control" id="staticEmail">
                         </div>
                     </div>
                 </div>
             </div>
+             </div>
             @endif
 
                             

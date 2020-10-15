@@ -16967,3 +16967,8 @@ readers do not read off random characters that represent icons */
   font-weight: 900;
 }
 
+/*!
+ * Font Awesome Free 5.15.0 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */@font-face{font-family:Font Awesome\ 5 Free;font-style:normal;font-weight:900;font-display:block;src:url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.eot?06d5f03672635f0a67010721e8e9929d);src:url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.eot?06d5f03672635f0a67010721e8e9929d) format("embedded-opentype"),url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff2?55071ae1abc18726e23174192ebc0b68) format("woff2"),url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.woff?56df75b6af75497c7a9a2b0847981f40) format("woff"),url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.ttf?2eaaf2a78a47f2d9ae8d1d836eed5d24) format("truetype"),url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-solid-900.svg?8e39d5d50ead4840070075889f5daeaa) format("svg")}.fa,.fas{font-family:Font Awesome\ 5 Free;font-weight:900}
+/*# sourceMappingURL=app.css.map*/
