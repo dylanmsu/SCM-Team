@@ -24,13 +24,13 @@
                  * https://codepen.io/aniketkudale/pen/BaNxomQ
                  * Dutch palette
                  */
-                array('img' => './images/main/svg/vehicles.svg',  'name' => 'Rollend matrieel', 'target' => "",        'link' => route('vehicles')),
-                array('img' => './images/main/svg/splitflap.svg', 'name' => 'Splitflap',        'target' => "",        'link' => route('ris')),
-                array('img' => './images/main/svg/members.svg',   'name' => 'Ledenbeheer',      'target' => "",        'link' => route('members')),
-                array('img' => './images/main/svg/files.svg',     'name' => 'Mijn bestanden',   'target' => "",        'link' => "/filemanager"),
-                array('img' => './images/main/svg/maps.svg',      'name' => 'Train maps',       'target' => "",        'link' => route('map')),
-                array('img' => './images/main/svg/links.svg',     'name' => 'Links',            'target' => "",        'link' => route('links')),
-                array('img' => './images/main/svg/forms.svg',     'name' => 'Forms',            'target' => "",        'link' => "/form-builder/forms"),
+                array('img' => './images/main/svg/vehicles.svg',  'name' => 'Rollend matrieel', 'target' => "",  'link' => route('vehicles')),
+                array('img' => './images/main/svg/splitflap.svg', 'name' => 'Splitflap',        'target' => "",  'link' => route('ris')),
+                array('img' => './images/main/svg/members.svg',   'name' => 'Ledenbeheer',      'target' => "",  'link' => route('members')),
+                array('img' => './images/main/svg/files.svg',     'name' => 'Mijn bestanden',   'target' => "",  'link' => "/filemanager"),
+                array('img' => './images/main/svg/maps.svg',      'name' => 'Train maps',       'target' => "",  'link' => route('map')),
+                array('img' => './images/main/svg/links.svg',     'name' => 'Links',            'target' => "",  'link' => route('links')),
+                array('img' => './images/main/svg/forms.svg',     'name' => 'Forms',            'target' => "",  'link' => "/form-builder/forms"),
             );
         @endphp
 

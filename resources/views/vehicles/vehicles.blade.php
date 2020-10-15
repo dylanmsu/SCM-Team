@@ -241,7 +241,7 @@
                                         </div>
                                     @empty
                                         <div class="card">
-                                            <div class="card-header">No Data :(</div>
+                                            <div class="card-header text-center">Geen voertuigen :(</div>
                                         </div>
                                     @endforelse
                                 </div>
