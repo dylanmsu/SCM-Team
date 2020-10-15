@@ -46,27 +46,74 @@ class SplitflapController extends Controller
             ->where('board','B')
             ->orderBy('time', 'asc')
             ->take(1)->get();
-            
-        return [
-            'A' => [
-                'first_text' => $splitfflapsA[0]->first_text,
-                'second_text' => $splitfflapsA[0]->second_text,
-                'icon_index' => $splitfflapsA[0]->icon_index,
-                'hours' => Carbon::createFromFormat('Y-m-d H:m:i', $splitfflapsA[0]->time ?? Carbon::now())->format('H'),
-                'minutes' => Carbon::createFromFormat('Y-m-d H:m:i', $splitfflapsA[0]->time ?? Carbon::now())->format('m'),
-                'date' => $splitfflapsA[0]->time,
-                'align' => $splitfflapsA[0]->align
-            ],
-            'B' => [
-                'first_text' => $splitfflapsB[0]->first_text,
-                'second_text' => $splitfflapsB[0]->second_text,
-                'icon_index' => $splitfflapsB[0]->icon_index,
-                'hours' => Carbon::createFromFormat('Y-m-d H:m:i', $splitfflapsB[0]->time ?? Carbon::now())->format('H'),
-                'minutes' => Carbon::createFromFormat('Y-m-d H:m:i', $splitfflapsB[0]->time ?? Carbon::now())->format('m'),
-                'date' => $splitfflapsB[0]->time,
-                'align' => $splitfflapsB[0]->align
-            ]
-        ];
+
+        if ($splitfflapsA == '[]') {
+            $splitfflapsA = [ 0 => [
+                'first_text' => 'geen treinen',
+                'second_text' => 'vandaag',
+                'icon_index' => 0,
+                'hours' => 0,
+                'minutes' => 0,
+                'align' => 'center'
+            ]];
+        }
+
+        if ($splitfflapsB[0] == null && $splitfflapsA[0] !== null) {
+            return [
+                'A' => [
+                    'first_text' => $splitfflapsA[0]->first_text,
+                    'second_text' => $splitfflapsA[0]->second_text,
+                    'icon_index' => $splitfflapsA[0]->icon_index,
+                    'hours' => Carbon::createFromFormat('Y-m-d H:m:i', $splitfflapsA[0]->time ?? Carbon::now())->format('H'),
+                    'minutes' => Carbon::createFromFormat('Y-m-d H:m:i', $splitfflapsA[0]->time ?? Carbon::now())->format('m'),
+                    'date' => $splitfflapsA[0]->time,
+                    'align' => $splitfflapsA[0]->align
+                ],
+                'B' => [
+                    0 => 'null'
+                ]
+            ];
+        }
+
+        if ($splitfflapsA[0] == null && $splitfflapsB[0] !== null) {
+            return [
+                'A' => [
+                    0 => 'null'
+                ],
+                'B' => [
+                    'first_text' => $splitfflapsB[0]->first_text,
+                    'second_text' => $splitfflapsB[0]->second_text,
+                    'icon_index' => $splitfflapsB[0]->icon_index,
+                    'hours' => Carbon::createFromFormat('Y-m-d H:m:i', $splitfflapsB[0]->time ?? Carbon::now())->format('H'),
+                    'minutes' => Carbon::createFromFormat('Y-m-d H:m:i', $splitfflapsB[0]->time ?? Carbon::now())->format('m'),
+                    'date' => $splitfflapsB[0]->time,
+                    'align' => $splitfflapsB[0]->align
+                ]
+            ];
+        }
+        
+        if ($splitfflapsA !== '[]' && $splitfflapsB !== '[]') {
+            return [
+                'A' => [
+                    'first_text' => $splitfflapsA[0]->first_text,
+                    'second_text' => $splitfflapsA[0]->second_text,
+                    'icon_index' => $splitfflapsA[0]->icon_index,
+                    'hours' => Carbon::createFromFormat('Y-m-d H:m:i', $splitfflapsA[0]->time ?? Carbon::now())->format('H'),
+                    'minutes' => Carbon::createFromFormat('Y-m-d H:m:i', $splitfflapsA[0]->time ?? Carbon::now())->format('m'),
+                    'date' => $splitfflapsA[0]->time,
+                    'align' => $splitfflapsA[0]->align
+                ],
+                'B' => [
+                    'first_text' => $splitfflapsB[0]->first_text,
+                    'second_text' => $splitfflapsB[0]->second_text,
+                    'icon_index' => $splitfflapsB[0]->icon_index,
+                    'hours' => Carbon::createFromFormat('Y-m-d H:m:i', $splitfflapsB[0]->time ?? Carbon::now())->format('H'),
+                    'minutes' => Carbon::createFromFormat('Y-m-d H:m:i', $splitfflapsB[0]->time ?? Carbon::now())->format('m'),
+                    'date' => $splitfflapsB[0]->time,
+                    'align' => $splitfflapsB[0]->align
+                ]
+            ];
+        }
     }
 
     public function board_info(Request $request) {

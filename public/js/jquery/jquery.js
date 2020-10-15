@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -97,14 +97,14 @@ eval("var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!\n * jQ
 
 /***/ }),
 
-/***/ 2:
+/***/ 1:
 /*!**************************************************!*\
   !*** multi ./node_modules/jquery/dist/jquery.js ***!
   \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\projects\scm\scm-app\node_modules\jquery\dist\jquery.js */"./node_modules/jquery/dist/jquery.js");
+module.exports = __webpack_require__(/*! D:\scm-webapp\node_modules\jquery\dist\jquery.js */"./node_modules/jquery/dist/jquery.js");
 
 
 /***/ })
