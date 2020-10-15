@@ -156,8 +156,8 @@
                                     <input placeholder="Waarde" class="col form-control" type="text" name="val2[]" required/>
                                 </div>
                                 <div class="mb-1 input-group">
-                                    <input value="Infrabel Uitzondering" class="form-control col" type="text" name="prop2[]" readonly/>
-                                    <input placeholder="Waarde" class="col form-control" type="text" name="val2[]" required/>
+                                    <input value="Infrabel uitzondering" class="form-control col" type="text" name="prop2[]" readonly/>
+                                    <input class="col form-control" type="checkbox" name="val2[]" value="Ja"/>
                                 </div>
                                 <div class="mb-1 input-group">
                                     <input value="Kleinste as-afstand" class="form-control col" type="text" name="prop2[]" readonly/>
