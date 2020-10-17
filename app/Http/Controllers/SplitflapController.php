@@ -54,12 +54,12 @@ class SplitflapController extends Controller
                 "first_text" => "geen treinen",
                 "second_text" => "vandaag",
                 "icon_index" => 10,
-                "time" => "2020-10-15 00:01:01"
+                "time" => "2020-10-15 00:00:00"
             );
 
             $splitfflapsA = json_decode(json_encode($json), false);
         }
-
+        
         if ($splitfflapsB == '[]') {
             $json[0] = array(
                 'board' => "B",
@@ -67,7 +67,7 @@ class SplitflapController extends Controller
                 "first_text" => "geen treinen",
                 "second_text" => "vandaag",
                 "icon_index" => 10,
-                "time" => "2020-10-15 00:01:01"
+                "time" => "2020-10-15 00:00:00"
             );
 
             $splitfflapsB = json_decode(json_encode($json), false);
@@ -79,8 +79,8 @@ class SplitflapController extends Controller
                 'first_text' => $splitfflapsA[0]->first_text,
                 'second_text' => $splitfflapsA[0]->second_text,
                 'icon_index' => $splitfflapsA[0]->icon_index,
-                'hours' => Carbon::createFromFormat('Y-m-d H:m:i', $splitfflapsA[0]->time ?? Carbon::now())->format('%h'),
-                'minutes' => Carbon::createFromFormat('Y-m-d H:m:i', $splitfflapsA[0]->time ?? Carbon::now())->format('%i'),
+                'hours' => Carbon::createFromFormat('Y-m-d H:i:s', $splitfflapsA[0]->time)->hour,
+                'minutes' => Carbon::createFromFormat('Y-m-d H:i:s', $splitfflapsA[0]->time)->minute,
                 'date' => $splitfflapsA[0]->time,
                 'align' => $splitfflapsA[0]->align
             ],
@@ -88,8 +88,8 @@ class SplitflapController extends Controller
                 'first_text' => $splitfflapsB[0]->first_text,
                 'second_text' => $splitfflapsB[0]->second_text,
                 'icon_index' => $splitfflapsB[0]->icon_index,
-                'hours' => Carbon::createFromFormat('Y-m-d H:m:i', $splitfflapsB[0]->time ?? Carbon::now())->format('%h'),
-                'minutes' => Carbon::createFromFormat('Y-m-d H:m:i', $splitfflapsB[0]->time ?? Carbon::now())->format('%i'),
+                'hours' => Carbon::createFromFormat('Y-m-d H:i:s', $splitfflapsB[0]->time)->hour,
+                'minutes' => Carbon::createFromFormat('Y-m-d H:i:s', $splitfflapsB[0]->time)->minute,
                 'date' => $splitfflapsB[0]->time,
                 'align' => $splitfflapsB[0]->align
             ]
