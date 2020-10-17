@@ -37,7 +37,7 @@ class RegistrationSuccessful extends Notification
         return [
             'severity' => 'success',
             'title' => 'Welkom!',
-            'body' => 'Yaay! Je bent geregistreerd! :)',
+            'body' => 'Yaay! Je bent geregistreerd! :-)',
         ];
     }
 

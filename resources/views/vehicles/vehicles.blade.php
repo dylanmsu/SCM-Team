@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Rollend')
+@section('title', 'Rollend Materieel')
 
 @section('content')
 <div class="container px-1">
@@ -43,7 +43,7 @@
 
                             <!-- title and add-button of the normaalspoor list -->
                             <div class="card-header">
-                                <h3 class="mb-0 text-capitalize">{{$list['type']}}Spoor</h3>
+                                <h3 class="mb-0 text-capitalize">{{$list['type']}}spoor</h3>
                             </div>
 
                             <!-- category accoidion list -->
@@ -241,7 +241,11 @@
                                         </div>
                                     @empty
                                         <div class="card">
+<<<<<<< HEAD
+                                            <div class="card-header text-center">Geen gegevens beschikbaar <strong>:-(</strong></div>
+=======
                                             <div class="card-header text-center">Geen voertuigen :(</div>
+>>>>>>> 36b87482def400e6a4377f263768cbb70c3be676
                                         </div>
                                     @endforelse
                                 </div>
