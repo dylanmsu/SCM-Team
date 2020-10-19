@@ -57,4 +57,4 @@ Route::post('/rollend/prop/toevoegen/{id}', 'Vehicles\VehiclePropertyController@
 Route::post('/user/update_settings', 'UserController@settings')->name('usersettings');
 Route::post('/markeer-als-gelezen', 'UserController@mark_read')->name('markNotification');
 
-Route::get('/dragon', 'Dragon\DragonController@index')->name('dragon');
+Route::get('/eliott', 'Eliott\EliottController@index')->name('eliott');

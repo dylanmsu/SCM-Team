@@ -9,6 +9,6 @@ class DragonController extends Controller
 {
     public function index()
     {
-        return view('dragon.dragon');
+        return view('eliott.eliott');
     }
 }
