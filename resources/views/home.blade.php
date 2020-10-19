@@ -24,7 +24,7 @@
                  * https://codepen.io/aniketkudale/pen/BaNxomQ
                  * Dutch palette
                  */
-                array('img' => './images/main/svg/dragon.svg',    'name' => 'Dragon',           'target' => "",  'link' => "#"),
+                array('img' => './images/main/svg/dragon.svg',    'name' => 'Dragon',           'target' => "",  'link' => route('dragon')),
                 array('img' => './images/main/svg/vehicles.svg',  'name' => 'Rollend matrieel', 'target' => "",  'link' => route('vehicles')),
                 array('img' => './images/main/svg/splitflap.svg', 'name' => 'Splitflap',        'target' => "",  'link' => route('ris')),
                 array('img' => './images/main/svg/members.svg',   'name' => 'Ledenbeheer',      'target' => "",  'link' => route('members')),
