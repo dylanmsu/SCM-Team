@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
-/*Auth::routes([
+//Auth::routes();
+Auth::routes([
    'register' =>    false, // Disable registration Routes...
    'verify' =>      false, // Disable email Verification Routes...
-]);*/
+]);
 
 Route::redirect('/', '/home', 301); // set landing page to '/home' by redirecting from '/' to '/home'
 
@@ -40,8 +40,8 @@ Route::get('/map', 'MapController@trainmap')->name('map');
 Route::get('/leden', 'MemberController@members')->name('members');
 Route::get('/leden/toevoegen', 'MemberController@members')->name('add_members');
 
-Route::get('/rollend/export', 'Vehicles\VehicleController@export')->name('export-vehicles');
 Route::get('/rollend', 'Vehicles\VehicleViewsController@vehicles')->name('vehicles');
+Route::get('/rollend/export', 'Vehicles\VehicleController@export')->name('export-vehicles');
 Route::get('/rollend/toevoegen', 'Vehicles\VehicleViewsController@add_vehicle_page')->name('add_vehicle_page');
 Route::get('/rollend/bijwerken/{id}', 'Vehicles\VehicleViewsController@show_edit')->name('show_edit');
 Route::get('/rollend/eigenschappen/{id}', 'Vehicles\VehicleViewsController@show_properties')->name('show_properties');

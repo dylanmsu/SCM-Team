@@ -11,7 +11,7 @@ class HomeController extends Controller
     // adds middleware auth so users who arent logged in cant access these methods
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth' , ['except' => ['home']]);
     }
 
     // fetches data from database and returns to view
