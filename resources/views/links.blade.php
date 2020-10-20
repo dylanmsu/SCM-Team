@@ -11,7 +11,6 @@
         @php
             $links = array(
                 array('img' => './images/main/scmteam.png',   'name' => 'SCM-Team',            'target' => "",        'link' => "https://www.scm-team.be"),
-                array('img' => './images/main/one.png',       'name' => 'One.com',             'target' => "",        'link' => "https://login.one.com/cp"),
                 array('img' => './images/main/stme.png',      'name' => 'Stoomtrein Maldegem', 'target' => "",        'link' => "https://www.stoomtreinmaldegem.be/nl"),
                 array('img' => './images/main/academy.png',   'name' => 'Academy',             'target' => "",        'link' => "https://academy.scm-team.be"),
                 array('img' => './images/main/forms.png',     'name' => 'SCM-Formulieren',     'target' => "",        'link' => "https://forms.scm-team.be"),
@@ -37,7 +36,7 @@
                                 <div class="my-3 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12" >
                                     <a class="card my-card text-decoration-none" href="{{ $card['link'] }}" target="{{ $card['target'] }}">
                                         <img class="card-img-top" src="{{ asset($card['img']) }}">
-                                        <div class="py-3 card-footer">{{ $card['name'] }}</div>
+                                        <div class="py-3 card-footer text-uppercase"><strong>{{ $card['name'] }}</strong></div>
                                     </a>
                                 </div>
                             @endforeach

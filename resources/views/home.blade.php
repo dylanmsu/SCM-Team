@@ -43,20 +43,14 @@
                 <div class="card-body">
                     <div class="container">
                         <div class="row text-center">
-                            <!-- loop through the array above to create the cards -->
+                           <!-- loop through the array above to create the cards -->
                             @foreach ($home_cards as $card)
-
                                 <div class="my-4 col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12" >
-
                                     <a class="card shadow-sm my-card text-decoration-none" href="{{ $card['link'] }}" target="{{ $card['target'] }}">
-
                                         <img class="card-img-top" src="{{ asset($card['img']) }}">
                                         <div class="py-3 card-footer text-uppercase"><strong>{{ $card['name'] }}</strong></div>
-                                        
                                     </a>
-
                                 </div>
-
                             @endforeach
                         </div>
                     </div>
