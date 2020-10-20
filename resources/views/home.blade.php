@@ -24,15 +24,25 @@
                  * https://codepen.io/aniketkudale/pen/BaNxomQ
                  * Dutch palette
                  */
-                array('img' => './images/main/svg/dragon.svg',    'name' => 'Elliott',          'target' => "",  'link' => route('elliott')),
-                array('img' => './images/main/svg/vehicles.svg',  'name' => 'Rollend matrieel', 'target' => "",  'link' => route('vehicles')),
-                array('img' => './images/main/svg/splitflap.svg', 'name' => 'Splitflap',        'target' => "",  'link' => route('ris')),
-                array('img' => './images/main/svg/members.svg',   'name' => 'Ledenbeheer',      'target' => "",  'link' => route('members')),
-                array('img' => './images/main/svg/files.svg',     'name' => 'Mijn bestanden',   'target' => "",  'link' => "/filemanager"),
-                array('img' => './images/main/svg/links.svg',     'name' => 'Links',            'target' => "",  'link' => route('links')),
-                array('img' => './images/main/svg/forms.svg',     'name' => 'Forms',            'target' => "",  'link' => "/form-builder/forms"),
-                array('img' => './images/main/svg/track.svg',     'name' => 'Tracking',         'target' => "",  'link' => route('map')),
-                array('img' => './images/main/svg/settings.svg',  'name' => 'Instellingen',     'target' => "",  'link' => "#"),
+                array('img' => './images/main/svg/dragon.svg',          'name' => 'Elliott',          'target' => "",  'link' => route('elliott')),
+                array('img' => './images/main/svg/vehicles.svg',        'name' => 'Rollend matrieel', 'target' => "",  'link' => route('vehicles')),
+                array('img' => './images/main/svg/splitflap.svg',       'name' => 'Splitflap',        'target' => "",  'link' => route('ris')),
+                
+                array('img' => './images/main/svg/members.svg',         'name' => 'Ledenbeheer',      'target' => "",  'link' => route('members')),
+                array('img' => './images/main/svg/files.svg',           'name' => 'Mijn bestanden',   'target' => "",  'link' => "/filemanager"),
+                array('img' => './images/main/svg/links.svg',           'name' => 'Links',            'target' => "",  'link' => route('links')),
+                
+                array('img' => './images/main/svg/forms.svg',           'name' => 'Forms',            'target' => "",  'link' => "/form-builder/forms"),
+                array('img' => './images/main/svg/track.svg',           'name' => 'Tracking',         'target' => "",  'link' => route('map')),
+                array('img' => './images/main/svg/vbs.svg',             'name' => 'Veiligheidsbeheer','target' => "",  'link' => "#"),
+               
+                array('img' => './images/main/svg/report.svg',          'name' => 'Meldingen',        'target' => "",  'link' => "#"),
+                array('img' => './images/main/svg/order.svg',           'name' => 'Aanvragen',        'target' => "",  'link' => "#"),
+                array('img' => './images/main/svg/documentation.svg',   'name' => 'Documentatie',     'target' => "",  'link' => "#"),
+                
+                array('img' => './images/main/svg/planner.svg',         'name' => 'Planner',           'target' => "", 'link' => "#"),
+                array('img' => './images/main/svg/profile.svg',         'name' => 'Mijn Profiel',     'target' => "",  'link' => "#"),
+                array('img' => './images/main/svg/settings.svg',        'name' => 'Instellingen',     'target' => "",  'link' => "#"),
             );
         @endphp
 

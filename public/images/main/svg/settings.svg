@@ -7,34 +7,34 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   sodipodi:docname="settings.svg"
-   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
-   id="svg8"
-   version="1.1"
-   viewBox="0 0 93.397919 65.616661"
+   width="93.397919mm"
    height="65.616661mm"
-   width="93.397919mm">
+   viewBox="0 0 93.397919 65.616661"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="settings.svg">
   <defs
      id="defs2" />
   <sodipodi:namedview
-     inkscape:document-rotation="0"
-     inkscape:window-maximized="1"
-     inkscape:window-y="-8"
-     inkscape:window-x="-8"
-     inkscape:window-height="1017"
-     inkscape:window-width="1920"
-     showgrid="false"
-     inkscape:current-layer="layer1"
-     inkscape:document-units="mm"
-     inkscape:cy="-16.986291"
-     inkscape:cx="311.56551"
-     inkscape:zoom="0.7"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0.0"
-     borderopacity="1.0"
-     bordercolor="#666666"
+     id="base"
      pagecolor="#ffffff"
-     id="base" />
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="311.56551"
+     inkscape:cy="-16.986291"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="1912"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:document-rotation="0" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -48,14 +48,14 @@
     </rdf:RDF>
   </metadata>
   <g
-     transform="translate(-2.7343631e-6,-231.38333)"
-     id="layer1"
+     inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     inkscape:label="Layer 1">
+     id="layer1"
+     transform="translate(-2.7343631e-6,-231.38333)">
     <path
-       transform="matrix(0.26458333,0,0,0.26458333,2.7343631e-6,231.38333)"
+       id="rect854"
+       style="opacity:1;fill:#fda7df;fill-opacity:1;stroke:#000000;stroke-width:0.264343;stroke-opacity:0"
        d="M 0.1328125 0.1328125 L 0.1328125 247.86719 L 352.86719 247.86719 L 352.86719 0.1328125 L 0.1328125 0.1328125 z M 126.9082 57.857422 L 159.97461 82.658203 L 159.97461 98.701172 L 187.51367 126.24023 C 194.69557 122.70097 203.60852 123.86435 209.57617 129.83203 L 239.82812 160.08398 C 243.57409 163.82995 243.57409 169.92744 239.82812 173.69922 L 226.21484 187.3125 C 222.46888 191.08428 216.37139 191.08428 212.59961 187.3125 L 182.34766 157.06055 C 176.37997 151.09286 175.24241 142.17991 178.75586 134.99805 L 151.2168 107.45898 L 135.17383 107.45898 L 110.37305 74.392578 L 126.9082 57.857422 z M 205.07227 57.878906 C 208.20788 57.849445 211.34686 58.2131 214.4082 58.96875 C 216.75911 59.56293 217.58592 62.482442 215.88086 64.1875 L 196.66016 83.408203 L 199.57812 100.94922 L 217.12109 103.86914 L 236.3418 84.648438 C 238.04686 82.943417 240.96488 83.743307 241.5332 86.068359 C 244.58162 98.313726 241.32665 111.8003 231.74219 121.38477 C 228.38377 124.74322 224.50951 127.22332 220.42773 129.00586 L 215.41602 123.99414 C 210.24921 118.82734 203.37745 115.98438 196.06641 115.98438 C 193.94798 115.98438 191.77812 116.24353 189.68555 116.73438 L 168.47461 95.523438 C 168.29376 85.835677 171.75643 76.122512 179.11914 68.759766 C 186.2881 61.590777 195.66542 57.967289 205.07227 57.878906 z M 154.57617 122.52148 L 169.22461 137.16797 C 167.95873 142.61895 168.55224 148.2262 170.51562 153.36719 L 138.58398 185.29688 C 132.12545 191.75537 121.66361 191.75537 115.20508 185.29688 C 108.74655 178.83834 108.74655 168.3765 115.20508 161.91797 L 154.57617 122.52148 z M 126.9082 167.39453 C 123.47227 167.39453 120.70703 170.15977 120.70703 173.5957 C 120.70703 177.00578 123.49809 179.79492 126.9082 179.79492 C 130.34413 179.79492 133.10742 177.00578 133.10742 173.5957 C 133.10742 170.15977 130.34413 167.39453 126.9082 167.39453 z "
-       style="opacity:1;fill:#12cbc4;fill-opacity:1;stroke:#000000;stroke-width:0.264343;stroke-opacity:0"
-       id="rect854" />
+       transform="matrix(0.26458333,0,0,0.26458333,2.7343631e-6,231.38333)" />
   </g>
 </svg>

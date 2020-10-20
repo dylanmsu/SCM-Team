@@ -11,13 +11,10 @@ class HomeController extends Controller
     // adds middleware auth so users who arent logged in cant access these methods
     public function __construct()
     {
-        $this->middleware('auth' , ['except' => ['home','trainmap']]);
+        $this->middleware('auth' , ['except' => ['home']]);
     }
 
-    public function trainmap()
-    {
-        return view('trainmap');
-    }
+   
 
     // fetches data from database and returns to view
     public function home()
