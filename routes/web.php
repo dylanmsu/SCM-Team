@@ -58,3 +58,14 @@ Route::post('/user/update_settings', 'UserController@settings')->name('usersetti
 Route::post('/markeer-als-gelezen', 'UserController@mark_read')->name('markNotification');
 
 Route::get('/elliott', 'Elliott\ElliottController@index')->name('elliott');
+
+/**
+ * reference: https://laravel.com/docs/8.x/routing
+ * 
+ * To add a page;
+ * 
+ *   "Route::get('/your-route', 'YourController@your_method');"
+ * 
+ *   now when you visit http://....../your_route, the view specified in the method
+ *   'your_method' in controller 'YourController' will be displayed.
+ */
