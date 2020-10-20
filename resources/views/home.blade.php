@@ -18,33 +18,49 @@
             </div>
         @endif
 
+    @guest
         @php
             $home_cards = array(
+            /**
+            * https://codepen.io/aniketkudale/pen/BaNxomQ
+            * Dutch palette
+            */
+           array('img' => './images/main/guest/register.svg',        'name' => 'Inschrijven',      'target' => "",  'link' => route('register')),
+           array('img' => './images/main/guest/links.svg',           'name' => 'Links',            'target' => "",  'link' => route('links')),
+           array('img' => './images/main/guest/forms.svg',           'name' => 'Forms',            'target' => "",  'link' => "/form-builder/forms"),
+           array('img' => './images/main/guest/track.svg',           'name' => 'Tracking',         'target' => "",  'link' => route('map')),
+           array('img' => './images/main/guest/planner.svg',         'name' => 'Planner',           'target' => "", 'link' => "#"),
+           );
+        @endphp
+    @else
+        @php
+         $home_cards = array(
                 /**
                  * https://codepen.io/aniketkudale/pen/BaNxomQ
                  * Dutch palette
                  */
-                array('img' => './images/main/svg/dragon.svg',          'name' => 'Elliott',          'target' => "",  'link' => route('elliott')),
-                array('img' => './images/main/svg/vehicles.svg',        'name' => 'Rollend matrieel', 'target' => "",  'link' => route('vehicles')),
-                array('img' => './images/main/svg/splitflap.svg',       'name' => 'Splitflap',        'target' => "",  'link' => route('ris')),
+                array('img' => './images/main/admin/dragon.svg',          'name' => 'Elliott',          'target' => "",  'link' => route('elliott')),
+                array('img' => './images/main/admin/vehicles.svg',        'name' => 'Rollend matrieel', 'target' => "",  'link' => route('vehicles')),
+                array('img' => './images/main/admin/splitflap.svg',       'name' => 'Splitflap',        'target' => "",  'link' => route('ris')),
                 
-                array('img' => './images/main/svg/members.svg',         'name' => 'Ledenbeheer',      'target' => "",  'link' => route('members')),
-                array('img' => './images/main/svg/files.svg',           'name' => 'Mijn bestanden',   'target' => "",  'link' => "/filemanager"),
-                array('img' => './images/main/svg/links.svg',           'name' => 'Links',            'target' => "",  'link' => route('links')),
+                array('img' => './images/main/admin/members.svg',         'name' => 'Ledenbeheer',      'target' => "",  'link' => route('members')),
+                array('img' => './images/main/admin/files.svg',           'name' => 'Mijn bestanden',   'target' => "",  'link' => "/filemanager"),
+                array('img' => './images/main/admin/links.svg',           'name' => 'Links',            'target' => "",  'link' => route('links')),
                 
-                array('img' => './images/main/svg/forms.svg',           'name' => 'Forms',            'target' => "",  'link' => "/form-builder/forms"),
-                array('img' => './images/main/svg/track.svg',           'name' => 'Tracking',         'target' => "",  'link' => route('map')),
-                array('img' => './images/main/svg/vbs.svg',             'name' => 'Veiligheidsbeheer','target' => "",  'link' => "#"),
+                array('img' => './images/main/admin/forms.svg',           'name' => 'Forms',            'target' => "",  'link' => "/form-builder/forms"),
+                array('img' => './images/main/admin/track.svg',           'name' => 'Tracking',         'target' => "",  'link' => route('map')),
+                array('img' => './images/main/admin/vbs.svg',             'name' => 'Veiligheidsbeheer','target' => "",  'link' => "#"),
                
-                array('img' => './images/main/svg/report.svg',          'name' => 'Meldingen',        'target' => "",  'link' => "#"),
-                array('img' => './images/main/svg/order.svg',           'name' => 'Aanvragen',        'target' => "",  'link' => "#"),
-                array('img' => './images/main/svg/docs.svg',   'name' => 'Documentatie',     'target' => "",  'link' => "#"),
+                array('img' => './images/main/admin/report.svg',          'name' => 'Meldingen',        'target' => "",  'link' => "#"),
+                array('img' => './images/main/admin/order.svg',           'name' => 'Aanvragen',        'target' => "",  'link' => "#"),
+                array('img' => './images/main/admin/docs.svg',            'name' => 'Documentatie',     'target' => "",  'link' => "#"),
                 
-                array('img' => './images/main/svg/planner.svg',         'name' => 'Planner',           'target' => "", 'link' => "#"),
-                array('img' => './images/main/svg/profile.svg',         'name' => 'Mijn Profiel',     'target' => "",  'link' => "#"),
-                array('img' => './images/main/svg/settings.svg',        'name' => 'Instellingen',     'target' => "",  'link' => "#"),
+                array('img' => './images/main/admin/planner.svg',         'name' => 'Planner',           'target' => "", 'link' => "#"),
+                array('img' => './images/main/admin/profile.svg',         'name' => 'Mijn Profiel',     'target' => "",  'link' => "#"),
+                array('img' => './images/main/admin/settings.svg',        'name' => 'Instellingen',     'target' => "",  'link' => "#"),
             );
         @endphp
+    @endguest
 
         <!-- left side -->
         <div class="col-md-8">
