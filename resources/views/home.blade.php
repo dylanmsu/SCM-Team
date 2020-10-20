@@ -36,6 +36,12 @@
             );
         @endphp
 
+        @guest
+
+        @else
+            
+        @endguest
+
         <!-- left side -->
         <div class="col-md-8">
 
