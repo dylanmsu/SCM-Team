@@ -14,6 +14,8 @@ class HomeController extends Controller
         $this->middleware('auth' , ['except' => ['home']]);
     }
 
+   
+
     // fetches data from database and returns to view
     public function home()
     {
