@@ -10,11 +10,11 @@
     <div class="row justify-content-center">
         @php
             $links = array(
-                array('img' => './images/links/svg/scmteam.svg',   'name' => 'SCM-Team',            'target' => "",        'link' => "https://www.scm-team.be"),
-                array('img' => './images/links/svg/sme.svg',       'name' => 'Stoomtrein Maldegem', 'target' => "",        'link' => "https://www.stoomtreinmaldegem.be/nl"),
-                array('img' => './images/links/svg/academy.svg',   'name' => 'Academy',             'target' => "",        'link' => "https://academy.scm-team.be"),
-                array('img' => './images/links/svg/forms.svg',     'name' => 'SCM-Formulieren',     'target' => "",        'link' => "https://forms.scm-team.be"),
-                array('img' => './images/links/svg/mailchimp.svg', 'name' => 'Mailchimp',           'target' => "",        'link' => "https://login.mailchimp.com/")
+                array('img' => './images/links/scmteam.svg',   'name' => 'SCM-Team',                  'target' => "",        'link' => "https://www.scm-team.be"),
+                array('img' => './images/links/sme.svg',       'name' => 'Stoomtrein Maldegem-Eeklo', 'target' => "",        'link' => "https://www.stoomtreinmaldegem.be/nl"),
+                array('img' => './images/links/academy.svg',   'name' => 'SCM-Academy',               'target' => "",        'link' => "https://academy.scm-team.be"),
+                array('img' => './images/links/forms.svg',     'name' => 'SCM-Formulieren',           'target' => "",        'link' => "https://forms.scm-team.be"),
+                array('img' => './images/links/mailchimp.svg', 'name' => 'Mailchimp',                 'target' => "",        'link' => "https://login.mailchimp.com/")
             );
         @endphp
 
