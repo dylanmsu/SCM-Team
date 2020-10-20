@@ -38,7 +38,7 @@
                
                 array('img' => './images/main/svg/report.svg',          'name' => 'Meldingen',        'target' => "",  'link' => "#"),
                 array('img' => './images/main/svg/order.svg',           'name' => 'Aanvragen',        'target' => "",  'link' => "#"),
-                array('img' => './images/main/svg/documentation.svg',   'name' => 'Documentatie',     'target' => "",  'link' => "#"),
+                array('img' => './images/main/svg/docs.svg',   'name' => 'Documentatie',     'target' => "",  'link' => "#"),
                 
                 array('img' => './images/main/svg/planner.svg',         'name' => 'Planner',           'target' => "", 'link' => "#"),
                 array('img' => './images/main/svg/profile.svg',         'name' => 'Mijn Profiel',     'target' => "",  'link' => "#"),
