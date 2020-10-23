@@ -38,12 +38,7 @@
 <div class="col-md-8">
 
    <div class="card">
-       <nav aria-label="breadcrumb">
-           <ol class="breadcrumb">
-               <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-               <li class="breadcrumb-item active" aria-current="page">TrainMaps</li>
-           </ol>
-       </nav>
+       
        <div class="card-body">
            <div class="container">
                <div class="row text-center">
