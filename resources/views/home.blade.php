@@ -29,7 +29,7 @@
            array('img' => './images/main/guest/links.svg',           'name' => 'Links',            'target' => "",  'link' => route('links')),
            array('img' => './images/main/guest/forms.svg',           'name' => 'Forms',            'target' => "",  'link' => "/form-builder/forms"),
            array('img' => './images/main/guest/track.svg',           'name' => 'Tracking',         'target' => "",  'link' => route('map')),
-           array('img' => './images/main/guest/planner.svg',         'name' => 'Planner',           'target' => "", 'link' => "#"),
+           array('img' => './images/main/guest/planner.svg',         'name' => 'Planner',          'target' => "", 'link' => route('planner')),
            );
         @endphp
     @else
@@ -55,7 +55,7 @@
                 array('img' => './images/main/admin/order.svg',           'name' => 'Aanvragen',        'target' => "",  'link' => "#"),
                 array('img' => './images/main/admin/docs.svg',            'name' => 'Documentatie',     'target' => "",  'link' => "#"),
                 
-                array('img' => './images/main/admin/planner.svg',         'name' => 'Planner',           'target' => "", 'link' => "#"),
+                array('img' => './images/main/admin/planner.svg',         'name' => 'Planner',           'target' => "", 'link' => route('planner')),
                 array('img' => './images/main/admin/profile.svg',         'name' => 'Mijn Profiel',     'target' => "",  'link' => "#"),
                 array('img' => './images/main/admin/settings.svg',        'name' => 'Instellingen',     'target' => "",  'link' => "#"),
             );

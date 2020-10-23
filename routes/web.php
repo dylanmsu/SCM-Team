@@ -59,6 +59,8 @@ Route::post('/markeer-als-gelezen', 'UserController@mark_read')->name('markNotif
 
 Route::get('/elliott', 'Elliott\ElliottController@index')->name('elliott');
 
+Route::get('/planner', 'Planner\PlannerController@planner')->name('planner');
+
 /**
  * reference: https://laravel.com/docs/8.x/routing
  * 
