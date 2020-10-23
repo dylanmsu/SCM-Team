@@ -11,6 +11,7 @@ class PlannerController extends Controller
     {
         $this->middleware('auth' , ['except' => ['planner']]);
     }
+    
     public function planner()
     {
         return view('planner.planner');
