@@ -1,3 +1,5 @@
+<p align="center"><a href="https://admin.scm-team.be" target="_blank"><img style="filter: contrast(100%)" src="https://admin.scm-team.be/./images/icon/ms-icon-310x310.png" width="310px"></a></p>
+
 ## About SCM-Team
 
 SCM-Team is an internal webtool to manage most of the automatable of the steam-train center in maldegem. 
