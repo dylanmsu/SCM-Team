@@ -2,7 +2,7 @@
 
 ## About SCM-Team
 
-SCM-Team is an internal webtool to manage most of the automatable of the steam-train center in maldegem. 
+SCM-Team is an internal webtool to manage most of the automatable tasks of the steam-train center in maldegem. 
 some functionalities are:
 
 - [Vehicle managment system](https://admin.scm-team.be/rollend).
