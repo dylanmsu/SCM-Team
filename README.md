@@ -8,11 +8,11 @@ some functionalities are:
 - Train scheduler and api for a splitflap display.
 - Form buider.
 
-Some of these features may change or new ones can ve added.
+Some of these features may change or new ones can be added.
 
 ## Contributing
 
-If you would like to contribute to this wensite, feel free to create a pull request.
+If you would like to contribute to this website, feel free to create a pull request.
 
 ## Security Vulnerabilities
 
@@ -20,4 +20,4 @@ If you discover a security vulnerability within this website, please send an e-m
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [Apache License 2.0](http://www.apache.org/licenses).
+This website is open-sourced software licensed under the [Apache License 2.0](http://www.apache.org/licenses).
