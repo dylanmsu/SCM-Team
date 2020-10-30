@@ -1,3 +1,9 @@
+<!--
+    Hey! Curious about the source code?
+    check it out on GitHub:
+    https://github.com/DylanMissu/SCM-Team
+-->
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -43,7 +49,7 @@
         {{App::setLocale('nl')}}
 
         <script>
-            
+            console.log("%cWhat do you think you are doing??", "background: red; color: yellow; font-size: x-large");
             
             // adds an alert message before submitting a form
             // ex: 
