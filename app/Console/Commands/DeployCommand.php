@@ -37,7 +37,7 @@ class DeployCommand extends Command
      */
     public function handle()
     {
-        echo "deploying laravel... \n";
+        echo "deploying laravel... and fetching cookies \n";
         # Turn on maintenance mode
         exec('php artisan down || true');
 
