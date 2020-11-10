@@ -75,15 +75,15 @@
                                     <option value="3"  @if(($icon_index ?? '0') == 3)  selected="selected" @endif>L</option>
                                     <option value="4"  @if(($icon_index ?? '0') == 4)  selected="selected" @endif>P</option>
                                     <option value="5"  @if(($icon_index ?? '0') == 5)  selected="selected" @endif>EXP</option>
-                                    <option value="6"  @if(($icon_index ?? '0') == 6)  selected="selected" @endif>IR</option>
-                                    <option value="7"  @if(($icon_index ?? '0') == 7)  selected="selected" @endif>IT</option>
-                                    <option value="8"  @if(($icon_index ?? '0') == 8)  selected="selected" @endif>?</option>
-                                    <option value="9"  @if(($icon_index ?? '0') == 9)  selected="selected" @endif>INT</option>
-                                    <option value="10" @if(($icon_index ?? '0') == 10) selected="selected" @endif>T</option>
-                                    <option value="11" @if(($icon_index ?? '0') == 11) selected="selected" @endif>STOOM</option>
-                                    <option value="12" @if(($icon_index ?? '0') == 12) selected="selected" @endif>MW</option>
-                                    <option value="13" @if(($icon_index ?? '0') == 13) selected="selected" @endif>KRUIS</option>
-                                    <option value="14" @if(($icon_index ?? '0') == 14) selected="selected" @endif>ORIENT</option>
+                                    <option value="6"  @if(($icon_index ?? '0') == 6)  selected="selected" @endif>INT</option>
+                                    <option value="7"  @if(($icon_index ?? '0') == 7)  selected="selected" @endif>T</option>
+                                    <option value="8"  @if(($icon_index ?? '0') == 8)  selected="selected" @endif>STOOM</option>
+                                    <option value="9"  @if(($icon_index ?? '0') == 9)  selected="selected" @endif>DIESEL</option>
+                                    <option value="10" @if(($icon_index ?? '0') == 10) selected="selected" @endif>MOTORWAGEN</option>
+                                    <option value="11" @if(($icon_index ?? '0') == 11) selected="selected" @endif>GROEP</option>
+                                    <option value="12" @if(($icon_index ?? '0') == 12) selected="selected" @endif>SINT</option>
+                                    <option value="13" @if(($icon_index ?? '0') == 13) selected="selected" @endif>EVENT</option>
+                                    <option value="14" @if(($icon_index ?? '0') == 14) selected="selected" @endif>DINING</option>
                                     <option value="15" @if(($icon_index ?? '0') == 15) selected="selected" @endif>DIENST</option>
                                 </select>
                             </div>

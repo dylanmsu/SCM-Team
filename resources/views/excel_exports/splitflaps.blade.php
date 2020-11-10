@@ -37,31 +37,31 @@
                         <td>EXT</td>
                         @break
                     @case(6)
-                        <td style="color: red">IR</td>
-                        @break
-                    @case(7)
-                        <td style="color: red">IT</td>
-                        @break
-                    @case(8)
-                        <td style="color: red">?</td>
-                        @break
-                    @case(9)
                         <td style="color: red">INT</td>
                         @break
-                    @case(10)
+                    @case(7)
                         <td>T</td>
                         @break
-                    @case(11)
+                    @case(8)
                         <td>STOOM</td>
                         @break
+                    @case(9)
+                        <td>DIESEL</td>
+                        @break
+                    @case(10)
+                        <td>MOTORWAGEN</td>
+                        @break
+                    @case(11)
+                        <td>GROEP</td>
+                        @break
                     @case(12)
-                        <td>MW</td>
+                        <td style="color: red">SINT</td>
                         @break
                     @case(13)
-                        <td>KRUIS</td>
+                        <td>EVENT</td>
                         @break
                     @case(14)
-                        <td>ORIENT</td>
+                        <td>DINING</td>
                         @break
                     @case(15)
                         <td style="color: red">DIENST</td>
