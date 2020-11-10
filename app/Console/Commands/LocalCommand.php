@@ -4,14 +4,14 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class DeployCommand extends Command
+class LocalCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'deploy';
+    protected $signature = 'local';
 
     /**
      * The console command description.
@@ -80,9 +80,15 @@ class DeployCommand extends Command
 
         # Turn off maintenance mode
         shell_exec('php artisan up');
-        
-        shell_exec('exit');
-        
+
+        echo "\n";
+        echo "Done with the boring stuff, now levelling up!!! \n";
+        echo "Starting webserver ... and getting coffee to dunk the cookies \n";
+        echo "Have fun! \n";
+        echo "..::DO NOT CLOSE THIS WINDOW, IT WIL DESTROY YOUR COMPUTER::.. \n";
+        # Starting webserver
+        shell_exec('php artisan serv');
+
         return 0;
     }
 }
