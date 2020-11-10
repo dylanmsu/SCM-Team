@@ -85,7 +85,10 @@ class DeployCommand extends Command
         echo "\n";
         echo "All done, goodnight zzz... \n";
         echo "\n";
-
+        
+        # Going to bed
+        shell_exec('exit');
+        
         return 0;
     }
 }
