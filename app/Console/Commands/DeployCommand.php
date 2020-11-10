@@ -81,8 +81,11 @@ class DeployCommand extends Command
         # Turn off maintenance mode
         shell_exec('php artisan up');
         
-        shell_exec('exit');
         
+        echo "\n";
+        echo "All done, goodnight zzz... \n";
+        echo "\n";
+
         return 0;
     }
 }
