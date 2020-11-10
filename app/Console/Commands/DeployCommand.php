@@ -44,7 +44,8 @@ class DeployCommand extends Command
         # Pull the latest changes from the git repository
         # git reset --hard
         # git clean -df
-        echo "pulling changes from github...";
+        echo "\n";
+        echo "pulling changes from github... or somewhere else \n";
         shell_exec('git pull origin master');
 
         # Install/update composer dependecies
@@ -76,6 +77,13 @@ class DeployCommand extends Command
 
         # Turn off maintenance mode
         shell_exec('php artisan up');
+
+        echo "\n";
+        echo "Starting webserver ... and getting coffee to dunk the cookies \n";
+        echo "Have fun! \n";
+        echo "DO NOT CLOSE THIS WINDOW, IT WIL DESTROY YOUR COMPUTER \n";
+        # Starting webserver
+        shell_exec('php artisan serv');
 
         return 0;
     }
