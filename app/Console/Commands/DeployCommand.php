@@ -79,10 +79,6 @@ class DeployCommand extends Command
         exec('npm run production');
 
         # Turn off maintenance mode
-<<<<<<< HEAD
-        exec('php artisan up');
-
-=======
         shell_exec('php artisan up');
         
         
@@ -93,7 +89,6 @@ class DeployCommand extends Command
         # Going to bed
         shell_exec('exit');
         
->>>>>>> 838c81f9d69bfdeb5c3330034e999769b4be3cf8
         return 0;
     }
 }
