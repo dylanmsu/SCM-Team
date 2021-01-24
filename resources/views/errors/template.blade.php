@@ -19,6 +19,8 @@
             renderer.setClearColor( 0x1a202c, 1);
             document.body.appendChild( renderer.domElement );
 
+            window.addEventListener( 'resize', onWindowResize, false );
+
             /*const planeGeometry = new THREE.PlaneGeometry( 200, 200, 32, 32 );
             const planeMaterial = new THREE.MeshPhongMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
             const plane = new THREE.Mesh( geometry, material );
@@ -78,6 +80,14 @@
 
                 animate();
             }
+
+            function onWindowResize(){
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+
+                renderer.setSize( window.innerWidth, window.innerHeight );
+            }
+
 		</script>
 	</body>
 </html>
