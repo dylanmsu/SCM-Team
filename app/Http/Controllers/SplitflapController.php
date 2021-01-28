@@ -41,6 +41,12 @@ class SplitflapController extends Controller
         ]);
         $boardData->save();
 
+        if ($request->get('lightLevel') >= 750) {
+            $whiteLed = 128;
+        } else {
+            $whiteLed = 0;
+        }
+
         $splitfflapsA = splitflap::
             select('*')
             ->whereRaw('time >= now()')
@@ -64,9 +70,11 @@ class SplitflapController extends Controller
                 "first_text" => "geen treinen",
                 "second_text" => "vandaag",
                 "icon_index" => 10,
-                "time" => "2020-10-15 00:00:00"
+                "time" => "2020-10-15 00:00:00",
+                "white_led" => 0
             );
 
+            $whiteLed = 0;
             $splitfflapsA = json_decode(json_encode($json), false);
         }
         
@@ -77,9 +85,11 @@ class SplitflapController extends Controller
                 "first_text" => "geen treinen",
                 "second_text" => "vandaag",
                 "icon_index" => 10,
-                "time" => "2020-10-15 00:00:00"
+                "time" => "2020-10-15 00:00:00",
+                "white_led" => 0
             );
 
+            $whiteLed = 0;
             $splitfflapsB = json_decode(json_encode($json), false);
         }
         
@@ -92,7 +102,10 @@ class SplitflapController extends Controller
                 'hours' => Carbon::createFromFormat('Y-m-d H:i:s', $splitfflapsA[0]->time)->hour,
                 'minutes' => Carbon::createFromFormat('Y-m-d H:i:s', $splitfflapsA[0]->time)->minute,
                 'date' => $splitfflapsA[0]->time,
-                'align' => $splitfflapsA[0]->align
+                'align' => $splitfflapsA[0]->align,
+                'white_led' => $whiteLed,
+                'rgb_strip' => ['color' => '#FF00FF', 'mode' => 1]
+
             ],
             'B' => [
                 'first_text' => $splitfflapsB[0]->first_text,
@@ -101,7 +114,9 @@ class SplitflapController extends Controller
                 'hours' => Carbon::createFromFormat('Y-m-d H:i:s', $splitfflapsB[0]->time)->hour,
                 'minutes' => Carbon::createFromFormat('Y-m-d H:i:s', $splitfflapsB[0]->time)->minute,
                 'date' => $splitfflapsB[0]->time,
-                'align' => $splitfflapsB[0]->align
+                'align' => $splitfflapsB[0]->align,
+                'white_led' => $whiteLed,
+                'rgb_strip' => ['color' => '#FF00FF', 'mode' => 1]
             ]
         ];
     }

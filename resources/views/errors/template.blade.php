@@ -9,10 +9,11 @@
 		</style>
 	</head>
 	<body>
+        {{ $exception->getMessage() }}
 		<script src="{{ asset('./js/three.js-master/build/three.js') }}"></script>
 		<script>
 			const scene = new THREE.Scene();
-			const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 100000 );
+			const camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 100000 );
 
 			const renderer = new THREE.WebGLRenderer();
             renderer.setSize( window.innerWidth, window.innerHeight );
@@ -34,7 +35,7 @@
             const light = new THREE.AmbientLight( 0x000000 ); // soft white light
             scene.add( light );
 
-			camera.position.z = 200;
+			camera.position.z = 700;
 
             const loader = new THREE.FontLoader();
             let font = undefined;
@@ -44,9 +45,9 @@
             } );
 
             function loadText() {
-                const textgeometry = new THREE.TextGeometry( '{{ $exception->getStatusCode() }}',{
+                const textgeometry = new THREE.TextGeometry( 'Not found - {{ $exception->getStatusCode()}}',{
                     font: font,
-                    size: 80,
+                    size: 60,
                     height: 1,
                     curveSegments: 12,
                     bevelEnabled: true,
