@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\splitflap;
+use App\BoardData;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Exports\VehicleExport;
@@ -30,7 +31,16 @@ class SplitflapController extends Controller
     }
 
     
-    public function getBoards() {
+    public function getBoards(Request $request) {
+
+        $boardData = new BoardData([
+            'board' => $request->get('board'), 
+            'temperature' => $request->get('temperature'),
+            'humidity' => $request->get('humidity'),
+            'lightLevel' => $request->get('lightLevel')
+        ]);
+        $boardData->save();
+
         $splitfflapsA = splitflap::
             select('*')
             ->whereRaw('time >= now()')
