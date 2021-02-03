@@ -41,7 +41,7 @@ class SplitflapController extends Controller
         ]);
         $boardData->save();
 
-        if ($request->get('lightLevel') >= 750) {
+        if ($request->get('lightLevel') <= 750) {
             $whiteLed = 128;
         } else {
             $whiteLed = 0;
@@ -74,7 +74,6 @@ class SplitflapController extends Controller
                 "white_led" => 0
             );
 
-            $whiteLed = 0;
             $splitfflapsA = json_decode(json_encode($json), false);
         }
         
@@ -89,7 +88,6 @@ class SplitflapController extends Controller
                 "white_led" => 0
             );
 
-            $whiteLed = 0;
             $splitfflapsB = json_decode(json_encode($json), false);
         }
         
