@@ -249,8 +249,12 @@ class SplitflapController extends Controller
     public function graphs()
     {
         $data = boardData::select('temperature', 'humidity', 'created_at')->where('board', 'A')->orderBy('created_at');
-
         return view('reizigersInformatie/board-data',["data" => $data]);
+    }
+
+    public function settings()
+    {
+        return view('reizigersInformatie/board-settings');
     }
 
 }

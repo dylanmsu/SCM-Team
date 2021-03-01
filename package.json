@@ -37,6 +37,7 @@
         "puppeteer": "^5.3.1",
         "vue-chartjs": "^3.5.1",
         "vue-chartkick": "^1.0.0",
+        "vue-color": "^2.8.1",
         "vue-resize-text": "^0.1.1"
     }
 }

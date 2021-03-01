@@ -1,17 +1,14 @@
+import { Chrome } from 'vue-color'
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-import Chartkick from 'vue-chartkick'
-import Chart from 'chart.js'
-
 require('./bootstrap');
 
 window.Vue = require('vue');
-
-Vue.use(Chartkick.use(Chart))
 
 /**
  * The following block of code may be used to automatically register your
@@ -34,6 +31,12 @@ Vue.component('my-icon', require('./components/SplitflapIcon.vue').default);
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    components: {
+        'chrome-picker': Chrome,
+    },
+    data: {
+        color: '#ff0000'
+    }
 });
 

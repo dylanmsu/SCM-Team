@@ -32,6 +32,7 @@ Route::get('/ris', 'SplitflapController@reizigersinformatie')->name('ris');
 Route::get('/ris/export', 'SplitflapController@export')->name('export-splitflaps');
 Route::get('/ris/bord-setup', 'SplitflapController@board_setup')->name('board-setup');
 Route::get('/ris/graphs', 'SplitflapController@graphs')->name('board-graphs');
+Route::get('/ris/settings', 'SplitflapController@settings')->name('board-settings');
 Route::post('/ris/preview', 'SplitflapController@preview');
 Route::post('/ris/splitflap', 'SplitflapController@store');
 Route::post('/ris/verwijder/{id}', 'SplitflapController@delete');

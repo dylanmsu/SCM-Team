@@ -3,7 +3,10 @@
 @section('title', 'Grafieken')
 
 @push('head')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" 
+    integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.js"></script>
 
 @endpush
 
@@ -82,7 +85,7 @@
                         }]
                     }
                 }
-        })();
+        });
     });
 </script>
 @endpush
@@ -92,7 +95,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{route('ris')}}">ReizigersInformatie</a></li>
+            <li class="breadcrumb-item"><a href="{{route('user_settings')}}">Instellingen</a></li>
             <li class="breadcrumb-item active" aria-current="page">Grafieken</a></li>
         </ol>
     </nav>
