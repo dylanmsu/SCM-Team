@@ -18,7 +18,7 @@
                 data: {
                     labels: {!! json_encode($data->pluck('created_at')) !!},
                     datasets: {!! json_encode([[
-                        "label" => "Temperature",
+                        "label" => "Temperatuur",
                         'backgroundColor' => "hsla(167, 66%, 44%, 0.31)",
                         'borderColor' => "hsla(167, 66%, 44%, 0.7)",
                         "pointBorderColor" => "hsla(167, 66%, 44%, 0.7)",
@@ -35,6 +35,14 @@
                             time: {
                                 unit: 'day'
                             }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                // Include a °C sign in the ticks
+                                callback: function(value, index, values) {
+                                    return value + '°C';
+                                }
+                            }
                         }]
                     }
                 }
@@ -46,7 +54,7 @@
                 data: {
                     labels: {!! json_encode($data->pluck('created_at')) !!},
                     datasets: {!! json_encode([[
-                        "label" => "Humidity",
+                        "label" => "Luchtvochtigheid",
                         'backgroundColor' => "hsla(230, 66%, 44%, 0.31)",
                         'borderColor' => "hsla(230, 66%, 44%, 0.7)",
                         "pointBorderColor" => "hsla(230, 66%, 44%, 0.7)",
@@ -62,6 +70,14 @@
                             type: 'time',
                             time: {
                                 unit: 'day'
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                // Include a percent sign in the ticks
+                                callback: function(value, index, values) {
+                                    return value + '%';
+                                }
                             }
                         }]
                     }
