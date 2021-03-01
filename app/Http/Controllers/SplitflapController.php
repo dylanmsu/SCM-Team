@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\splitflap;
-use App\BoardData;
+use App\boardData;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Exports\VehicleExport;
@@ -41,7 +41,13 @@ class SplitflapController extends Controller
         ]);
         $boardData->save();
 
-        if ($request->get('lightLevel') >= 750) {
+        // delete all sensor values older than 7 days
+        BoardData::where('created_at', '<=', Carbon::now()->subDays(7)->toDateTimeString())->delete();
+
+        // delete all trains older than now
+        splitflap::where('created_at', '<=', Carbon::now()->toDateTimeString())->delete();
+
+        if ($request->get('lightLevel') <= 750) {
             $whiteLed = 128;
         } else {
             $whiteLed = 0;
@@ -74,7 +80,6 @@ class SplitflapController extends Controller
                 "white_led" => 0
             );
 
-            $whiteLed = 0;
             $splitfflapsA = json_decode(json_encode($json), false);
         }
         
@@ -89,7 +94,6 @@ class SplitflapController extends Controller
                 "white_led" => 0
             );
 
-            $whiteLed = 0;
             $splitfflapsB = json_decode(json_encode($json), false);
         }
         
@@ -240,6 +244,13 @@ class SplitflapController extends Controller
         splitflap::where('id', $id)->delete();
 
         return redirect()->route('ris');
+    }
+
+    public function graphs()
+    {
+        $data = boardData::select('temperature', 'humidity', 'created_at')->where('board', 'A')->orderBy('created_at');
+
+        return view('reizigersInformatie/board-data',["data" => $data]);
     }
 
 }

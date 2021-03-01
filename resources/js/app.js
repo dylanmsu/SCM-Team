@@ -4,9 +4,14 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+import Chartkick from 'vue-chartkick'
+import Chart from 'chart.js'
+
 require('./bootstrap');
 
 window.Vue = require('vue');
+
+Vue.use(Chartkick.use(Chart))
 
 /**
  * The following block of code may be used to automatically register your

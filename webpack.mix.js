@@ -18,5 +18,6 @@ mix.js('node_modules/jquery/dist/jquery.js', 'public/js/jquery').sourceMaps();
 mix.js('node_modules/jquery/dist/jquery.slim.js', 'public/js/jquery').sourceMaps();
 
 mix.js('node_modules/angular/angular.min.js', 'public/js');
+mix.js('node_modules/chart.js', 'public/js');
 
 mix.browserSync('127.0.0.1:8000');

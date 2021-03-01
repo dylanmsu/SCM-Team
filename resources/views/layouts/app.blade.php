@@ -48,6 +48,8 @@
         <!-- set language -->
         {{App::setLocale('nl')}}
 
+        @stack('head')
+
         <script>
             console.log("%cWhat do you think you are doing??", "background: red; color: yellow; font-size: x-large");
             
