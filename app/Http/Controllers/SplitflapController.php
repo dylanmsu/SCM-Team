@@ -45,7 +45,7 @@ class SplitflapController extends Controller
         BoardData::where('created_at', '<=', Carbon::now()->subDays(7)->toDateTimeString())->delete();
 
         // delete all trains older than now
-        splitflap::where('created_at', '<=', Carbon::now()->toDateTimeString())->delete();
+        //splitflap::where('created_at', '<=', Carbon::now()->toDateTimeString())->delete();
 
         if ($request->get('lightLevel') <= 750) {
             $whiteLed = 128;
@@ -246,10 +246,14 @@ class SplitflapController extends Controller
         return redirect()->route('ris');
     }
 
+    // the graphs
     public function graphs()
     {
-        $data = boardData::select('temperature', 'humidity', 'created_at')->where('board', 'A')->orderBy('created_at');
-        return view('reizigersInformatie/board-data',["data" => $data]);
+        $tempA = boardData::select('created_at as x','temperature as y')->where('board', 'A')->orderBy('created_at','DESC')->get();
+        $humidA = boardData::select('created_at as x','humidity as y')->where('board', 'A')->orderBy('created_at','DESC')->get();
+        $tempB = boardData::select('created_at as x','temperature as y')->where('board', 'B')->orderBy('created_at','DESC')->get();
+        $humidB = boardData::select('created_at as x','humidity as y')->where('board', 'B')->orderBy('created_at','DESC')->get();
+        return view('reizigersInformatie/board-data',["tempA" => $tempA, "humidA" => $humidA, "tempB" => $tempB, "humidB" => $humidB]);
     }
 
     public function settings()

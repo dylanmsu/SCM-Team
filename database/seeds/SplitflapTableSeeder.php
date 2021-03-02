@@ -13,6 +13,6 @@ class SplitflapTableSeeder extends Seeder
     {
         // create 200 fake splitflaps
         factory(App\Splitflap::class, 200)->create();
-        factory(App\BoardData::class, 100)->create();
+        factory(App\BoardData::class, 20)->create();
     }
 }

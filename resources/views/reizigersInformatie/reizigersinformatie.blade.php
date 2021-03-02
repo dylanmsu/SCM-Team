@@ -12,20 +12,81 @@
     </nav>
 
     <div class="row justify-content-center">
-        <div class="col-sm-12 col-lg-8">
-            <div class="card py-2">
-                <div class="container">
+        <div class="col-sm-12 col-lg-4">
+            <div class="card">
+                <div class="card-header container">
                     <div class="row">
-                        <div class="col-md-6 my-3 text-center text-md-left">
-                            <h2>Splitflap beheer</h2>
+                        
+                        <div class="col-md-8 my-2 text-center text-md-left">
+                            <h2 class="mb-0">Instellingen</h2>
                         </div>
-                        <div class="col-md-6 my-3 text-center text-md-right">
-                            <a href="{{route('board-setup')}}" class="ml-2 btn btn-primary"> <i class="fas fa-plus"></i> Toevoegen</a>	
-                            <a href="{{route('export-splitflaps')}}" class="m-2 btn btn-primary"> <i class="fas fa-cloud-download-alt"></i> Download Excel</a>					
+        
+                        <div class="col-md-4 my-2 text-center text-md-right">
+                            <a href="{{route('board-graphs')}}" class="ml-2 btn btn-primary"><i class="far fa-chart-bar"></i></a>					
                         </div>
                     </div>
                 </div>
-                <div class="col-md-12">
+                <div class="card-body">
+                    <form method="POST">
+                        @csrf
+
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Licht helderheid</label>
+                            <div class="btn-group btn-group-toggle form-control p-0" id="name" data-toggle="buttons">
+                                <label class="btn btn-secondary active">
+                                    <input value="darkly" type="radio" name="theme" autocomplete="off"> Uit
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input value="default" type="radio" name="theme" autocomplete="off"> Auto
+                                </label>
+                                <label class="btn btn-secondary">
+                                    <input value="superhero" type="radio" name="theme" autocomplete="off"> Aan
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">RGB mode</label>
+                            <select name="icon_index" class="form-control">
+                                <option value="0">Uit</option>
+                                <option value="1">Aan</option>
+                                <option value="2">Pulse</option>
+                                <option value="3">Regenboog</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">RGB kleur</label>
+                            <input class="form-control" type="color" name="color" value="#ff0000">
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="mx-3 my-1 btn btn-primary" formaction="{{ route('usersettings') }}">
+                                    Opslaan
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-lg-8">
+            <div class="card">
+                <div class="card-header container">
+                    <div class="row">
+                        
+                        <div class="col-md-8 my-2 text-center text-md-left">
+                            <h2 class="mb-0">Splitflap beheer</h2>
+                        </div>
+        
+                        <div class="col-md-4 text-center text-md-right">
+                            <a href="{{route('board-setup')}}" class="ml-2 btn btn-primary"> <i class="fas fa-plus"></i></a>	
+                            <a href="{{route('export-splitflaps')}}" class="m-2 btn btn-primary"> <i class="fas fa-cloud-download-alt"></i></a>						
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-body py-0 col-md-12">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
                             <thead>
