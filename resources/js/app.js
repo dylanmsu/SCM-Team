@@ -1,4 +1,3 @@
-import { Chrome } from 'vue-color'
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -31,12 +30,6 @@ Vue.component('my-icon', require('./components/SplitflapIcon.vue').default);
  */
 
 const app = new Vue({
-    el: '#app',
-    components: {
-        'chrome-picker': Chrome,
-    },
-    data: {
-        color: '#ff0000'
-    }
+    el: '#app'
 });
 
