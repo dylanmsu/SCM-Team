@@ -2,6 +2,125 @@
 
 @section('title', 'Reisigersinformatie')
 
+@push('head')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" 
+    integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+@endpush
+
+@push('scripts')
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+            "use strict";
+            window.temperature = new Chart(document.getElementById("temperature"), {
+                responsive:true,
+                maintainAspectRatio: false,
+                type: 'line',
+                data: {
+                    datasets: {!! json_encode([[
+                        "label" => "Temperatuur bord A",
+                        'backgroundColor' => "hsla(167, 66%, 44%, 0.31)",
+                        'borderColor' => "hsla(167, 66%, 44%, 0.7)",
+                        "pointBorderColor" => "hsla(167, 66%, 44%, 0.7)",
+                        "pointBackgroundColor" => "hsla(167, 66%, 44%, 0.7)",
+                        "pointHoverBackgroundColor" => "#fff",
+                        "pointHoverBorderColor" => "rgba(220,220,220,1)",
+                        'data' => $tempA,
+                    ],
+                    [
+                        "label" => "Temperatuur bord B",
+                        'backgroundColor' => "hsla(187, 66%, 44%, 0.31)",
+                        'borderColor' => "hsla(187, 66%, 44%, 0.7)",
+                        "pointBorderColor" => "hsla(187, 66%, 44%, 0.7)",
+                        "pointBackgroundColor" => "hsla(187, 66%, 44%, 0.7)",
+                        "pointHoverBackgroundColor" => "#fff",
+                        "pointHoverBorderColor" => "rgba(220,220,220,1)",
+                        'data' => $tempB,
+                    ]]) !!}
+                },
+                options: {
+                    hoverMode: 'index',
+                    stacked: false,
+                    scales: {
+                        xAxes: [{
+                            id: 'x',
+                            type: 'time',
+                            time: {
+                                unit: 'day'
+                            },
+                            ticks: {
+                                autoSkip: true,
+                                maxTicksLimit: 7
+                            }
+                        }],
+                        yAxes: [{
+                            id: 'z',
+                            ticks: {
+                                autoSkip: true,
+                                maxTicksLimit: 5,
+
+                                // Include a °C sign in the ticks
+                                callback: function(value, index, values) {
+                                    return value + '°C';
+                                }
+                            }
+                        }]
+                    }
+                }
+            });
+            window.humidity = new Chart(document.getElementById("humidity"), {
+                responsive:true,
+                maintainAspectRatio: false,
+                type: 'line',
+                data: {
+                    datasets: {!! json_encode([[
+                        "label" => "Luchtvochtigheid bord A",
+                        'backgroundColor' => "hsla(230, 66%, 44%, 0.31)",
+                        'borderColor' => "hsla(230, 66%, 44%, 0.7)",
+                        "pointBorderColor" => "hsla(230, 66%, 44%, 0.7)",
+                        "pointBackgroundColor" => "hsla(230, 66%, 44%, 0.7)",
+                        "pointHoverBackgroundColor" => "#fff",
+                        "pointHoverBorderColor" => "rgba(220,220,220,1)",
+                        'data' => $humidA,
+                    ],
+                    [
+                        "label" => "Luchtvochtigheid bord B",
+                        'backgroundColor' => "hsla(250, 66%, 44%, 0.31)",
+                        'borderColor' => "hsla(250, 66%, 44%, 0.7)",
+                        "pointBorderColor" => "hsla(250, 66%, 44%, 0.7)",
+                        "pointBackgroundColor" => "hsla(250, 66%, 44%, 0.7)",
+                        "pointHoverBackgroundColor" => "#fff",
+                        "pointHoverBorderColor" => "rgba(220,220,220,1)",
+                        'data' => $humidB,
+                    ]]) !!}
+                },
+                options: {
+                    scales: {
+                        xAxes: [{
+                            type: 'time',
+                            time: {
+                                unit: 'day'
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                autoSkip: true,
+                                maxTicksLimit: 5,
+                                // Include a percent sign in the ticks
+                                callback: function(value, index, values) {
+                                    return value + '%';
+                                }
+                            }
+                        }]
+                    }
+                }
+        });
+    });
+</script>
+@endpush
+
 @section('content')
 <div class="container">
     <nav aria-label="breadcrumb">
@@ -11,25 +130,20 @@
         </ol>
     </nav>
 
-    <div class="row justify-content-center">
-        <div class="col-sm-12 col-lg-4">
-            <div class="card">
+    <div class="row">
+        <div class="col-4">
+            <div class="card mb-3">
                 <div class="card-header container">
                     <div class="row">
-                        
-                        <div class="col-md-8 my-2 text-center text-md-left">
+                        <div class="m-2 text-center text-md-left">
                             <h2 class="mb-0">Instellingen</h2>
-                        </div>
-        
-                        <div class="col-md-4 my-2 text-center text-md-right">
-                            <a href="{{route('board-graphs')}}" class="ml-2 btn btn-primary"><i class="far fa-chart-bar"></i></a>					
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <form method="POST">
                         @csrf
-
+    
                         <div class="mb-3">
                             <label for="exampleFormControlInput1" class="form-label">Licht helderheid</label>
                             <div class="btn-group btn-group-toggle form-control p-0" id="name" data-toggle="buttons">
@@ -57,7 +171,7 @@
                             <label for="exampleFormControlTextarea1" class="form-label">RGB kleur</label>
                             <input class="form-control" type="color" name="color" value="#ff0000">
                         </div>
-
+    
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="mx-3 my-1 btn btn-primary" formaction="{{ route('usersettings') }}">
@@ -68,9 +182,20 @@
                     </form>
                 </div>
             </div>
-        </div>
 
-        <div class="col-sm-12 col-lg-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0">Grafieken</h2>
+                </div>
+                <div class="card-body">
+                    <canvas id="temperature" height="200"></canvas>
+                    <canvas id="humidity" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+    
+    
+        <div class="col-8">
             <div class="card">
                 <div class="card-header container">
                     <div class="row">

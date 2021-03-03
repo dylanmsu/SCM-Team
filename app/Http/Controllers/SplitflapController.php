@@ -211,11 +211,20 @@ class SplitflapController extends Controller
             ->orderBy('time', 'asc')
             ->take(1)->get();
 
+        $tempA = boardData::select('created_at as x','temperature as y')->where('board', 'A')->orderBy('created_at','DESC')->get();
+        $humidA = boardData::select('created_at as x','humidity as y')->where('board', 'A')->orderBy('created_at','DESC')->get();
+        $tempB = boardData::select('created_at as x','temperature as y')->where('board', 'B')->orderBy('created_at','DESC')->get();
+        $humidB = boardData::select('created_at as x','humidity as y')->where('board', 'B')->orderBy('created_at','DESC')->get();
+
         return view('reizigersInformatie/reizigersinformatie', [
             'count' => splitflap::selectRaw('count(*) as count')->get(),
             'data' => $splitfflaps,
             'boardA' => $splitfflapsA,
-            'boardB' => $splitfflapsB
+            'boardB' => $splitfflapsB,
+            'tempA' => $tempA,
+            'humidA' => $humidA,
+            'tempB' => $tempB,
+            'humidB' => $humidB,
         ]);
     }
 
@@ -245,20 +254,4 @@ class SplitflapController extends Controller
 
         return redirect()->route('ris');
     }
-
-    // the graphs
-    public function graphs()
-    {
-        $tempA = boardData::select('created_at as x','temperature as y')->where('board', 'A')->orderBy('created_at','DESC')->get();
-        $humidA = boardData::select('created_at as x','humidity as y')->where('board', 'A')->orderBy('created_at','DESC')->get();
-        $tempB = boardData::select('created_at as x','temperature as y')->where('board', 'B')->orderBy('created_at','DESC')->get();
-        $humidB = boardData::select('created_at as x','humidity as y')->where('board', 'B')->orderBy('created_at','DESC')->get();
-        return view('reizigersInformatie/board-data',["tempA" => $tempA, "humidA" => $humidA, "tempB" => $tempB, "humidB" => $humidB]);
-    }
-
-    public function settings()
-    {
-        return view('reizigersInformatie/board-settings');
-    }
-
 }
