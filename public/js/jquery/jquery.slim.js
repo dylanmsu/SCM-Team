@@ -104,7 +104,7 @@ eval("var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!\n * jQ
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\GitHub\SCM-Team\node_modules\jquery\dist\jquery.slim.js */"./node_modules/jquery/dist/jquery.slim.js");
+module.exports = __webpack_require__(/*! D:\projects\scm\scm-app\node_modules\jquery\dist\jquery.slim.js */"./node_modules/jquery/dist/jquery.slim.js");
 
 
 /***/ })
