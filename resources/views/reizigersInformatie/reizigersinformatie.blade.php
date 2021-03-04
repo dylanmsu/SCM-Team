@@ -131,7 +131,7 @@
     </nav>
 
     <div class="row">
-        <div class="col-4">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-4">
             <div class="card mb-3">
                 <div class="card-header container">
                     <div class="row">
@@ -183,7 +183,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card mb-3">
                 <div class="card-header">
                     <h2 class="mb-0">Grafieken</h2>
                 </div>
@@ -195,7 +195,7 @@
         </div>
     
     
-        <div class="col-8">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8">
             <div class="card">
                 <div class="card-header container">
                     <div class="row">

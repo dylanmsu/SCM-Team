@@ -1622,7 +1622,7 @@ eval("module.exports = function(module) {\n\tif (!module.webpackPolyfill) {\n\t\
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\GitHub\SCM-Team\node_modules\chart.js */"./node_modules/chart.js/dist/Chart.js");
+module.exports = __webpack_require__(/*! D:\projects\scm\scm-app\node_modules\chart.js */"./node_modules/chart.js/dist/Chart.js");
 
 
 /***/ })
