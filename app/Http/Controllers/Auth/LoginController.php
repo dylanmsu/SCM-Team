@@ -40,6 +40,17 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function showLoginForm()
+    {
+        // Get URLs
+        $urlPrevious = url()->previous();
+        $urlBase = url()->to('/');
+
+        session()->put('url.intended', $urlPrevious);
+
+        return view('auth.login');
+    }
+
     public function login(Request $request)
     {
         $input = $request->all();
@@ -52,7 +63,7 @@ class LoginController extends Controller
         $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         if(auth()->attempt(array($fieldType => $input['username'], 'password' => $input['password'])))
         {
-            return redirect()->route('home');
+            return redirect()->intended();
         }else{
             return redirect()->route('login')->withInput()->withErrors(['password' => __('auth.failed')]);
         }
