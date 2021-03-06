@@ -41,8 +41,8 @@ class SplitflapController extends Controller
         ]);
         $boardData->save();
 
-        // delete all sensor values older than 7 days
-        BoardData::where('created_at', '<=', Carbon::now()->subDays(7)->toDateTimeString())->delete();
+        // delete all sensor values older than 1 day
+        BoardData::where('created_at', '<=', Carbon::now()->subDays(1)->toDateTimeString())->delete();
 
         // delete all trains older than now
         //splitflap::where('created_at', '<=', Carbon::now()->toDateTimeString())->delete();
