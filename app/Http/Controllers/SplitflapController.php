@@ -73,8 +73,8 @@ class SplitflapController extends Controller
             $json[0] = array(
                 'board' => "A",
                 "align" => "center",
-                "first_text" => "geen treinen",
-                "second_text" => "vandaag",
+                "first_text" => " ",
+                "second_text" => " ",
                 "icon_index" => 10,
                 "time" => "2020-10-15 00:00:00",
                 "white_led" => 0
@@ -87,8 +87,8 @@ class SplitflapController extends Controller
             $json[0] = array(
                 'board' => "B",
                 "align" => "center",
-                "first_text" => "geen treinen",
-                "second_text" => "vandaag",
+                "first_text" => " ",
+                "second_text" => " ",
                 "icon_index" => 10,
                 "time" => "2020-10-15 00:00:00",
                 "white_led" => 0
