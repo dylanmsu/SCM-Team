@@ -24,7 +24,7 @@
                 </div>
 
                 <!-- add and export buttons -->
-                <div class="col-md-6 my-2 text-center text-md-right">
+                <div class="col-md-6 my-0 text-center text-md-right">
                     <a href="{{route('add_vehicle_page')}}" class="ml-2 my-2 btn btn-primary"> <i class="fas fa-plus"></i> Toevoegen</a>	
                     <a href="{{route('export-vehicles')}}" class="ml-2 my-2 btn btn-primary"> <i class="fas fa-cloud-download-alt"></i> Download Excel</a>					
                 </div>

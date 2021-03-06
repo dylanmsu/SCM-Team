@@ -14,14 +14,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <div class="row">
-                        <div class="col-md-6 text-center text-md-left">
-                            <div class="h4 my-1">Instellingen</div> 
-                        </div>
-                        <div class="col-md-6 text-center text-md-right">
-                            <a href="{{route('board-graphs')}}" class="ml-2 btn btn-primary"> <i class="far fa-chart-bar"></i> Grafieken</a>
-                        </div>
-                    </div>
+                    <div class="h4 my-1">Instellingen</div>
                 </div>
     
                 <div class="card-body">
