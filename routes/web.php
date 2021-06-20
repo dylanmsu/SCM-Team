@@ -15,12 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 //Auth::routes();
 Auth::routes([
-   'register' =>    true, // Disable registration Routes...
+   'register' =>    true, // Enable registration Routes...
    'verify' =>      false, // Disable email Verification Routes...
 ]);
 
 Route::redirect('/', '/home', 301); // set landing page to '/home' by redirecting from '/' to '/home'
-
 Route::get('/home', 'HomeController@home')->name('home');
 
 // if we don't need to send aditional data to the view, we can skip the controller and use route::view('[route name]', '[view name]')
@@ -31,9 +30,11 @@ Route::view('/settings', 'users/user_settings')->name('user_settings');
 Route::get('/ris', 'SplitflapController@reizigersinformatie')->name('ris');
 Route::get('/ris/export', 'SplitflapController@export')->name('export-splitflaps');
 Route::get('/ris/bord-setup', 'SplitflapController@board_setup')->name('board-setup');
+Route::get('/ris/bijwerken/{id}', 'SplitflapController@show_edit')->name('splitflap_edit');
 Route::post('/ris/preview', 'SplitflapController@preview');
 Route::post('/ris/splitflap', 'SplitflapController@store');
 Route::post('/ris/verwijder/{id}', 'SplitflapController@delete');
+Route::post('/ris/bijwerken/{id}', 'SplitflapController@update');
 
 Route::get('/map', 'MapController@trainmap')->name('map');
 

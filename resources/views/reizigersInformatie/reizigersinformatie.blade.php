@@ -121,6 +121,7 @@
 </script>
 @endpush
 
+
 @section('content')
 <div class="container">
     <nav aria-label="breadcrumb">
@@ -245,7 +246,7 @@
                                             </a>
                                             
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                <a class="dropdown-item" href="#">Bijwerken</a>
+                                                <a class="dropdown-item" href="{{route('splitflap_edit', ['id' => $item->id])}}"><i title="Aanpassen" data-toggle="tooltip" class="fas fa-cog"></i> Bijwerken</a>
                                                 <form method="POST" autocomplete="off" action="ris/verwijder/{{$item->id}}" id="delete-{{$item->id}}">
                                                     @csrf
                                                     <div onclick="confirmation('delete-{{$item->id}}')" class="btn dropdown-item"><i class="fas fa-trash-alt"></i> Verwijderen</div>

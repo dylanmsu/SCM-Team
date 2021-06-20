@@ -488,13 +488,13 @@
                                 
                                 <div class="input_fields_wrap" ng-switch-default>
                                     <div class="mb-1 input-group">
+                                        <input value="Opmerkingen" class="form-control col py-5" type="text" name="prop[]" disabled/>
+                                        <textarea name="val[]" rows="3" class="col form-control"></textarea>
+                                    </div>
+                                    <div class="mb-1 input-group">
                                         <input placeholder="Eigenschap" class="form-control col" type="text" name="prop[]" required/>
                                         <input placeholder="Waarde" class="form-control col" type="text" name="val[]" required/>
                                         <div id="addbtn" class="col-1 btn btn-primary add_field_button">+</div>
-                                    </div>
-                                    <div class="mb-1 input-group">
-                                        <input value="Opmerkingen" class="form-control col py-5" type="text" name="prop[]" disabled/>
-                                        <textarea name="val[]" rows="3" class="col form-control"></textarea>
                                     </div>
                                 </div>
                             </div>

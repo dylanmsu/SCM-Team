@@ -21,6 +21,7 @@ class SplitflapController extends Controller
     {
         $this->middleware('auth', ['except' => ['getBoards']]);
 
+        // the splitflaps will be shown 24h before the train leaves.
         $this->interval = '+24 hours';
     }
 
@@ -33,6 +34,7 @@ class SplitflapController extends Controller
     
     public function getBoards(Request $request) {
 
+        // get board data from database
         $boardData = new BoardData([
             'board' => $request->get('board'), 
             'temperature' => $request->get('temperature'),
@@ -157,7 +159,9 @@ class SplitflapController extends Controller
     }
 
     public function board_setup(){
-        return view('reizigersInformatie/board-setup');
+        return view('reizigersInformatie/board-setup',[
+            'action' => 'edit'
+        ]);
     }
 
     public function store(Request $request) {
@@ -180,6 +184,34 @@ class SplitflapController extends Controller
         ]);
         
         $status = $splitflap->save();
+
+        if ($status) {
+            return redirect()->route('ris')->with('success', "Successfully Submitted!");
+        } else {
+            return redirect()->route('ris')->with('error', "Something went wrong.");
+        }
+    }
+
+    public function update($id, Request $request) {
+
+        $this->validate($request, [
+            'board' => 'required',
+            'time' => 'required',
+            'align' => 'required',
+            'icon_index' => 'required'
+        ]);
+
+        $splitfflap = splitflap::find($id);
+
+        $splitfflap->board = $request->get('board');
+        $splitfflap->align = $request->get('align');
+        $splitfflap->first_text = $request->get('first_text');
+        $splitfflap->second_text = $request->get('second_text');
+        $splitfflap->icon_index = $request->get('icon_index');
+        $splitfflap->time = $request->get('time');
+        $splitfflap->creator = Auth::user()->id;
+
+        $status = $splitfflap->save();
 
         if ($status) {
             return redirect()->route('ris')->with('success', "Successfully Submitted!");
@@ -253,5 +285,14 @@ class SplitflapController extends Controller
         splitflap::where('id', $id)->delete();
 
         return redirect()->route('ris');
+    }
+
+    // return vehicle edit page
+    public function show_edit($id)
+    {
+        return view('reizigersInformatie/board-setup', [
+            'data' => splitflap::find($id),
+            'action' => 'edit'
+        ]);
     }
 }
