@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Vehicle_comment::class, function (Faker $faker) {
     return [
-        'remarks' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true), 
+        'remarks' => 'Hello World! :>', 
         'creator' => User::all()->random()->id,
     ];
 });

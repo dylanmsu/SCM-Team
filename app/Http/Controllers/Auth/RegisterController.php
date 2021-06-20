@@ -52,7 +52,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'username' => ['required', 'string', 'max:255', 'unique:users'],
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -68,9 +69,21 @@ class RegisterController extends Controller
     {
         $registered_user = User::create([
             'username' => $data['username'],
-            'name' => $data['name'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'role_id' => 1,
+            'birth_day' => $data['birth_day'],
+            'birth_place' => $data['birth_place'],
+            'address' => $data['address'],
+            'postal_code' => $data['postal_code'],
+            'residence' => $data['residence'],
+            'province' => $data['province'],
+            'country' => $data['country'],
+            'mobile_phone' => $data['mobile_phone'],
+            'phone' => $data['phone'],
+            'name_parent' => $data['name_parent']
         ]);
 
         $registered_user->notify(new RegistrationSuccessful());
