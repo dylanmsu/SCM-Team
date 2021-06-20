@@ -20,25 +20,19 @@
 
     @guest
         @php
+            // home pagina wanneer de gebruiker een guest is
             $home_cards = array(
-            /**
-            * https://codepen.io/aniketkudale/pen/BaNxomQ
-            * Dutch palette
-            */
-           array('img' => './images/main/guest/register.svg',        'name' => 'Inschrijven',      'target' => "",  'link' => route('register')),
-           array('img' => './images/main/guest/links.svg',           'name' => 'Links',            'target' => "",  'link' => route('links')),
-           array('img' => './images/main/guest/forms.svg',           'name' => 'Forms',            'target' => "",  'link' => "/form-builder/forms"),
-           array('img' => './images/main/guest/track.svg',           'name' => 'Tracking',         'target' => "",  'link' => route('map')),
-           array('img' => './images/main/guest/planner.svg',         'name' => 'Planner',          'target' => "", 'link' => route('planner')),
-           );
+                array('img' => './images/main/guest/register.svg',        'name' => 'Inschrijven',      'target' => "",  'link' => route('register')),
+                array('img' => './images/main/guest/links.svg',           'name' => 'Links',            'target' => "",  'link' => route('links')),
+                array('img' => './images/main/guest/forms.svg',           'name' => 'Forms',            'target' => "",  'link' => "/form-builder/forms"),
+                array('img' => './images/main/guest/track.svg',           'name' => 'Tracking',         'target' => "",  'link' => route('map')),
+                array('img' => './images/main/guest/planner.svg',         'name' => 'Planner',          'target' => "", 'link' => route('planner')),
+            );
         @endphp
     @else
         @php
-         $home_cards = array(
-                /**
-                 * https://codepen.io/aniketkudale/pen/BaNxomQ
-                 * Dutch palette
-                 */
+            // home pagina wanneer de gebruiker is ingelogd
+            $home_cards = array(
                 array('img' => './images/main/admin/dragon.svg',          'name' => 'Elliott',          'target' => "",  'link' => route('elliott')),
                 array('img' => './images/main/admin/vehicles.svg',        'name' => 'Rollend matrieel', 'target' => "",  'link' => route('vehicles')),
                 array('img' => './images/main/admin/splitflap.svg',       'name' => 'Splitflap',        'target' => "",  'link' => route('ris')),
@@ -50,7 +44,7 @@
                 array('img' => './images/main/admin/forms.svg',           'name' => 'Forms',            'target' => "",  'link' => "/form-builder/forms"),
                 array('img' => './images/main/admin/track.svg',           'name' => 'Tracking',         'target' => "",  'link' => route('map')),
                 array('img' => './images/main/admin/vbs.svg',             'name' => 'Veiligheidsbeheer','target' => "",  'link' => "#"),
-               
+                
                 array('img' => './images/main/admin/report.svg',          'name' => 'Meldingen',        'target' => "",  'link' => "#"),
                 array('img' => './images/main/admin/order.svg',           'name' => 'Aanvragen',        'target' => "",  'link' => "#"),
                 array('img' => './images/main/admin/docs.svg',            'name' => 'Documentatie',     'target' => "",  'link' => "#"),
@@ -93,7 +87,7 @@
         <!-- right side -->
         <div class="col-md-4">
             <div class="card mt-4">
-                <div class="card-header text-center text-uppercase"><strong>Reizigersinformatie</strong></div>
+                <div class="card-header text-center text-uppercase"><strong>Geplande Ritten</strong></div>
                 <div class="list-group">
                     @if (!$data->isEmpty())
 

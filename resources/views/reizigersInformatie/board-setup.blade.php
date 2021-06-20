@@ -11,8 +11,6 @@
             <li class="breadcrumb-item active" aria-current="page">BoardSetup</li>
         </ol>
     </nav>
-
-    {{ $data }}
    
     <div class="row justify-content-center">
         @if (session('status'))
@@ -94,7 +92,7 @@
                         <div class="form-group row">
                             <label for="time" class="col-md-4 col-form-label text-md-right">Aankomst</label>
                             <div class="col-md-6">
-                                <input  required id="time" name="time" class="form-control" type="datetime-local" value="{{strftime('%Y-%m-%dT%H:%M:%S', strtotime($data->time))}}">
+                                <input  required id="time" name="time" class="form-control" type="datetime-local" value="{{strftime('%Y-%m-%dT%H:%M:%S', strtotime($data->time ?? ''))}}">
                             </div>
                         </div>
 
@@ -147,7 +145,7 @@
                                 </button>
 
                                 @if ($action = 'edit')
-                                    <button type="submit" class="mx-3 my-1 btn btn-primary" onclick="return confirmation('split-setup')" formaction="{{ action('SplitflapController@update', ['id' => $data->id]) }}">
+                                    <button type="submit" class="mx-3 my-1 btn btn-primary" onclick="return confirmation('split-setup')" formaction="{{ action('SplitflapController@update', ['id' => ($data->id ?? 0)]) }}">
                                         Opslaan
                                     </button>
                                 @else

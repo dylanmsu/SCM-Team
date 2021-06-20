@@ -160,7 +160,8 @@ class SplitflapController extends Controller
 
     public function board_setup(){
         return view('reizigersInformatie/board-setup',[
-            'action' => 'edit'
+            'action' => 'edit',
+            'data' => '[]'
         ]);
     }
 

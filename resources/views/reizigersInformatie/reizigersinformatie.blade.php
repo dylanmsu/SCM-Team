@@ -202,7 +202,7 @@
                     <div class="row">
                         
                         <div class="col-md-8 my-2 text-center text-md-left">
-                            <h2 class="mb-0">Splitflap beheer</h2>
+                            <h2 class="mb-0">Geplande Ritten</h2>
                         </div>
         
                         <div class="col-md-4 text-center text-md-right">
