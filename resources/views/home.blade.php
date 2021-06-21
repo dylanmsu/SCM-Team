@@ -31,6 +31,16 @@
         @endphp
     @else
         @php
+            if (auth()->user()->role_id >= 3) {
+                // place cards here for when the user has a role id of geater than 3 (lower = more privilege)
+            }
+            elseif (auth()->user()->role_id >= 2) {
+                // when the use has a role id geater than 2
+            }
+            elseif (auth()->user()->role_id >= 1) {
+                // when the use has a role id geater than 1
+            }
+            
             // home pagina wanneer de gebruiker is ingelogd
             $home_cards = array(
                 array('img' => './images/main/admin/dragon.svg',          'name' => 'Elliott',          'target' => "",  'link' => route('elliott')),
@@ -50,9 +60,9 @@
                 array('img' => './images/main/admin/docs.svg',            'name' => 'Documentatie',     'target' => "",  'link' => "#"),
                 
                 array('img' => './images/main/admin/planner.svg',         'name' => 'Planner',           'target' => "", 'link' => route('planner')),
-                array('img' => './images/main/admin/profile.svg',         'name' => 'Mijn Profiel',     'target' => "",  'link' => "#"),
-                array('img' => './images/main/admin/settings.svg',        'name' => 'Instellingen',     'target' => "",  'link' => "#"),
-            );
+                array('img' => './images/main/admin/profile.svg',         'name' => 'Mijn Profiel',     'target' => "",  'link' => route('user_profile')),
+                array('img' => './images/main/admin/settings.svg',        'name' => 'Instellingen',     'target' => "",  'link' => route('user_settings')),
+            )
         @endphp
     @endguest
 
@@ -64,7 +74,6 @@
 
         <!-- left side -->
         <div class="col-md-8">
-
             <div class="card mt-4">
                 <div class="card-body">
                     <div class="container">
@@ -94,7 +103,7 @@
                         <!-- loop through the data that is returned from 'app/http/Controllers/HomeController.php' -->
                         @foreach ($data as $item)
                             <div class="list-group">
-                                <a href="#" class="py-2 list-group-item list-group-item-action flex-column">
+                                <a href="{{route('ris', ['id' => $item->id])}}" class="py-2 list-group-item list-group-item-action flex-column">
                                     <div class="d-flex justify-content-between">
                                         <div class="float-left text-left">
                                             <h4 class="mb-1 text-left">{{ $item->first_text }} <br> {{ $item->second_text }}</h4>

@@ -221,12 +221,14 @@ class SplitflapController extends Controller
         }
     }
 
-    public function reizigersinformatie()
+    public function reizigersinformatie($id = null)
     {
+        $perPage = 10;
+
         $splitfflaps = splitflap::
         select('*')
         ->whereRaw('time >= now()')
-        ->orderBy('time', 'asc')->paginate(10)->onEachSide(1);;
+        ->orderBy('time', 'asc')->paginate($perPage)->onEachSide(1);;
 
         $splitfflapsA = splitflap::
             select('*')

@@ -227,9 +227,9 @@
                             <tbody>
                                 @forelse ($data as $item)
                                 @if ($item->id == ($boardA[0]->id ?? '') || $item->id == ($boardB[0]->id ?? ''))
-                                    <tr class="table-primary">
+                                    <tr id="splitflap{{$item->id}}" @if (isset(request()->id) && request()->id == $item->id) class="table-danger" @elseif (!isset(request()->id)) class="table-primary" @endif>
                                 @else
-                                    <tr>
+                                    <tr id="splitflap{{$item->id}}" @if (isset(request()->id) && request()->id == $item->id) class="table-danger" @endif>
                                 @endif
                                         <td>
                                             <b>{{$item->first_text}} {{$item->second_text}}</b>

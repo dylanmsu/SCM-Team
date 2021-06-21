@@ -25,6 +25,7 @@ Route::get('/home', 'HomeController@home')->name('home');
 // if we don't need to send aditional data to the view, we can skip the controller and use route::view('[route name]', '[view name]')
 Route::view('/links', 'links')->name('links'); 
 Route::view('/settings', 'users/user_settings')->name('user_settings');
+Route::view('/profile', 'users/user_profile')->name('user_profile');
 
 // routes that link to the respective functions in their controllers
 Route::get('/ris', 'SplitflapController@reizigersinformatie')->name('ris');

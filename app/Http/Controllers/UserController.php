@@ -35,4 +35,6 @@ class UserController extends Controller
 
         return auth()->user()->unreadNotifications->count();
     }
+
+    
 }
