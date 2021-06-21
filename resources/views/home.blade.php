@@ -45,7 +45,7 @@
             $home_cards = array(
                 array('img' => './images/main/admin/dragon.svg',          'name' => 'Elliott',          'target' => "",  'link' => route('elliott')),
                 array('img' => './images/main/admin/vehicles.svg',        'name' => 'Rollend matrieel', 'target' => "",  'link' => route('vehicles')),
-                array('img' => './images/main/admin/splitflap.svg',       'name' => 'Splitflap',        'target' => "",  'link' => route('ris')),
+                array('img' => './images/main/admin/splitflap.svg',       'name' => 'Ritten',           'target' => "",  'link' => route('splitflaps')),
                 
                 array('img' => './images/main/admin/members.svg',         'name' => 'Ledenbeheer',      'target' => "",  'link' => route('members')),
                 array('img' => './images/main/admin/files.svg',           'name' => 'Mijn bestanden',   'target' => "",  'link' => "/filemanager"),
@@ -59,7 +59,7 @@
                 array('img' => './images/main/admin/order.svg',           'name' => 'Aanvragen',        'target' => "",  'link' => "#"),
                 array('img' => './images/main/admin/docs.svg',            'name' => 'Documentatie',     'target' => "",  'link' => "#"),
                 
-                array('img' => './images/main/admin/planner.svg',         'name' => 'Planner',           'target' => "", 'link' => route('planner')),
+                array('img' => './images/main/admin/planner.svg',         'name' => 'Planner',          'target' => "", 'link' => route('planner')),
                 array('img' => './images/main/admin/profile.svg',         'name' => 'Mijn Profiel',     'target' => "",  'link' => route('user_profile')),
                 array('img' => './images/main/admin/settings.svg',        'name' => 'Instellingen',     'target' => "",  'link' => route('user_settings')),
             )
@@ -103,7 +103,7 @@
                         <!-- loop through the data that is returned from 'app/http/Controllers/HomeController.php' -->
                         @foreach ($data as $item)
                             <div class="list-group">
-                                <a href="{{route('ris', ['id' => $item->id])}}" class="py-2 list-group-item list-group-item-action flex-column">
+                                <a href="{{route('splitflaps', ['id' => $item->id])}}" class="py-2 list-group-item list-group-item-action flex-column">
                                     <div class="d-flex justify-content-between">
                                         <div class="float-left text-left">
                                             <h4 class="mb-1 text-left">{{ $item->first_text }} <br> {{ $item->second_text }}</h4>

@@ -150,7 +150,7 @@ class SplitflapController extends Controller
             ->orderBy('time', 'asc')
             ->take(1)->get();
 
-        return view('reizigersInformatie/board-info',[
+        return view('splitflaps/board-info',[
             'count' => splitflap::selectRaw('count(*) as count')->get(),
             'data' => $splitfflaps,
             'boardA' => $splitfflapsA,
@@ -159,7 +159,7 @@ class SplitflapController extends Controller
     }
 
     public function board_setup(){
-        return view('reizigersInformatie/board-setup',[
+        return view('splitflaps/board-setup',[
             'action' => 'edit',
             'data' => '[]'
         ]);
@@ -187,9 +187,9 @@ class SplitflapController extends Controller
         $status = $splitflap->save();
 
         if ($status) {
-            return redirect()->route('ris')->with('success', "Successfully Submitted!");
+            return redirect()->route('splitflaps')->with('success', "Successfully Submitted!");
         } else {
-            return redirect()->route('ris')->with('error', "Something went wrong.");
+            return redirect()->route('splitflaps')->with('error', "Something went wrong.");
         }
     }
 
@@ -215,13 +215,13 @@ class SplitflapController extends Controller
         $status = $splitfflap->save();
 
         if ($status) {
-            return redirect()->route('ris')->with('success', "Successfully Submitted!");
+            return redirect()->route('splitflaps')->with('success', "Successfully Submitted!");
         } else {
-            return redirect()->route('ris')->with('error', "Something went wrong.");
+            return redirect()->route('splitflaps')->with('error', "Something went wrong.");
         }
     }
 
-    public function reizigersinformatie($id = null)
+    public function splitflaps($id = null)
     {
         $perPage = 10;
 
@@ -251,7 +251,7 @@ class SplitflapController extends Controller
         $tempB = boardData::select('created_at as x','temperature as y')->where('board', 'B')->orderBy('created_at','DESC')->get();
         $humidB = boardData::select('created_at as x','humidity as y')->where('board', 'B')->orderBy('created_at','DESC')->get();
 
-        return view('reizigersInformatie/reizigersinformatie', [
+        return view('splitflaps/splitflaps', [
             'count' => splitflap::selectRaw('count(*) as count')->get(),
             'data' => $splitfflaps,
             'boardA' => $splitfflapsA,
@@ -272,7 +272,7 @@ class SplitflapController extends Controller
             'icon_index' => $request->get('icon_index'),
             'time' => $request->get('time')
         ];
-        return view('reizigersInformatie/board-setup',[
+        return view('splitflaps/board-setup',[
             'preview' => json_encode($prev),
             'board' => $request->get('board'),
             'align' => $request->get('align'),
@@ -287,13 +287,13 @@ class SplitflapController extends Controller
     {
         splitflap::where('id', $id)->delete();
 
-        return redirect()->route('ris');
+        return redirect()->route('splitflaps');
     }
 
     // return vehicle edit page
     public function show_edit($id)
     {
-        return view('reizigersInformatie/board-setup', [
+        return view('splitflaps/board-setup', [
             'data' => splitflap::find($id),
             'action' => 'edit'
         ]);

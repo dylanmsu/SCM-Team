@@ -28,14 +28,14 @@ Route::view('/settings', 'users/user_settings')->name('user_settings');
 Route::view('/profile', 'users/user_profile')->name('user_profile');
 
 // routes that link to the respective functions in their controllers
-Route::get('/ris', 'SplitflapController@reizigersinformatie')->name('ris');
-Route::get('/ris/export', 'SplitflapController@export')->name('export-splitflaps');
-Route::get('/ris/bord-setup', 'SplitflapController@board_setup')->name('board-setup');
-Route::get('/ris/bijwerken/{id}', 'SplitflapController@show_edit')->name('splitflap_edit');
-Route::post('/ris/preview', 'SplitflapController@preview');
-Route::post('/ris/splitflap', 'SplitflapController@store');
-Route::post('/ris/verwijder/{id}', 'SplitflapController@delete');
-Route::post('/ris/bijwerken/{id}', 'SplitflapController@update');
+Route::get('/ritten', 'SplitflapController@splitflaps')->name('splitflaps');
+Route::get('/ritten/export', 'SplitflapController@export')->name('export-splitflaps');
+Route::get('/ritten/bord-setup', 'SplitflapController@board_setup')->name('board-setup');
+Route::get('/ritten/bijwerken/{id}', 'SplitflapController@show_edit')->name('splitflap_edit');
+Route::post('/ritten/preview', 'SplitflapController@preview');
+Route::post('/ritten/splitflap', 'SplitflapController@store');
+Route::post('/ritten/verwijder/{id}', 'SplitflapController@delete');
+Route::post('/ritten/bijwerken/{id}', 'SplitflapController@update');
 
 Route::get('/map', 'MapController@trainmap')->name('map');
 
