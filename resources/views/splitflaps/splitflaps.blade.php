@@ -146,10 +146,13 @@
                         {{ csrf_field() }}
     
                         <div class="form-group row">
-                            <label for="whiteled" class="col-md-4 col-form-label text-md-right">Led licht</label>
-                            <div class="btn-group btn-group-toggle col-md-6" data-toggle="buttons">
+                            <label for="whiteled" class="col-4 col-form-label text-left">Led licht</label>
+                            <div class="btn-group btn-group-toggle col-12" data-toggle="buttons">
                                 <label class="mx-0 btn btn-primary form-check-label">
                                     <input id="whiteled" name="whiteled" value="on" class="form-check-input" type="radio" autocomplete="off" @if(($settings->get('whiteled') ?? 'on') == 'on') checked="checked" @endif> Aan
+                                </label>
+                                <label class="mx-0 btn btn-primary form-check-label">
+                                    <input id="whiteled" name="whiteled" value="auto" class="form-check-input" type="radio" autocomplete="off" @if(($settings->get('whiteled') ?? 'on') == 'auto') checked="checked" @endif> Auto
                                 </label>
                                 <label class="mx-0 btn btn-primary form-check-label">
                                     <input id="whiteled" name="whiteled" value="off" class="form-check-input" type="radio" autocomplete="off" @if(($settings->get('whiteled') ?? 'on') == 'off') checked="checked" @endif> Uit
