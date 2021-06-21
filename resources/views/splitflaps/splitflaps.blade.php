@@ -143,39 +143,36 @@
                 </div>
                 <div class="card-body">
                     <form method="POST">
-                        @csrf
+                        {{ csrf_field() }}
     
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Licht helderheid</label>
-                            <div class="btn-group btn-group-toggle form-control p-0" id="name" data-toggle="buttons">
-                                <label class="btn btn-secondary active">
-                                    <input value="darkly" type="radio" name="theme" autocomplete="off"> Uit
+                        <div class="form-group row">
+                            <label for="whiteled" class="col-md-4 col-form-label text-md-right">Led licht</label>
+                            <div class="btn-group btn-group-toggle col-md-6" data-toggle="buttons">
+                                <label class="mx-0 btn btn-primary form-check-label">
+                                    <input id="whiteled" name="whiteled" value="on" class="form-check-input" type="radio" autocomplete="off" @if(($settings->get('whiteled') ?? 'on') == 'on') checked="checked" @endif> Aan
                                 </label>
-                                <label class="btn btn-secondary">
-                                    <input value="default" type="radio" name="theme" autocomplete="off"> Auto
-                                </label>
-                                <label class="btn btn-secondary">
-                                    <input value="superhero" type="radio" name="theme" autocomplete="off"> Aan
+                                <label class="mx-0 btn btn-primary form-check-label">
+                                    <input id="whiteled" name="whiteled" value="off" class="form-check-input" type="radio" autocomplete="off" @if(($settings->get('whiteled') ?? 'on') == 'off') checked="checked" @endif> Uit
                                 </label>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">RGB mode</label>
-                            <select name="icon_index" class="form-control">
-                                <option value="0">Uit</option>
-                                <option value="1">Aan</option>
-                                <option value="2">Pulse</option>
-                                <option value="3">Regenboog</option>
+                            <select name="rgbmode" class="form-control">
+                                <option value="0" @if (($settings->get('rgbmode') ?? null) == 0) selected="selected" @endif>Uit</option>
+                                <option value="1" @if (($settings->get('rgbmode') ?? null) == 1) selected="selected" @endif>Aan</option>
+                                <option value="2" @if (($settings->get('rgbmode') ?? null) == 2) selected="selected" @endif>Pulse</option>
+                                <option value="3" @if (($settings->get('rgbmode') ?? null) == 3) selected="selected" @endif>Regenboog</option>
                             </select>
                         </div>
                         <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">RGB kleur</label>
-                            <input class="form-control" type="color" name="color" value="#ff0000">
+                            <input class="form-control" type="color" name="color" value="{{$settings->get('rgbcolor')}}">
                         </div>
     
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="mx-3 my-1 btn btn-primary" formaction="{{ route('usersettings') }}">
+                                <button type="submit" class="mx-3 my-1 btn btn-primary" formaction="{{ action('SplitflapController@update_leds') }}">
                                     Opslaan
                                 </button>
                             </div>

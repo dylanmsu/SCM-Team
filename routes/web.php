@@ -36,6 +36,7 @@ Route::post('/ritten/preview', 'SplitflapController@preview');
 Route::post('/ritten/splitflap', 'SplitflapController@store');
 Route::post('/ritten/verwijder/{id}', 'SplitflapController@delete');
 Route::post('/ritten/bijwerken/{id}', 'SplitflapController@update');
+Route::post('/ritten/bijwerken', 'SplitflapController@update_leds')->name('update_leds');
 
 Route::get('/map', 'MapController@trainmap')->name('map');
 
@@ -62,14 +63,3 @@ Route::post('/markeer-als-gelezen', 'UserController@mark_read')->name('markNotif
 Route::get('/elliott', 'Elliott\ElliottController@index')->name('elliott');
 
 Route::get('/planner', 'Planner\PlannerController@planner')->name('planner');
-
-/**
- * reference: https://laravel.com/docs/8.x/routing
- * 
- * To add a page;
- * 
- *   "Route::get('/your-route', 'YourController@your_method');"
- * 
- *   now when you visit http://....../your_route, the view specified in the method
- *   'your_method' in controller 'YourController' will be displayed.
- */

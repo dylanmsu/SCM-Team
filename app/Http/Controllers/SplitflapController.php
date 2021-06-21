@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Exports\VehicleExport;
 use App\Exports\SplitflapExport;
+use Spatie\Valuestore\Valuestore;
 use Maatwebsite\Excel\Facades\Excel;
 
 class SplitflapController extends Controller
@@ -32,7 +33,8 @@ class SplitflapController extends Controller
     }
 
     
-    public function getBoards(Request $request) {
+    public function getBoards(Request $request)
+    {
 
         // get board data from database
         $boardData = new BoardData([
@@ -49,11 +51,18 @@ class SplitflapController extends Controller
         // delete all trains older than now
         //splitflap::where('created_at', '<=', Carbon::now()->toDateTimeString())->delete();
 
-        if ($request->get('lightLevel') <= 750) {
+        if ($settings->get('whiteled') == 'auto'){
+            if ($request->get('lightLevel') <= 750) {
+                $whiteLed = 128;
+            } else {
+                $whiteLed = 0;
+            }
+        } else if ($settings->get('whiteled') == 'on') {
             $whiteLed = 128;
         } else {
             $whiteLed = 0;
         }
+        
 
         $splitfflapsA = splitflap::
             select('*')
@@ -110,7 +119,7 @@ class SplitflapController extends Controller
                 'date' => $splitfflapsA[0]->time,
                 'align' => $splitfflapsA[0]->align,
                 'white_led' => $whiteLed,
-                'rgb_strip' => ['color' => '#FF00FF', 'mode' => 1]
+                'rgb_strip' => ['color' => $settings->get('rgbcolor'), 'mode' => $settings->get('rgbmode')]
 
             ],
             'B' => [
@@ -122,12 +131,13 @@ class SplitflapController extends Controller
                 'date' => $splitfflapsB[0]->time,
                 'align' => $splitfflapsB[0]->align,
                 'white_led' => $whiteLed,
-                'rgb_strip' => ['color' => '#FF00FF', 'mode' => 1]
+                'rgb_strip' => ['color' => $settings->get('rgbcolor'), 'mode' => $settings->get('rgbmode')]
             ]
         ];
     }
 
-    public function board_info(Request $request) {
+    public function board_info(Request $request)
+    {
         // get splitflapdata within now and 48 hours
         $splitfflaps = splitflap::
             select('*')
@@ -150,22 +160,27 @@ class SplitflapController extends Controller
             ->orderBy('time', 'asc')
             ->take(1)->get();
 
+        $settings = Valuestore::make(storage_path('app/settings.json'));
+
         return view('splitflaps/board-info',[
             'count' => splitflap::selectRaw('count(*) as count')->get(),
             'data' => $splitfflaps,
             'boardA' => $splitfflapsA,
-            'boardB' => $splitfflapsB
+            'boardB' => $splitfflapsB,
+            'settings' => $settings
         ]);
     }
 
-    public function board_setup(){
+    public function board_setup()
+    {
         return view('splitflaps/board-setup',[
             'action' => 'edit',
             'data' => '[]'
         ]);
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
 
         $this->validate($request, [
             'board' => 'required',
@@ -193,7 +208,8 @@ class SplitflapController extends Controller
         }
     }
 
-    public function update($id, Request $request) {
+    public function update($id, Request $request)
+    {
 
         $this->validate($request, [
             'board' => 'required',
@@ -251,6 +267,9 @@ class SplitflapController extends Controller
         $tempB = boardData::select('created_at as x','temperature as y')->where('board', 'B')->orderBy('created_at','DESC')->get();
         $humidB = boardData::select('created_at as x','humidity as y')->where('board', 'B')->orderBy('created_at','DESC')->get();
 
+        $settings = Valuestore::make(storage_path('app/settings.json'));
+        $settings->put('hello', 'world');
+
         return view('splitflaps/splitflaps', [
             'count' => splitflap::selectRaw('count(*) as count')->get(),
             'data' => $splitfflaps,
@@ -260,10 +279,12 @@ class SplitflapController extends Controller
             'humidA' => $humidA,
             'tempB' => $tempB,
             'humidB' => $humidB,
+            'settings' => $settings
         ]);
     }
 
-    public function preview(Request $request) {
+    public function preview(Request $request)
+    {
         $prev = [
             'board' => $request->get('board'),
             'align' => $request->get('align'),
@@ -297,5 +318,16 @@ class SplitflapController extends Controller
             'data' => splitflap::find($id),
             'action' => 'edit'
         ]);
+    }
+
+    public function update_leds(Request $request)
+    {
+        $settings = Valuestore::make(storage_path('app/settings.json'));
+
+        $settings->put('whiteled', $request->get('whiteled'));
+        $settings->put('rgbmode', $request->get('rgbmode'));
+        $settings->put('rgbcolor', $request->get('color'));
+
+        return redirect()->route('splitflaps');
     }
 }
