@@ -30,7 +30,7 @@
                                 <div class="modal fade" id="modal-prop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
-                                            <form method="post" enctype="multipart/form-data" action="/rollend/prop/toevoegen/{{$data[0]->id}}">
+                                            <form method="post" id="prop-add-{{$data[0]->id}}" enctype="multipart/form-data" action="/rollend/prop/toevoegen/{{$data[0]->id}}">
                                                 @csrf
                                                 <div class="modal-header">
                                                     <h5 class="modal-title text-center" id="exampleModalLabel">Eigenschappen toevoegen</h5>
@@ -48,7 +48,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <input type="submit" class="btn btn-primary">
+                                                    <input type="submit" class="btn btn-primary" onclick="return confirmation('prop-add-{{$data[0]->id}}')">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
                                                 </div>
                                             </form>
@@ -96,7 +96,7 @@
                                 <div class="modal fade" id="modal-doc" tabindex="-1" role="dialog" aria-labelledby="documentupload" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
-                                            <form method="post" enctype="multipart/form-data" action="/rollend/doc/toevoegen/{{$data[0]->id}}">
+                                            <form method="post" enctype="multipart/form-data" id="doc-add-{{$data[0]->id}}" action="/rollend/doc/toevoegen/{{$data[0]->id}}">
                                                 @csrf
                                                 <div class="modal-header">
                                                     <h5 class="modal-title text-center" id="documentupload">Documenten uploaden</h5>
@@ -137,7 +137,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <input type="submit" class="btn btn-primary">
+                                                    <input type="submit" class="btn btn-primary" onclick="return confirmation('doc-add-{{$data[0]->id}}')">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
                                                 </div>
                                             </form>
@@ -187,7 +187,7 @@
                                 <div class="modal fade" id="modal-img" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
-                                            <form method="post" enctype="multipart/form-data" action="/rollend/img/toevoegen/{{$data[0]->id}}">
+                                            <form method="post" enctype="multipart/form-data" id="img-add-{{$data[0]->id}}" action="/rollend/img/toevoegen/{{$data[0]->id}}">
                                                 @csrf
                                                 <div class="modal-header">
                                                     <h5 class="modal-title text-center" id="exampleModalLabel">Voorbeeld</h5>
@@ -203,7 +203,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <input type="submit" class="btn btn-primary">
+                                                    <input type="submit" class="btn btn-primary" onclick="return confirmation('img-add-{{$data[0]->id}}')">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
                                                 </div>
                                             </form>
@@ -264,7 +264,7 @@
                                 <div class="modal fade" id="modal-exam" tabindex="-1" role="dialog" aria-labelledby="documentupload" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
-                                            <form method="post" enctype="multipart/form-data" action="/rollend/exam/toevoegen/{{$data[0]->id}}">
+                                            <form method="post" enctype="multipart/form-data" id="exam-add-{{$data[0]->id}}" action="/rollend/exam/toevoegen/{{$data[0]->id}}">
                                                 @csrf
                                                 <div class="modal-header">
                                                     <h5 class="modal-title text-center" id="documentupload">Documenten uploaden</h5>
@@ -310,7 +310,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <input type="submit" class="btn btn-primary">
+                                                    <input type="submit" class="btn btn-primary" onclick="return confirmation('exam-add-{{$data[0]->id}}')">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Sluiten</button>
                                                 </div>
                                             </form>

@@ -147,7 +147,7 @@
                                                                             <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="edit-{{$item->id}}">
                                                                                 <form method="POST" autocomplete="off" action="rollend/verwijder/{{$item->id}}" id="delete-{{$item->id}}">
                                                                                     @csrf
-                                                                                    <div onclick="confirmation('delete-{{$item->id}}')" class="btn dropdown-item"><i class="fas fa-trash-alt"></i> Verwijderen</div>
+                                                                                    <div onclick="return confirmation('delete-{{$item->id}}')" class="btn dropdown-item"><i class="fas fa-trash-alt"></i> Verwijderen</div>
                                                                                 </form>
                                                                                 <a class="dropdown-item" href="rollend/bijwerken/{{$item->id}}"><i class="fas fa-edit"></i> Bijwerken</a>
                                                                             </div>
@@ -197,7 +197,7 @@
                                                                     @endforelse
                                                                     
                                                                     <!-- add comment form -->
-                                                                    <form class="mt-2 input-group" action="/rollend/comment/add/{{$item->id}}" method="POST">
+                                                                    <form class="mt-2 input-group" id="state-{{$item->id}}" action="/rollend/comment/add/{{$item->id}}" method="POST">
                                                                         @csrf
 
                                                                         <input type="hidden" name="type" value="{{$list['type']}}">
@@ -225,7 +225,7 @@
                                                                         </div> 
                                                                         <input id="name" type="text" placeholder="Commentaar" class="form-control" name="remarks" autocomplete="comment" required>
                                                                         <div class="input-group-prepend">
-                                                                            <button class="btn btn-primary" type="submit">
+                                                                            <button class="btn btn-primary" type="submit" onclick="return confirmation('state-{{$item->id}}')">
                                                                                 <i class="fas fa-arrow-right"></i>
                                                                             </button>
                                                                         </div>

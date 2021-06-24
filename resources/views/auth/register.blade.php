@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col">
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" id="register-form" action="{{ route('register') }}">
                 @csrf
                 <div class="card">
                     <div class="card-header">{{ __('Register') }}</div>
@@ -191,7 +191,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" onclick="return confirmation('register-form')" class="btn btn-primary">
                                     Registreren
                                 </button>
                             </div>

@@ -142,7 +142,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form method="POST">
+                    <form method="POST" id="update-leds">
                         {{ csrf_field() }}
     
                         <div class="form-group row">
@@ -175,7 +175,7 @@
     
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="mx-3 my-1 btn btn-primary" formaction="{{ action('SplitflapController@update_leds') }}">
+                                <button type="submit" class="mx-3 my-1 btn btn-primary" onclick="return confirmation('update-leds')"formaction="{{ action('SplitflapController@update_leds') }}">
                                     Opslaan
                                 </button>
                             </div>
@@ -249,7 +249,7 @@
                                                 <a class="dropdown-item" href="{{route('splitflap_edit', ['id' => $item->id])}}"><i title="Aanpassen" data-toggle="tooltip" class="fas fa-cog"></i> Bijwerken</a>
                                                 <form method="POST" autocomplete="off" action="ris/verwijder/{{$item->id}}" id="delete-{{$item->id}}">
                                                     @csrf
-                                                    <div onclick="confirmation('delete-{{$item->id}}')" class="btn dropdown-item"><i class="fas fa-trash-alt"></i> Verwijderen</div>
+                                                    <div onclick="return confirmation('delete-{{$item->id}}')" class="btn dropdown-item"><i class="fas fa-trash-alt"></i> Verwijderen</div>
                                                 </form>
                                             </div>
                                         </td>

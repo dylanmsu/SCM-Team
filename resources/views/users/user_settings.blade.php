@@ -18,7 +18,7 @@
                 </div>
     
                 <div class="card-body">
-                    <form method="POST">
+                    <form method="POST" id="settings-form">
                         @csrf
         
                         <div class="form-group row">
@@ -44,7 +44,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="mx-3 my-1 btn btn-primary" formaction="{{ route('usersettings') }}">
+                                <button type="submit" class="mx-3 my-1 btn btn-primary" onclick="return confirmation('settings-form')" formaction="{{ route('usersettings') }}">
                                     Opslaan
                                 </button>
                             </div>

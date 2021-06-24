@@ -140,7 +140,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
 
-                                <button type="submit" class="mx-3 my-1 btn btn-secondary" formaction="{{ action('SplitflapController@preview') }}">
+                                <button type="submit" class="mx-3 my-1 btn btn-success" formaction="{{ action('SplitflapController@preview') }}">
                                     Voorbeeld
                                 </button>
 

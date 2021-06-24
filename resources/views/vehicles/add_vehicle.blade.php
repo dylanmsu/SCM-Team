@@ -28,7 +28,7 @@
 
     <div class="justify-content-center">
         @if ($action ?? '' == 'edit')
-        <form method="post" enctype="multipart/form-data" action="/rollend/bijwerken/{{$vehicle->id ?? ''}}">
+        <form method="post" enctype="multipart/form-data" id="vehicle-form" action="/rollend/bijwerken/{{$vehicle->id ?? ''}}">
         @else
         <form method="post" enctype="multipart/form-data" action="{{route('add_vehicle')}}">
         @endif
@@ -585,7 +585,7 @@
                 <div class="card-body">
                     <div class="form-group row mb-0 justify-content-center">
                         <div class="col-lg-6">
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="return confirmation('vehicle-form')">
                                 @if ($action ?? '' == 'edit')
                                     Bijwerken
                                 @else
