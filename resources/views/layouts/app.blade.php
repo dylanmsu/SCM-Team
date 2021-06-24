@@ -223,6 +223,10 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+
+                    <h2 class="d-md-none">
+                        @yield('title')
+                    </h2>
                     
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
@@ -265,6 +269,14 @@
                                 </li>
                             @endguest
                         </ul>
+
+                        @auth
+                            <ul class="navbar-brand m-auto d-none d-md-block ">
+                                <h2>
+                                    @yield('title')
+                                </h2>
+                            </ul>
+                        @endauth
 
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">

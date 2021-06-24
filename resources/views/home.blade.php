@@ -30,17 +30,7 @@
             );
         @endphp
     @else
-        @php
-            if (auth()->user()->role_id >= 3) {
-                // place cards here for when the user has a role id of geater than 3 (lower = more privilege)
-            }
-            elseif (auth()->user()->role_id >= 2) {
-                // when the use has a role id geater than 2
-            }
-            elseif (auth()->user()->role_id >= 1) {
-                // when the use has a role id geater than 1
-            }
-            
+        @php            
             // home pagina wanneer de gebruiker is ingelogd
             $home_cards = array(
                 array('img' => './images/main/admin/dragon.svg',          'name' => 'Elliott',          'target' => "",  'link' => route('elliott')),
@@ -66,19 +56,13 @@
         @endphp
     @endguest
 
-        @guest
-
-        @else
-            
-        @endguest
-
         <!-- left side -->
-        <div class="col-md-8">
-            <div class="card mt-4">
+        <div class="col-lg-8">
+            <div class="card my-4">
                 <div class="card-body">
                     <div class="container">
                         <div class="row text-center">
-                           <!-- loop through the array above to create the cards -->
+                            <!-- loop through the array above to create the cards -->
                             @foreach ($home_cards as $card)
                                 <div class="my-4 col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12" >
                                     <a class="card shadow-sm my-card text-decoration-none" href="{{ $card['link'] }}" target="{{ $card['target'] }}">
@@ -94,7 +78,7 @@
         </div>
 
         <!-- right side -->
-        <div class="col-md-4">
+        <div class="col-lg-4">
             <div class="card mt-4">
                 <div class="card-header text-center text-uppercase"><strong>Geplande Ritten</strong></div>
                 <div class="list-group">

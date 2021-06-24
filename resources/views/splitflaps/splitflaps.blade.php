@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Reisigersinformatie')
+@section('title', 'Ritten')
 
 @push('head')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" 

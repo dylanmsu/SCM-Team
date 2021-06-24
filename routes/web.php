@@ -19,15 +19,11 @@ Auth::routes([
    'verify' =>      false, // Disable email Verification Routes...
 ]);
 
+// home routes
 Route::redirect('/', '/home', 301); // set landing page to '/home' by redirecting from '/' to '/home'
 Route::get('/home', 'HomeController@home')->name('home');
 
-// if we don't need to send aditional data to the view, we can skip the controller and use route::view('[route name]', '[view name]')
-Route::view('/links', 'links')->name('links'); 
-Route::view('/settings', 'users/user_settings')->name('user_settings');
-Route::view('/profile', 'users/user_profile')->name('user_profile');
-
-// routes that link to the respective functions in their controllers
+// splitflap routes
 Route::get('/ritten', 'SplitflapController@splitflaps')->name('splitflaps');
 Route::get('/ritten/export', 'SplitflapController@export')->name('export-splitflaps');
 Route::get('/ritten/bord-setup', 'SplitflapController@board_setup')->name('board-setup');
@@ -38,11 +34,7 @@ Route::post('/ritten/verwijder/{id}', 'SplitflapController@delete');
 Route::post('/ritten/bijwerken/{id}', 'SplitflapController@update');
 Route::post('/ritten/bijwerken', 'SplitflapController@update_leds')->name('update_leds');
 
-Route::get('/map', 'MapController@trainmap')->name('map');
-
-Route::get('/leden', 'MemberController@members')->name('members');
-Route::get('/leden/toevoegen', 'MemberController@members')->name('add_members');
-
+// vehicle routes
 Route::get('/rollend', 'Vehicles\VehicleViewsController@vehicles')->name('vehicles');
 Route::get('/rollend/export', 'Vehicles\VehicleController@export')->name('export-vehicles');
 Route::get('/rollend/toevoegen', 'Vehicles\VehicleViewsController@add_vehicle_page')->name('add_vehicle_page');
@@ -57,9 +49,16 @@ Route::post('/rollend/exam/toevoegen/{id}', 'Vehicles\VehiclePropertyController@
 Route::post('/rollend/doc/toevoegen/{id}', 'Vehicles\VehiclePropertyController@upload_doc');
 Route::post('/rollend/prop/toevoegen/{id}', 'Vehicles\VehiclePropertyController@add_prop');
 
+// miscellaneous routes
 Route::post('/user/update_settings', 'UserController@settings')->name('usersettings');
 Route::post('/markeer-als-gelezen', 'UserController@mark_read')->name('markNotification');
-
 Route::get('/elliott', 'Elliott\ElliottController@index')->name('elliott');
-
 Route::get('/planner', 'Planner\PlannerController@planner')->name('planner');
+Route::get('/map', 'MapController@trainmap')->name('map');
+Route::get('/leden', 'MemberController@members')->name('members');
+Route::get('/leden/toevoegen', 'MemberController@members')->name('add_members');
+
+// routes that point directly to their view
+Route::view('/links', 'links')->name('links'); 
+Route::view('/settings', 'users/user_settings')->name('user_settings');
+Route::view('/profile', 'users/user_profile')->name('user_profile');

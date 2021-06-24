@@ -268,7 +268,6 @@ class SplitflapController extends Controller
         $humidB = boardData::select('created_at as x','humidity as y')->where('board', 'B')->orderBy('created_at','DESC')->get();
 
         $settings = Valuestore::make(storage_path('app/settings.json'));
-        $settings->put('hello', 'world');
 
         return view('splitflaps/splitflaps', [
             'count' => splitflap::selectRaw('count(*) as count')->get(),

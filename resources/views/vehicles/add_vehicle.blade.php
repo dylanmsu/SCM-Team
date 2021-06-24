@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Rollend Materieel toevoegen')
+@section('title', 'Rollend Materieel')
 @section('content')
 <div class="container" ng-app="">
     <nav aria-label="breadcrumb">
