@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\splitflap;
-use App\boardData;
+use App\BoardData;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Exports\VehicleExport;
